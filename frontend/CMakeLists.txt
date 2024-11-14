@@ -27,7 +27,9 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(frontend main.cpp)
+add_executable(frontend main.cpp
+    windows/mainwindow.h windows/mainwindow.cpp windows/mainwindow.ui
+)
 target_link_libraries(frontend
         Qt::Core
         Qt::Gui
