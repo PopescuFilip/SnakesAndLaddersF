@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project Name
-project(MyProject)
+project(server)
 
 # Set the C++ Standard
 set(CMAKE_CXX_STANDARD 17)
@@ -32,10 +32,10 @@ message(STATUS "Downloading CrowCpp ...")
 FetchContent_MakeAvailable(CrowCpp)
 
 # Define your executable
-add_executable(MyProject main.cpp)
+add_executable(server main.cpp)
 
 # Link CrowCpp to your project
-target_link_libraries(MyProject PRIVATE Crow::Crow)
+target_link_libraries(server PRIVATE Crow::Crow)
 
 message("src: ${asio_SOURCE_DIR}")
 message("install: ${ASIO_INSTALL_DIR}")
