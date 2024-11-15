@@ -32,7 +32,21 @@ message(STATUS "Downloading CrowCpp ...")
 FetchContent_MakeAvailable(CrowCpp)
 
 # Define your executable
-add_executable(server main.cpp)
+add_executable(server main.cpp
+        Infrastructure/BaseResponse.cpp
+        Infrastructure/BaseResponse.h
+        Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.cpp
+        Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.h
+        GameManagement/MapTypeEnum.h
+        GameManagement/Player.cpp
+        GameManagement/Player.h
+        GameManagement/PlayerColor.h
+        Infrastructure/Lobby/CreateLobby/CreateLobbyResponse.cpp
+        Infrastructure/Lobby/CreateLobby/CreateLobbyResponse.h
+        Infrastructure/BaseContext.h
+        Infrastructure/Lobby/CreateLobby/CreateLobbyContext.cpp
+        Infrastructure/Lobby/CreateLobby/CreateLobbyContext.h
+)
 
 # Link CrowCpp to your project
 target_link_libraries(server PRIVATE Crow::Crow)
