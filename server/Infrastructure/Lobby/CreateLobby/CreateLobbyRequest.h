@@ -1,11 +1,9 @@
 #ifndef CREATELOBBYREQUEST_H
 #define CREATELOBBYREQUEST_H
 #include <string>
+#include "../../../GameManagement/Objects/MapTypeEnum.h"
 
-#include "../../../GameManagement/MapTypeEnum.h"
-
-
-class CreateLobbyRequest {
+class CreateLobbyRequest{
 public:
     CreateLobbyRequest(MapType mapType, int iMaxPlayers, const std::string& strAdminUsername);
     MapType getMapType() const;

@@ -1,16 +1,19 @@
 #include "CreateLobbyContext.h"
 
+#include "../../../GameManagement/Lobby/LobbyManager.h"
+
 CreateLobbyResponse CreateLobbyContext::HandleRequest(const CreateLobbyRequest &request)
 {
     if(CreateLobbyResponse response = ValidateRequest(request); !response) {
         return response;
     }
 
-    return ApplyChanges(request);
+    ApplyChanges(request);
+    return CreateLobbyResponse{true};
 }
 
-CreateLobbyResponse CreateLobbyContext::ApplyChanges(const CreateLobbyRequest &request) {
-    // Call the game manager to create a new lobby
+void CreateLobbyContext::ApplyChanges(const CreateLobbyRequest &request) {
+    LobbyManager::getInstance().createLobby(request.getAdminUsername(), request.getMapType(), request.getMaxPlayers());
 }
 
 CreateLobbyResponse CreateLobbyContext::ValidateRequest(const CreateLobbyRequest &request) {

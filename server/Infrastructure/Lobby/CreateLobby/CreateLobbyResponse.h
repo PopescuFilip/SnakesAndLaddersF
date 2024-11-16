@@ -3,11 +3,13 @@
 #include "../../BaseResponse.h"
 
 
-class CreateLobbyResponse : protected BaseResponse {
+class CreateLobbyResponse : public BaseResponse {
 public:
     CreateLobbyResponse(int iLobbyId);
     CreateLobbyResponse(const std::string& strContent);
     int getLobbyId() const;
+
+    crow::json::wvalue convertToJson() const override;
 private:
     int m_iLobbyId;
 };

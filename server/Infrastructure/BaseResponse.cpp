@@ -14,10 +14,11 @@ BaseResponse::operator bool() const {
     return m_bSuccess;
 }
 
-crow::json::wvalue BaseResponse::convertToJson() const {
-    crow::json::wvalue json;
-    json["success"] = m_bSuccess;
-    json["message"] = m_strMessage;
 
-    return crow::json::wvalue(json);
+bool BaseResponse::getSuccess() const {
+    return m_bSuccess;
+}
+
+const std::string& BaseResponse::getMessage() const {
+    return m_strMessage;
 }

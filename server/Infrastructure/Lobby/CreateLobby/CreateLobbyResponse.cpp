@@ -14,3 +14,15 @@ int CreateLobbyResponse::getLobbyId() const
 {
     return m_iLobbyId;
 }
+
+crow::json::wvalue CreateLobbyResponse::convertToJson() const {
+
+    crow::json::wvalue jsonResponse;
+    jsonResponse["success"] = getSuccess();
+    jsonResponse["message"] = getMessage();
+    jsonResponse["lobbyId"] = m_iLobbyId;
+
+    return jsonResponse;
+}
+
+

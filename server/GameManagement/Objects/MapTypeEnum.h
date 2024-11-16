@@ -6,6 +6,7 @@
 #define MAPTYPEENUM_H
 
 enum class MapType {
+    NONE = 0,
     MAP_01 = 1,
 };
 

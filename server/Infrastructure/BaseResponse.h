@@ -8,8 +8,11 @@ class BaseResponse {
 public:
     virtual ~BaseResponse() = default;
     explicit operator bool() const;
-    crow::json::wvalue convertToJson() const;
-protected:
+    virtual crow::json::wvalue convertToJson() const = 0;
+
+    bool getSuccess() const;
+    const std::string& getMessage() const;
+
     explicit BaseResponse(std::string strContent);
     explicit BaseResponse(bool bSuccess);
 private:

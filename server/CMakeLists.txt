@@ -37,15 +37,24 @@ add_executable(server main.cpp
         Infrastructure/BaseResponse.h
         Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.cpp
         Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.h
-        GameManagement/MapTypeEnum.h
-        GameManagement/Player.cpp
-        GameManagement/Player.h
-        GameManagement/PlayerColor.h
+        GameManagement/Objects/MapTypeEnum.h
+        GameManagement/Objects/Player.cpp
+        GameManagement/Objects/Player.h
+        GameManagement/Objects/PlayerColor.h
         Infrastructure/Lobby/CreateLobby/CreateLobbyResponse.cpp
         Infrastructure/Lobby/CreateLobby/CreateLobbyResponse.h
         Infrastructure/BaseContext.h
         Infrastructure/Lobby/CreateLobby/CreateLobbyContext.cpp
         Infrastructure/Lobby/CreateLobby/CreateLobbyContext.h
+        GameManagement/Game/GameManager.cpp
+        GameManagement/Game/GameManager.h
+        GameManagement/Objects/Lobby.cpp
+        GameManagement/Objects/Lobby.h
+        GameManagement/Objects/RunningGame.cpp
+        GameManagement/Objects/RunningGame.h
+        GameManagement/Lobby/LobbyManager.cpp
+        GameManagement/Lobby/LobbyManager.h
+        Routes/CreateLobbyRoute.h
 )
 
 # Link CrowCpp to your project
