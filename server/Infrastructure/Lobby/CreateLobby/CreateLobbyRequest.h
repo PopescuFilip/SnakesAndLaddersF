@@ -12,7 +12,7 @@ public:
 private:
     MapType m_MapType;
     int m_iMaxPlayers;
-    std::string m_strAdminUseranme;
+    std::string m_strAdminUsername;
 };
 
 

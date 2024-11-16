@@ -30,3 +30,13 @@ void Player::setCurrentBoardPosition(int iPosition)
 {
     m_iCurrentBoardPosition = iPosition;
 }
+
+crow::json::wvalue Player::getJsonValue() const {
+    crow::json::wvalue jsonPlayer;
+    jsonPlayer["username"] = m_strUsername;
+    jsonPlayer["playerColor"] = static_cast<int>(m_PlayerColor);
+    jsonPlayer["isLobbyAdmin"] = m_bIsLobbyAdmin;
+    jsonPlayer["currentBoardPosition"] = m_iCurrentBoardPosition;
+
+    return jsonPlayer;
+}

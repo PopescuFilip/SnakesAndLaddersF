@@ -55,6 +55,15 @@ add_executable(server main.cpp
         GameManagement/Lobby/LobbyManager.cpp
         GameManagement/Lobby/LobbyManager.h
         Routes/CreateLobbyRoute.h
+        Routes/JoinLobbyRoute.h
+        Infrastructure/Lobby/JoinLobby/JoinLobbyRequest.cpp
+        Infrastructure/Lobby/JoinLobby/JoinLobbyRequest.h
+        Infrastructure/Lobby/JoinLobby/JoinLobbyResponse.cpp
+        Infrastructure/Lobby/JoinLobby/JoinLobbyResponse.h
+        Infrastructure/Lobby/JoinLobby/JoinLobbyContext.cpp
+        Infrastructure/Lobby/JoinLobby/JoinLobbyContext.h
+        Infrastructure/ValidationResponse.cpp
+        Infrastructure/ValidationResponse.h
 )
 
 # Link CrowCpp to your project

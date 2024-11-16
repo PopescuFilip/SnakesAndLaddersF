@@ -16,6 +16,7 @@ public:
     bool addPlayer(const Player& player);
     bool addPlayer(const std::string& strUsername, PlayerColor playerColor);
     bool removePlayer(const std::string& strUsername);
+    PlayerColor getNextAvailableColor() const;
 
     std::list<Player> getPlayers() const;
     std::string getAdminPlayer() const;

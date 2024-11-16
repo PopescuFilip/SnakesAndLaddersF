@@ -40,6 +40,22 @@ bool Lobby::removePlayer(const std::string &strUsername) {
     return true;
 }
 
+PlayerColor Lobby::getNextAvailableColor() const {
+    if(m_Players.size() == 0) {
+        return PlayerColor::RED;
+    }
+
+    if(m_Players.size() == 1) {
+        return PlayerColor::BLUE;
+    }
+
+    if(m_Players.size() == 2) {
+        return PlayerColor::GREEN;
+    }
+
+    return PlayerColor::YELLOW;
+}
+
 std::list<Player> Lobby::getPlayers() const {
     return m_Players;
 }

@@ -1,5 +1,6 @@
 #ifndef BASECONTEXT_H
 #define BASECONTEXT_H
+#include "ValidationResponse.h"
 
 template <typename RequestType, typename ResponseType>
 class BaseContext {
@@ -8,8 +9,8 @@ public:
     virtual ResponseType HandleRequest(const RequestType& request) = 0;
 
 protected:
-    virtual void ApplyChanges(const RequestType& request) = 0;
-    virtual ResponseType ValidateRequest(const RequestType& request) = 0;
+    virtual ResponseType ApplyChanges(const RequestType& request) = 0;
+    virtual ValidationResponse ValidateRequest(const RequestType& request) = 0;
 };
 
 #endif //BASECONTEXT_H

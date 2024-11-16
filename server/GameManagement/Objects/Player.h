@@ -5,6 +5,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
+#include <crow/json.h>
+
 #include "PlayerColor.h"
 
 class Player {
@@ -16,6 +18,8 @@ public:
     bool isLobbyAdmin() const;
     int getCurrentBoardPosition() const;
     void setCurrentBoardPosition(int iPosition);
+
+    crow::json::wvalue getJsonValue() const;
 private:
     std::string m_strUsername;
     PlayerColor m_PlayerColor;

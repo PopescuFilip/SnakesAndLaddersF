@@ -10,6 +10,7 @@ public:
     void createLobby(const std::string& strAdminPlayer, MapType mapType, int maxPlayers);
     void createLobby(const Lobby& lobby);
     void removeLobby(int lobbyId);
+    void updateLobby(int lobbyId, const Lobby& newLobbyDetails);
     Lobby getLobby(int lobbyId) const;
 
 private:

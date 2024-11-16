@@ -24,6 +24,16 @@ void LobbyManager::removeLobby(int lobbyId) {
     }
 }
 
+void LobbyManager::updateLobby(int lobbyId, const Lobby &newLobbyDetails) {
+    auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby& l) {
+        return l.getLobbyId() == lobbyId;
+    });
+
+    if(it != m_Lobbies.end()) {
+        *it = newLobbyDetails;
+    }
+}
+
 Lobby LobbyManager::getLobby(int lobbyId) const {
     auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby& l) {
         return l.getLobbyId() == lobbyId;

@@ -4,23 +4,23 @@
 
 CreateLobbyResponse CreateLobbyContext::HandleRequest(const CreateLobbyRequest &request)
 {
-    if(CreateLobbyResponse response = ValidateRequest(request); !response) {
-        return response;
+    if(ValidationResponse response = ValidateRequest(request); !response.isValid()) {
+        return CreateLobbyResponse{response.getMessage()};
     }
 
-    ApplyChanges(request);
+    return ApplyChanges(request);
+}
+
+CreateLobbyResponse CreateLobbyContext::ApplyChanges(const CreateLobbyRequest &request) {
+    LobbyManager::getInstance().createLobby(request.getAdminUsername(), request.getMapType(), request.getMaxPlayers());
     return CreateLobbyResponse{true};
 }
 
-void CreateLobbyContext::ApplyChanges(const CreateLobbyRequest &request) {
-    LobbyManager::getInstance().createLobby(request.getAdminUsername(), request.getMapType(), request.getMaxPlayers());
-}
-
-CreateLobbyResponse CreateLobbyContext::ValidateRequest(const CreateLobbyRequest &request) {
+ValidationResponse CreateLobbyContext::ValidateRequest(const CreateLobbyRequest &request) {
     int iMaxPlayers = request.getMaxPlayers();
     if(iMaxPlayers < 2 || iMaxPlayers > 4) {
-        return CreateLobbyResponse{"Invalid number of players"};
+        return ValidationResponse{false, "Max players must be between 2 and 4"};
     }
 
-    return CreateLobbyResponse{true};
+    return ValidationResponse{true};
 }

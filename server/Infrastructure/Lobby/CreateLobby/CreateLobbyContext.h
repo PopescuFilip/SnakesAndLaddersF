@@ -9,8 +9,8 @@ class CreateLobbyContext : public BaseContext<CreateLobbyRequest, CreateLobbyRes
 public:
     CreateLobbyResponse HandleRequest(const CreateLobbyRequest& request) override;
 protected:
-    void ApplyChanges(const CreateLobbyRequest& request) override;
-    CreateLobbyResponse ValidateRequest(const CreateLobbyRequest& request) override;
+    CreateLobbyResponse ApplyChanges(const CreateLobbyRequest& request) override;
+    ValidationResponse ValidateRequest(const CreateLobbyRequest& request) override;
 };
 
 
