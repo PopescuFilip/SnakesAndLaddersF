@@ -75,6 +75,13 @@ add_executable(server main.cpp
         Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.h
         Routes/ChangeLobbySettingsRoute.h
         API.h
+        Infrastructure/Lobby/LobbyStatus/LobbyStatusRequest.cpp
+        Infrastructure/Lobby/LobbyStatus/LobbyStatusRequest.h
+        Infrastructure/Lobby/LobbyStatus/LobbyStatusResponse.cpp
+        Infrastructure/Lobby/LobbyStatus/LobbyStatusResponse.h
+        Infrastructure/Lobby/LobbyStatus/LobbyStatusContext.cpp
+        Infrastructure/Lobby/LobbyStatus/LobbyStatusContext.h
+        Routes/StatusLobbyRoute.h
 )
 
 # Link CrowCpp to your project

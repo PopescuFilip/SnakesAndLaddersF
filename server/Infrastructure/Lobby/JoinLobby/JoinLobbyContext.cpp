@@ -43,5 +43,5 @@ JoinLobbyResponse JoinLobbyContext::ApplyChanges(const JoinLobbyRequest &request
     }
     LobbyManager::getInstance().updateLobby(request.getLobbyId(), lobby);
 
-    return JoinLobbyResponse{request.getLobbyId(), lobby.getAdminPlayer(), lobby.getPlayers(), lobby.getMapType()};
+    return JoinLobbyResponse{lobby};
 }

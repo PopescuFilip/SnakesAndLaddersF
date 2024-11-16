@@ -83,3 +83,24 @@ void Lobby::setMapType(MapType mapType) {
 void Lobby::setMaxPlayers(int maxPlayers) {
     this->m_iMaxPlayers = maxPlayers;
 }
+
+void Lobby::setGameId(int gameId) {
+    m_iGameId = gameId;
+}
+
+crow::json::wvalue Lobby::convertToJson() const {
+    crow::json::wvalue json;
+    json["lobbyId"] = m_iLobbyId;
+    json["adminUsername"] = m_strAdminPlayer;
+    json["mapType"] = static_cast<int>(m_MapType);
+    json["maxPlayers"] = m_iMaxPlayers;
+    json["gameId"] = m_iGameId;
+    std::vector<std::string> playersJson;
+    for(const Player& player : m_Players) {
+        playersJson.push_back(player.getJsonValue().dump());
+    }
+
+    json["players"] = playersJson;
+
+    return json;
+}

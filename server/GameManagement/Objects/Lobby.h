@@ -26,6 +26,9 @@ public:
 
     void setMapType(MapType mapType);
     void setMaxPlayers(int maxPlayers);
+    void setGameId(int gameId);
+
+    crow::json::wvalue convertToJson() const;
 
     bool isNull = false;
 private:
@@ -34,6 +37,8 @@ private:
     std::string m_strAdminPlayer;
     MapType m_MapType;
     int m_iMaxPlayers;
+
+    int m_iGameId = -1;
 };
 
 
