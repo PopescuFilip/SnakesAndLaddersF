@@ -75,3 +75,11 @@ int Lobby::getMaxPlayers() const {
 int Lobby::getLobbyId() const {
     return m_iLobbyId;
 }
+
+void Lobby::setMapType(MapType mapType) {
+    this->m_MapType = mapType;
+}
+
+void Lobby::setMaxPlayers(int maxPlayers) {
+    this->m_iMaxPlayers = maxPlayers;
+}

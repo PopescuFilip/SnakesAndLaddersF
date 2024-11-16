@@ -7,6 +7,9 @@ project(server)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Set the compiler flags
+set(CMAKE_COMPILE_WARNING_AS_ERROR ON)
+
 # FetchContent module to download dependencies
 include(FetchContent)
 
@@ -64,6 +67,14 @@ add_executable(server main.cpp
         Infrastructure/Lobby/JoinLobby/JoinLobbyContext.h
         Infrastructure/ValidationResponse.cpp
         Infrastructure/ValidationResponse.h
+        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsRequest.cpp
+        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsRequest.h
+        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsResponse.cpp
+        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsResponse.h
+        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.cpp
+        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.h
+        Routes/ChangeLobbySettingsRoute.h
+        API.h
 )
 
 # Link CrowCpp to your project

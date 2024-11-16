@@ -24,6 +24,9 @@ public:
     int getMaxPlayers() const;
     int getLobbyId() const;
 
+    void setMapType(MapType mapType);
+    void setMaxPlayers(int maxPlayers);
+
     bool isNull = false;
 private:
     int m_iLobbyId;

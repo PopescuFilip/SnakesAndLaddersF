@@ -15,8 +15,20 @@ ValidationResponse JoinLobbyContext::ValidateRequest(const JoinLobbyRequest &req
         return ValidationResponse{false, "Username cannot be empty"};
     }
 
-    if(LobbyManager::getInstance().getLobby(request.getLobbyId()).getLobbyId() == -1) {
+    Lobby lobby = LobbyManager::getInstance().getLobby(request.getLobbyId());
+
+    if(lobby.isNull) {
         return ValidationResponse{false, "Lobby does not exist"};
+    }
+
+    if(lobby.getPlayers().size() == lobby.getMaxPlayers()) {
+        return ValidationResponse{false, "Lobby is full"};
+    }
+
+    for(const Player &player : lobby.getPlayers()) {
+        if(player.getUsername() == request.getUsername()) {
+            return ValidationResponse{false, "Player already exists in lobby"};
+        }
     }
 
     return ValidationResponse{true};
