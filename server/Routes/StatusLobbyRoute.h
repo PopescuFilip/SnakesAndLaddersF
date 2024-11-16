@@ -7,9 +7,9 @@
 inline crow::json::wvalue StatusLobbyRoute(const crow::json::rvalue& request) {
     int lobbyId = request["lobbyId"].i();
 
-    LobbyStatusRequest request {lobbyId};
+    LobbyStatusRequest lobbyStatusRequest {lobbyId};
     LobbyStatusContext context;
-    LobbyStatusResponse response = context.HandleRequest(request);
+    LobbyStatusResponse response = context.HandleRequest(lobbyStatusRequest);
 
     return response.convertToJson();
 }

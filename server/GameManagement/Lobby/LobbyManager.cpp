@@ -1,17 +1,20 @@
 #include "LobbyManager.h"
 
-LobbyManager LobbyManager::getInstance() {
+LobbyManager& LobbyManager::getInstance() {
     static LobbyManager instance;
     return instance;
 }
 
-void LobbyManager::createLobby(const std::string &strAdminPlayer, MapType mapType, int maxPlayers) {
+int LobbyManager::createLobby(const std::string &strAdminPlayer, MapType mapType, int maxPlayers) {
     int lobbyId = GenerateLobbyId();
-    m_Lobbies.emplace_back(lobbyId, strAdminPlayer, mapType, maxPlayers);
+    Lobby newLobby = Lobby{lobbyId, strAdminPlayer, mapType, maxPlayers};
+    m_Lobbies.push_back(newLobby);
+    return lobbyId;
 }
 
-void LobbyManager::createLobby(const Lobby &lobby) {
+int LobbyManager::createLobby(const Lobby &lobby) {
     m_Lobbies.push_back(lobby);
+    return lobby.getLobbyId();
 }
 
 void LobbyManager::removeLobby(int lobbyId) {

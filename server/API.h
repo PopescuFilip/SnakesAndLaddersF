@@ -12,7 +12,7 @@ inline void SetRoutes(crow::SimpleApp& crowApplication) {
     crow::json::rvalue jsonRequest = crow::json::load(req.body);
     crow::json::wvalue jsonResponse = CreateLobbyRoute(jsonRequest);
     return crow::response{jsonResponse};
-});
+    });
 
     CROW_ROUTE(crowApplication, "/lobby/join").methods("POST"_method)([](const crow::request& req) {
         crow::json::rvalue jsonRequest = crow::json::load(req.body);

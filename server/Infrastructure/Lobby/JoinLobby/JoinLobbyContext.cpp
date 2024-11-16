@@ -15,7 +15,8 @@ ValidationResponse JoinLobbyContext::ValidateRequest(const JoinLobbyRequest &req
         return ValidationResponse{false, "Username cannot be empty"};
     }
 
-    Lobby lobby = LobbyManager::getInstance().getLobby(request.getLobbyId());
+    const LobbyManager lobbyManager = LobbyManager::getInstance();
+    const Lobby lobby = lobbyManager.getLobby(request.getLobbyId());
 
     if(lobby.isNull) {
         return ValidationResponse{false, "Lobby does not exist"};

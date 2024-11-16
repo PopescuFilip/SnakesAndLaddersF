@@ -6,13 +6,13 @@
 
 class GameManager {
 public:
-    static GameManager getInstance();
+    static GameManager& getInstance();
 
     void createGame(const Lobby& lobby);
     void removeGame(int gameId);
     RunningGame getRunningGame(int gameId) const;
 private:
-    std::list<RunningGame> m_Games;
+    std::vector<RunningGame> m_Games;
 };
 
 

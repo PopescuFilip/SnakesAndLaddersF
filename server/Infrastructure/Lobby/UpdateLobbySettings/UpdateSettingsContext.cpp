@@ -24,7 +24,7 @@ ValidationResponse UpdateSettingsContext::ValidateRequest(const UpdateSettingsRe
         return ValidationResponse{false, "Player is not the admin"};
     }
 
-    if(lobby.getMaxPlayers() < request.getMaxPlayers()) {
+    if(lobby.getPlayers().size() > request.getMaxPlayers()) {
         return ValidationResponse{false, "Max players cannot be less than current players"};
     }
 

@@ -1,7 +1,3 @@
-//
-// Created by Tudor Andrei on 16.11.2024.
-//
-
 #include "RunningGame.h"
 
 RunningGame::RunningGame(const Lobby &baseLobby) : m_Players{baseLobby.getPlayers()} {

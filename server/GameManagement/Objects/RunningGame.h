@@ -12,7 +12,7 @@ public:
     bool isNull = false;
 private:
     int gameId; // Unique identifier for the game
-    std::list <Player> m_Players;
+    std::vector <Player> m_Players;
 };
 
 

@@ -12,8 +12,8 @@ CreateLobbyResponse CreateLobbyContext::HandleRequest(const CreateLobbyRequest &
 }
 
 CreateLobbyResponse CreateLobbyContext::ApplyChanges(const CreateLobbyRequest &request) {
-    LobbyManager::getInstance().createLobby(request.getAdminUsername(), request.getMapType(), request.getMaxPlayers());
-    return CreateLobbyResponse{true};
+    int id = LobbyManager::getInstance().createLobby(request.getAdminUsername(), request.getMapType(), request.getMaxPlayers());
+    return CreateLobbyResponse{id};
 }
 
 ValidationResponse CreateLobbyContext::ValidateRequest(const CreateLobbyRequest &request) {

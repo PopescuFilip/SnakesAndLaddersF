@@ -5,5 +5,5 @@ int main()
 {
     crow::SimpleApp app;
     SetRoutes(app);
-    app.port(18080).multithreaded().run();
+    app.port(18080).run();
 }

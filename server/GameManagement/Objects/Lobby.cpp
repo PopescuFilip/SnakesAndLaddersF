@@ -4,9 +4,9 @@ Lobby::Lobby() : isNull(true), m_MapType{MapType::NONE}, m_iMaxPlayers{0} {
     // Null constructor. Used for error handling
 }
 
-Lobby::Lobby(int lobbyId, std::string strAdminPlayer, MapType mapType, int maxPlayers) : m_iLobbyId{lobbyId},
-    m_strAdminPlayer{std::move(strAdminPlayer)}, m_MapType{mapType}, m_iMaxPlayers{maxPlayers} {
-    m_Players.emplace_back(strAdminPlayer, PlayerColor::RED, true);
+Lobby::Lobby(int lobbyId, const std::string& strAdminPlayer, MapType mapType, int maxPlayers) : m_iLobbyId{lobbyId},
+    m_strAdminPlayer{strAdminPlayer}, m_MapType{mapType}, m_iMaxPlayers{maxPlayers} {
+    m_Players.push_back(Player{strAdminPlayer, PlayerColor::RED, true});
 }
 
 bool Lobby::addPlayer(const Player &player) {
@@ -56,7 +56,7 @@ PlayerColor Lobby::getNextAvailableColor() const {
     return PlayerColor::YELLOW;
 }
 
-std::list<Player> Lobby::getPlayers() const {
+std::vector<Player> Lobby::getPlayers() const {
     return m_Players;
 }
 
@@ -95,12 +95,15 @@ crow::json::wvalue Lobby::convertToJson() const {
     json["mapType"] = static_cast<int>(m_MapType);
     json["maxPlayers"] = m_iMaxPlayers;
     json["gameId"] = m_iGameId;
-    std::vector<std::string> playersJson;
-    for(const Player& player : m_Players) {
-        playersJson.push_back(player.getJsonValue().dump());
+
+    crow::json::wvalue::list playersJson;
+    for (const Player& player : m_Players) {
+        playersJson.push_back(player.getJsonValue());
     }
 
-    json["players"] = playersJson;
+    json["players"] = std::move(playersJson);
 
     return json;
 }
+
+

@@ -1,6 +1,6 @@
 #include "JoinLobbyResponse.h"
 
-JoinLobbyResponse::JoinLobbyResponse(const std::string &message) : BaseResponse(message), m_lobbyId{-1}, m_mapType(MapType::NONE) {
+JoinLobbyResponse::JoinLobbyResponse(const std::string &message) : BaseResponse(message) {
     // Error constructor
 }
 
