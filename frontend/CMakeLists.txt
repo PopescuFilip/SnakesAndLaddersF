@@ -32,6 +32,9 @@ FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
         GIT_TAG bb01c8db702fb41e5497aee9c0559ddf4bf13749) # Replace with your desired git commit from: https://github.com/libcpr/cpr/releases
 FetchContent_MakeAvailable(cpr)
 
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 add_executable(frontend main.cpp
     windows/mainwindow.h windows/mainwindow.cpp windows/mainwindow.ui
 )
@@ -41,5 +44,6 @@ target_link_libraries(frontend
         Qt::Gui
         Qt::Widgets
         cpr::cpr
+        nlohmann_json::nlohmann_json
 )
 

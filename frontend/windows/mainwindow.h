@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 namespace Ui {
 class MainWindow;
