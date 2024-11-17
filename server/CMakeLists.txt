@@ -1,40 +1,41 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Project Name
 project(server)
 
-# Set the C++ Standard
+# Keep C++ 17 or the crow and asio libraries will not compile
+# Latest crow cpp version requires C++ 17
+# Keep the asio version to 1.18.1 or the crow library will not compile.
+# Crow is not compatible with the latest asio version
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set the compiler flags
 set(CMAKE_COMPILE_WARNING_AS_ERROR ON)
+set(FETCHCONTENT_QUIET FALSE)
 
-# FetchContent module to download dependencies
 include(FetchContent)
 
-# Fetch ASIO
 FetchContent_Declare(
         ASIO
         GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
-        GIT_TAG asio-1-18-1  # Or use a stable version like asio-1-18-1
+        GIT_TAG asio-1-18-1
+        GIT_PROGRESS TRUE
 )
 message(STATUS "Downloading ASIO ...")
 FetchContent_MakeAvailable(ASIO)
 
-# Set ASIO include directory
 set(ASIO_INCLUDE_DIR ${asio_SOURCE_DIR}/asio/include)
 
-# Fetch CrowCpp
 FetchContent_Declare(
         CrowCpp
         GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
-        GIT_TAG master  # Or use a stable release tag
+        GIT_TAG master
+        GIT_PROGRESS TRUE
 )
 message(STATUS "Downloading CrowCpp ...")
 FetchContent_MakeAvailable(CrowCpp)
 
-# Define your executable
+
 add_executable(server main.cpp
         Infrastructure/BaseResponse.cpp
         Infrastructure/BaseResponse.h
