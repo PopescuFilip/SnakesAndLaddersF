@@ -50,19 +50,21 @@ bool Lobby::removePlayer(const std::string &strUsername) {
 }
 
 PlayerColor Lobby::getNextAvailableColor() const {
-    if(m_Players.size() == 0) {
-        return PlayerColor::RED;
+    // Read the colors of the players in the lobby and return the next available color
+    std::vector<PlayerColor> colors = {PlayerColor::RED, PlayerColor::BLUE, PlayerColor::GREEN, PlayerColor::YELLOW};
+
+    for(const Player& player : m_Players) {
+        auto it = std::find(colors.begin(), colors.end(), player.getPlayerColor());
+        if(it != colors.end()) {
+            colors.erase(it);
+        }
     }
 
-    if(m_Players.size() == 1) {
-        return PlayerColor::BLUE;
+    if(colors.empty()) {
+        throw std::runtime_error("FATAL ERROR: No available colors in lobby. Please check Lobby.cpp line 64");
     }
 
-    if(m_Players.size() == 2) {
-        return PlayerColor::GREEN;
-    }
-
-    return PlayerColor::YELLOW;
+    return colors[0];
 }
 
 std::vector<Player> Lobby::getPlayers() const {

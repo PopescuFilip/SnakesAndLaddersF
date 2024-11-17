@@ -162,3 +162,29 @@ Json Response example:
 }
 ```
 
+## POST `/lobby/leave`
+### Request
+Leave a lobby. The request is a JSON object with the following fields:
+- `lobbyId`: The ID of the lobby to leave.
+- `playerUsername`: The username of the player leaving the lobby.
+
+Json Request Example:
+```json
+{
+    "lobbyId": 1,
+    "playerUsername": "player2"
+}
+```
+
+### Response
+
+This route does not return anything. It is used to update the lobby.
+This will return only the success status and an error message if any.
+
+Json Response example:
+```json
+{
+  "success": true,
+  "message": "Error message if any. Empty if success"
+}
+```
