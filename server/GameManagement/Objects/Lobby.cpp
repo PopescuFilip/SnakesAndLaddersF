@@ -41,7 +41,9 @@ bool Lobby::removePlayer(const std::string &strUsername) {
         return true;
     }
 
-    setNewAdmin();
+    if(it->isLobbyAdmin()) {
+        setNewAdmin();
+    }
 
     m_Players.erase(it);
     return true;
