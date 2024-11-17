@@ -19,6 +19,8 @@ public:
     int getCurrentBoardPosition() const;
     void setCurrentBoardPosition(int iPosition);
 
+    void setIsLobbyAdmin(bool bIsLobbyAdmin);
+
     crow::json::wvalue getJsonValue() const;
 private:
     std::string m_strUsername;

@@ -13,7 +13,7 @@ public:
     bool getSuccess() const;
     const std::string& getMessage() const;
 
-    explicit BaseResponse(std::string strContent);
+    explicit BaseResponse(const std::string& strContent);
     explicit BaseResponse(bool bSuccess);
 private:
     std::string m_strMessage;

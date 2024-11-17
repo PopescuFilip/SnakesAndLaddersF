@@ -136,7 +136,7 @@ Json Response example:
 ### Request
 Update the lobby. The request is a JSON object with the following fields:
 - `lobbyId`: The ID of the lobby to update.
-- `adminUsername`: The username of the admin of the lobby.
+- `playerUsername`: The username of the admin of the lobby.
 - `mapType`: The type of map that the game will start in.
 - `maxPlayers`: The maximum number of players that can join the lobby.
 
@@ -144,7 +144,7 @@ Json Request Example:
 ```json
 {
     "lobbyId": 1,
-    "adminUsername": "player1",
+    "playerUsername": "player1",
     "mapType": 1,
     "maxPlayers": 2
 }

@@ -39,6 +39,8 @@ public:
 
     void setGameId(int gameId);
 
+    void setAdminPlayer(const std::string &strAdminPlayer);
+
     crow::json::wvalue convertToJson() const;
 
     bool isNull = false;
@@ -51,6 +53,8 @@ private:
     int m_iMaxPlayers;
 
     int m_iGameId = -1;
+
+    void setNewAdmin();
 };
 
 

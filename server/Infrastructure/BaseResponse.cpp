@@ -4,8 +4,8 @@ BaseResponse::BaseResponse(const bool bSuccess) : m_bSuccess{bSuccess}
 {
     // Empty constructor
 }
-BaseResponse::BaseResponse(std::string strContent) :
-                m_strMessage{std::move(strContent)}, m_bSuccess{false}
+BaseResponse::BaseResponse(const std::string& strContent) :
+                m_strMessage{strContent}, m_bSuccess{false}
 {
     // Empty constructor
 }

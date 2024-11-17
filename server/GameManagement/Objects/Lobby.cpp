@@ -36,6 +36,13 @@ bool Lobby::removePlayer(const std::string &strUsername) {
         return false;
     }
 
+    if(m_Players.size() == 1) {
+        m_Players.clear();
+        return true;
+    }
+
+    setNewAdmin();
+
     m_Players.erase(it);
     return true;
 }
@@ -88,6 +95,17 @@ void Lobby::setGameId(int gameId) {
     m_iGameId = gameId;
 }
 
+void Lobby::setAdminPlayer(const std::string &strAdminPlayer) {
+
+    for(Player& p : m_Players) {
+        if(p.getUsername() == strAdminPlayer) {
+            p.setIsLobbyAdmin(true);
+        }
+    }
+
+    m_strAdminPlayer = strAdminPlayer;
+}
+
 crow::json::wvalue Lobby::convertToJson() const {
     crow::json::wvalue json;
     json["lobbyId"] = m_iLobbyId;
@@ -104,6 +122,14 @@ crow::json::wvalue Lobby::convertToJson() const {
     json["players"] = std::move(playersJson);
 
     return json;
+}
+
+void Lobby::setNewAdmin() {
+    for(const Player& player : m_Players) {
+        if(player.getUsername() != m_strAdminPlayer) {
+            setAdminPlayer(player.getUsername());
+        }
+    }
 }
 
 
