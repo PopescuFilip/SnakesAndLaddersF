@@ -8,9 +8,11 @@ class GameManager {
 public:
     static GameManager& getInstance();
 
-    void createGame(const Lobby& lobby);
-    void removeGame(int gameId);
+    RunningGame createGame(const Lobby& lobby);
     RunningGame getRunningGame(int gameId) const;
+
+    bool removeGame(int gameId);
+    bool updateGame(int gameId, const RunningGame& newGameDetails);
 private:
     std::vector<RunningGame> m_Games;
 };
