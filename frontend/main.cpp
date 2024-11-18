@@ -1,13 +1,10 @@
 #include <QApplication>
-#include <QPushButton>
-#include <QWindow>
-#include "views/mainwindow.h"
-#include "cpr/cpr.h"
+#include "views/homeview.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow main;
-    main.show();
-    return QApplication::exec();
+    HomeView w;
+    w.show();
+    return a.exec();
 }
