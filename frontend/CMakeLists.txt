@@ -36,7 +36,19 @@ FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download
 FetchContent_MakeAvailable(json)
 
 add_executable(frontend main.cpp
-    windows/mainwindow.h windows/mainwindow.cpp windows/mainwindow.ui
+        views/mainwindow.h views/mainwindow.cpp views/mainwindow.ui
+        core/BaseResponse.h
+        core/BaseResponse.cpp
+        models/Player.h
+        models/Player.cpp
+        models/Lobby.h
+        models/Lobby.cpp
+        core/ApiEndpoints.h
+        core/BaseService.h
+        core/BaseService.cpp
+        observers/Observer.h
+        observers/Subject.h
+        observers/Subject.cpp
 )
 
 target_link_libraries(frontend

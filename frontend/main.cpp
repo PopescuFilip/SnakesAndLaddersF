@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QWindow>
-#include "windows/mainwindow.h"
+#include "views/mainwindow.h"
 #include "cpr/cpr.h"
 
 int main(int argc, char* argv[])
