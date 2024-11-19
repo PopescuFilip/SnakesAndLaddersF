@@ -19,10 +19,7 @@
     return crow::response{jsonResponse}; \
 })
 
-
-
-
-inline void SetRoutes(crow::SimpleApp& crowApplication) {
+inline void SetLobbyRoutes(crow::SimpleApp& crowApplication) {
 
     POST_ROUTE("/lobby/create", CreateLobbyRoute);
     POST_ROUTE("/lobby/join", JoinLobbyRoute);
@@ -30,6 +27,10 @@ inline void SetRoutes(crow::SimpleApp& crowApplication) {
     POST_ROUTE("/lobby/leave", LeaveLobbyRoute);
 
     GET_ROUTE("/lobby/status", StatusLobbyRoute);
+}
+
+inline void SetGameRoutes(crow::SimpleApp& crowApplication) {
+
 }
 
 #endif //API_H

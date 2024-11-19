@@ -4,6 +4,7 @@
 int main()
 {
     crow::SimpleApp app;
-    SetRoutes(app);
+    SetLobbyRoutes(app);
+    SetGameRoutes(app);
     app.port(18080).run();
 }
