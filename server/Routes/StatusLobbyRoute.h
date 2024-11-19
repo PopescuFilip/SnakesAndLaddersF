@@ -2,7 +2,7 @@
 #define STATUSLOBBYROUTE_H
 #include <crow.h>
 
-#include "../Infrastructure/Lobby/LobbyStatus/LobbyStatusContext.h"
+#include "Infrastructure/Lobby/LobbyStatus/LobbyStatusContext.h"
 
 inline crow::json::wvalue StatusLobbyRoute(const crow::json::rvalue& request) {
     int lobbyId = request["lobbyId"].i();

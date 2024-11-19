@@ -1,8 +1,8 @@
 #ifndef CHANGELOBBYSETTINGSROUTE_H
 #define CHANGELOBBYSETTINGSROUTE_H
-#include <crow/json.h>
-#include "../GameManagement/Objects/MapTypeEnum.h"
-#include "../Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.h"
+#include <crow.h>
+#include "GameManagement/Objects/MapTypeEnum.h"
+#include "Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.h"
 
 inline crow::json::wvalue ChangeLobbySettingsRoute(const crow::json::rvalue& request) {
     int lobbyId = request["lobbyId"].i();

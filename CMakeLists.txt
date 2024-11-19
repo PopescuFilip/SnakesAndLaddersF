@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(SnakesAndLadders)
 
 # Add the main project
+add_subdirectory(server_lib)
 add_subdirectory(server)
 
 # Add the tests project
