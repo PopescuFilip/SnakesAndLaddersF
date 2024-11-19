@@ -1,10 +1,10 @@
 #include <QApplication>
-#include "views/homeview.h"
+#include "utils/ViewManager.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    HomeView w;
-    w.show();
+    ViewManager viewManager;
+    viewManager.showHomeView();
     return a.exec();
 }

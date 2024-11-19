@@ -17,6 +17,15 @@ public:
 
 private:
     Ui::HomeView *ui;
+
+private slots:
+    void on_pushButton_createGame_clicked();
+    void on_pushButton_joinGame_clicked();
+
+signals:
+    void goToCreateGameView();
+    void goToJoinGameView();
+    void windowPositionChanged(const QPoint& newPosition);
 };
 
 #endif // HOMEVIEW_H
