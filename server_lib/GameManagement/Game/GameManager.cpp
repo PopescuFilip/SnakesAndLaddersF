@@ -1,5 +1,7 @@
 #include "GameManager.h"
 
+#include "GameManagement/Lobby/LobbyManager.h"
+
 GameManager& GameManager::getInstance() {
     static GameManager instance;
     return instance;
@@ -8,7 +10,6 @@ GameManager& GameManager::getInstance() {
 RunningGame GameManager::createGame(const Lobby &lobby) {
     RunningGame newGame{lobby};
     m_Games.push_back(newGame);
-
     return newGame;
 }
 

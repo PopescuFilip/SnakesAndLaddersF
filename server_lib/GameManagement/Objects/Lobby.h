@@ -1,13 +1,12 @@
 #ifndef LOBBY_H
 #define LOBBY_H
 
-#define MAX_PLAYERS 4
-
 #include <list>
 
 #include "MapTypeEnum.h"
 #include "Player.h"
 
+constexpr int MAX_PLAYERS = 4;
 
 class Lobby {
 public:

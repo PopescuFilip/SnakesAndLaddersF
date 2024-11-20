@@ -12,6 +12,7 @@ add_executable(server main.cpp
         Routes/ChangeLobbySettingsRoute.h
         Routes/CreateLobbyRoute.h
         Routes/StatusLobbyRoute.h
+        Routes/StartGameRoute.h
 )
 
 target_include_directories(server PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)

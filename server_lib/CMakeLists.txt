@@ -35,9 +35,7 @@ FetchContent_Declare(
 message(STATUS "Downloading CrowCpp ...")
 FetchContent_MakeAvailable(CrowCpp)
 
-
-
-add_library(server_lib STATIC ../server/main.cpp
+add_library(server_lib STATIC
         Infrastructure/BaseResponse.cpp
         Infrastructure/BaseResponse.h
         Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.cpp
@@ -85,6 +83,12 @@ add_library(server_lib STATIC ../server/main.cpp
         Infrastructure/Lobby/LeaveLobby/LeaveLobbyResponse.h
         Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.cpp
         Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.h
+        Infrastructure/Lobby/StartGame/StartGameRequest.cpp
+        Infrastructure/Lobby/StartGame/StartGameRequest.h
+        Infrastructure/Lobby/StartGame/StartGameResponse.cpp
+        Infrastructure/Lobby/StartGame/StartGameResponse.h
+        Infrastructure/Lobby/StartGame/StartGameContext.cpp
+        Infrastructure/Lobby/StartGame/StartGameContext.h
 )
 
 target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
