@@ -8,7 +8,7 @@
 
 constexpr int MAX_PLAYERS = 4;
 
-class Lobby {
+class Lobby final : public BaseObject{
 public:
     Lobby();
 
@@ -40,7 +40,7 @@ public:
 
     void setAdminPlayer(const std::string &strAdminPlayer);
 
-    crow::json::wvalue convertToJson() const;
+    crow::json::wvalue convertToJson() const override;
 
     bool isNull = false;
 
