@@ -27,7 +27,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        views/homeview.h views/homeview.cpp views/homeview.ui
         core/BaseResponse.h
         core/BaseResponse.cpp
         models/Player.h
@@ -41,6 +40,10 @@ set(PROJECT_SOURCES
         observers/Observer.h
         observers/Subject.h
         observers/Subject.cpp
+        utils/ViewManager.h
+        utils/ViewManager.cpp
+        utils/CurrentUser.h
+        utils/CurrentUser.cpp
 )
 
 include(FetchContent)
@@ -56,6 +59,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             MANUAL_FINALIZATION
             ${PROJECT_SOURCES}
             resources/Resources.qrc
+            views/homeView/homeview.h views/homeView/homeview.cpp views/homeView/homeview.ui
+            views/createGameView/creategameview.h views/createGameView/creategameview.cpp views/createGameView/creategameview.ui
+            views/joinGameView/joingameview.h views/joinGameView/joingameview.cpp views/joinGameView/joingameview.ui
+            views/lobbyView/lobbyview.h views/lobbyView/lobbyview.cpp views/lobbyView/lobbyview.ui
+
     )
 else()
     add_executable(frontend

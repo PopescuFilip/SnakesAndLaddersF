@@ -1,10 +1,11 @@
 #include <QApplication>
-#include "views/homeview.h"
+#include "utils/ViewManager.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    HomeView w;
-    w.show();
+    a.setWindowIcon(QIcon(":/images/icon.ico"));
+    ViewManager viewManager;
+    viewManager.showHomeView();
     return a.exec();
 }
