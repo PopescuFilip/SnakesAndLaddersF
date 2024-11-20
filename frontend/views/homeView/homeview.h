@@ -2,6 +2,7 @@
 #define HOMEVIEW_H
 
 #include <QMainWindow>
+#include "../../utils/CurrentUser.h"
 
 namespace Ui {
 class HomeView;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::HomeView *ui;
+    void setCurrentUser();
 
 private slots:
     void on_pushButton_createGame_clicked();

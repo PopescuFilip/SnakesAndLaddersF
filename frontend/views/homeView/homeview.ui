@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Snakes &amp; Ladders</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -117,10 +117,15 @@
               <pointsize>16</pointsize>
              </font>
             </property>
-            <property name="styleSheet">
-             <string notr="true">border-image:none;</string>
+            <property name="autoFillBackground">
+             <bool>false</bool>
             </property>
-            <widget class="QLineEdit" name="lineEdit">
+            <property name="styleSheet">
+             <string notr="true">border-image:none;
+background: none;
+background-color:none;</string>
+            </property>
+            <widget class="QLineEdit" name="lineEdit_username">
              <property name="geometry">
               <rect>
                <x>100</x>
