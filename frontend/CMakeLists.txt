@@ -42,6 +42,8 @@ set(PROJECT_SOURCES
         observers/Subject.cpp
         utils/ViewManager.h
         utils/ViewManager.cpp
+        utils/CurrentUser.h
+        utils/CurrentUser.cpp
 )
 
 include(FetchContent)
@@ -60,6 +62,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             views/homeView/homeview.h views/homeView/homeview.cpp views/homeView/homeview.ui
             views/createGameView/creategameview.h views/createGameView/creategameview.cpp views/createGameView/creategameview.ui
             views/joinGameView/joingameview.h views/joinGameView/joingameview.cpp views/joinGameView/joingameview.ui
+            views/lobbyView/lobbyview.h views/lobbyView/lobbyview.cpp views/lobbyView/lobbyview.ui
 
     )
 else()

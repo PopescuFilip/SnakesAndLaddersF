@@ -17,6 +17,10 @@ public:
 
 private:
     Ui::JoinGameView *ui;
+
+signals:
+    void goToLobbyView();
+    void windowPositionChanged(const QPoint& newPosition);
 };
 
 #endif // JOINGAMEVIEW_H
