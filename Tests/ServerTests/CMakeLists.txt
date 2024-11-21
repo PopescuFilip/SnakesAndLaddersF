@@ -19,7 +19,8 @@ FetchContent_MakeAvailable(googletest)
 
 
 add_executable(ServerTests main.cpp
-        LobbyManagerTests/MockLobbyManager.h)
+        GameManagementTests/LobbyManagerTests/MockLobbyManager.h
+        GameManagementTests/GameManagerTests/MockGameManager.h)
 
 target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 

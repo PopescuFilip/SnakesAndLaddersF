@@ -2,7 +2,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "LobbyManagerTests/MockLobbyManager.h"
+#include "GameManagementTests/LobbyManagerTests/MockLobbyManager.h"
+#include "GameManagementTests/GameManagerTests/MockGameManager.h"
 
 
     int main(int argc, char** argv)
