@@ -22,7 +22,8 @@ add_executable(ServerTests main.cpp
         GameManagementTests/LobbyManagerTests/MockLobbyManager.h
         GameManagementTests/GameManagerTests/MockGameManager.h
         GameManagementTests/ObjectTests/LobbyTests.h
-        GameManagementTests/ObjectTests/PlayerTests.h)
+        GameManagementTests/ObjectTests/PlayerTests.h
+        GameManagementTests/ObjectTests/RunningGameTests.h)
 
 target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
