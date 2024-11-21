@@ -5,6 +5,7 @@
 #include "GameManagementTests/LobbyManagerTests/MockLobbyManager.h"
 #include "GameManagementTests/GameManagerTests/MockGameManager.h"
 #include "GameManagementTests/ObjectTests/LobbyTests.h"
+#include "GameManagementTests/ObjectTests/PlayerTests.h"
 
 
     int main(int argc, char** argv)
