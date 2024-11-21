@@ -2,6 +2,7 @@
 #include "ui_creategameview.h"
 #include <iostream>
 #include "../../state/UserState.h"
+#include "../../state/LobbyState.h"
 
 CreateGameView::CreateGameView(QWidget *parent)
     : QMainWindow(parent)
@@ -34,6 +35,7 @@ void CreateGameView::on_pushButton_createGame_clicked() {
 
     try {
         int lobbyId = lobbyService->createLobby(username, mapType, maxPlayers);
+        LobbyState::getInstance().getLobby().setLobbyId(lobbyId);
         emit windowPositionChanged(this->pos());
         emit goToLobbyView();
         this->hide();

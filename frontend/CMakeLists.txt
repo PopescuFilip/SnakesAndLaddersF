@@ -48,6 +48,8 @@ set(PROJECT_SOURCES
         services/LobbyService.cpp
         observers/ViewObserver.h
         observers/ViewObserver.cpp
+        state/LobbyState.h
+        state/LobbyState.cpp
 )
 
 include(FetchContent)
