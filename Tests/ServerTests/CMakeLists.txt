@@ -18,12 +18,13 @@ FetchContent_MakeAvailable(googletest)
 
 
 
-add_executable(ServerTests main.cpp)
+add_executable(ServerTests main.cpp
+        LobbyManagerTests/MockLobbyManager.h)
 
 target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
 add_dependencies(ServerTests server_lib)
 
-target_link_libraries(ServerTests GTest::gmock GTest::gmock_main GTest::gtest GTest::gtest_main)
+target_link_libraries(ServerTests GTest::gmock GTest::gmock_main GTest::gtest GTest::gtest_main Crow::Crow server_lib)
 
 enable_testing()
