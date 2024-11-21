@@ -64,7 +64,7 @@ BaseResponse BaseService::parseBaseResponse(const nlohmann::json& responseJson) 
 void BaseService::ensureSuccess(const BaseResponse& response) {
     if (!response.isSuccess()) {
         lastErrorMessage = response.getMessage();
-        notifyFailure(lastErrorMessage);
+        //notifyFailure(lastErrorMessage);
         throw std::runtime_error(lastErrorMessage);
     }
 }

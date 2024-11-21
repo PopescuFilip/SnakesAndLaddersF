@@ -12,15 +12,16 @@
 #include "../Core/BaseResponse.h"
 #include "../core/BaseService.h"
 #include "../core/ApiEndpoints.h"
+#include "../models/Lobby.h"
 
 class LobbyService : public BaseService {
 public:
     LobbyService();
     ~LobbyService();
 
-    nlohmann::json getLobbyStatus(int lobbyId);
+    Lobby getLobbyStatus(int lobbyId);
     int createLobby(const std::string& adminUsername, int mapType, int maxPlayers);
-    nlohmann::json joinLobby(int lobbyId, const std::string& username);
+    Lobby joinLobby(int lobbyId, const std::string& username);
     void leaveLobby(int lobbyId, const std::string& username);
     void updateLobby(int lobbyId, const std::string& adminUsername, int mapType, int maxPlayers);
 };

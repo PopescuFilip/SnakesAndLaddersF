@@ -6,7 +6,7 @@
 LobbyService::LobbyService() {}
 LobbyService::~LobbyService() {}
 
-nlohmann::json LobbyService::getLobbyStatus(int lobbyId) {
+Lobby LobbyService::getLobbyStatus(int lobbyId) {
     try {
         nlohmann::json requestBody = {{"lobbyId", lobbyId}};
         nlohmann::json response = executeGet(ApiEndpoints::GET_LOBBY_STATUS, requestBody);
@@ -14,7 +14,8 @@ nlohmann::json LobbyService::getLobbyStatus(int lobbyId) {
         BaseResponse baseResponse = parseBaseResponse(response);
         ensureSuccess(baseResponse);
 
-        return response["lobby"];
+        Lobby lobby = response["lobby"].get<Lobby>();
+        return lobby;
     } catch (const std::exception& e) {
         lastErrorMessage = std::string(e.what());
         notifyFailure(lastErrorMessage);
@@ -43,7 +44,7 @@ int LobbyService::createLobby(const std::string& adminUsername, int mapType, int
     }
 }
 
-nlohmann::json LobbyService::joinLobby(int lobbyId, const std::string& username) {
+Lobby LobbyService::joinLobby(int lobbyId, const std::string& username) {
     try {
         nlohmann::json requestBody = {
             {"lobbyId", lobbyId},
@@ -54,7 +55,8 @@ nlohmann::json LobbyService::joinLobby(int lobbyId, const std::string& username)
         BaseResponse baseResponse = parseBaseResponse(response);
         ensureSuccess(baseResponse);
 
-        return response["lobby"];
+        Lobby lobby = response["lobby"].get<Lobby>();
+        return lobby;
     } catch (const std::exception& e) {
         lastErrorMessage = std::string(e.what());
         notifyFailure(lastErrorMessage);
