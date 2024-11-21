@@ -44,6 +44,10 @@ set(PROJECT_SOURCES
         utils/ViewManager.cpp
         utils/CurrentUser.h
         utils/CurrentUser.cpp
+        services/LobbyService.h
+        services/LobbyService.cpp
+        observers/ViewObserver.h
+        observers/ViewObserver.cpp
 )
 
 include(FetchContent)
