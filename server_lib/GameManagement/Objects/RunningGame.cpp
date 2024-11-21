@@ -1,8 +1,12 @@
 #include "RunningGame.h"
 
+#include "GameManagement/Lobby/LobbyManager.h"
+
 RunningGame::RunningGame(const Lobby &baseLobby) : m_Players{baseLobby.getPlayers()} {
     m_GameId = baseLobby.getLobbyId();
     m_MapType = baseLobby.getMapType();
+
+    LobbyManager::getInstance().removeLobby(baseLobby.getLobbyId());
 }
 
 void RunningGame::updatePlayerPosition(const std::string &strUsername, int iPosition) {
