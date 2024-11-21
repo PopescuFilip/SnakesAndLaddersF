@@ -1,7 +1,7 @@
 #include "CreateGameView.h"
 #include "ui_creategameview.h"
 #include <iostream>
-#include "../../utils/CurrentUser.h"
+#include "../../state/UserState.h"
 
 CreateGameView::CreateGameView(QWidget *parent)
     : QMainWindow(parent)
@@ -28,7 +28,7 @@ int CreateGameView::getPlayerCount() {
 }
 
 void CreateGameView::on_pushButton_createGame_clicked() {
-    std::string username = CurrentUser::getInstance().getUsername();
+    std::string username = UserState::getInstance().getUsername();
     int mapType = getMapType();
     int maxPlayers = getPlayerCount();
 

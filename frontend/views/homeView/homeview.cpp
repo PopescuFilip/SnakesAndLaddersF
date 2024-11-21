@@ -18,7 +18,7 @@ HomeView::~HomeView()
 
 void HomeView::setCurrentUser() {
     std::string username = ui->lineEdit_username->text().toUtf8().constData();
-    CurrentUser::getInstance().setUsername(username);
+    UserState::getInstance().setUsername(username);
 }
 
 void HomeView::on_pushButton_createGame_clicked() {

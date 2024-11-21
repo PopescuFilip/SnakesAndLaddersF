@@ -42,8 +42,8 @@ set(PROJECT_SOURCES
         observers/Subject.cpp
         utils/ViewManager.h
         utils/ViewManager.cpp
-        utils/CurrentUser.h
-        utils/CurrentUser.cpp
+        state/UserState.h
+        state/UserState.cpp
         services/LobbyService.h
         services/LobbyService.cpp
         observers/ViewObserver.h

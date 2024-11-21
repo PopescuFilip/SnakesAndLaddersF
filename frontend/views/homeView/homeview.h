@@ -2,7 +2,7 @@
 #define HOMEVIEW_H
 
 #include <QMainWindow>
-#include "../../utils/CurrentUser.h"
+#include "../../state/UserState.h"
 
 namespace Ui {
 class HomeView;
