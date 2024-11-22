@@ -26,5 +26,6 @@
         <file>fonts/poppins/Poppins-ThinItalic.ttf</file>
         <file>images/button.png</file>
         <file>images/go_back_button.png</file>
+        <file>images/arrow_down.png</file>
     </qresource>
 </RCC>

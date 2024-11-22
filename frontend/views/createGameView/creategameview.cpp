@@ -43,3 +43,9 @@ void CreateGameView::on_pushButton_createGame_clicked() {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 }
+
+void CreateGameView::on_pushButton_goBack_clicked() {
+    emit windowPositionChanged(this->pos());
+    emit goToHomeView();
+    this->hide();
+}

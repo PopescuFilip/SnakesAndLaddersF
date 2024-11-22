@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Snakes &amp; Ladders</string>
+   <string>Snakes &amp; Ladders - Join Game</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -223,6 +223,9 @@ color: rgb(96, 56, 19);
                <width>46</width>
                <height>46</height>
               </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
               <string notr="true">border-image: url(:/images/go_back_button.png);</string>
