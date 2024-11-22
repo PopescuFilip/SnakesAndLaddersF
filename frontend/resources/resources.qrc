@@ -3,5 +3,27 @@
         <file>images/logo.png</file>
         <file>images/background.jpg</file>
         <file>images/icon.ico</file>
+        <file>images/box_background.png</file>
+        <file>images/line_edit.png</file>
+        <file>fonts/Halo_Dek.ttf</file>
+        <file>fonts/poppins/Poppins-Black.ttf</file>
+        <file>fonts/poppins/Poppins-BlackItalic.ttf</file>
+        <file>fonts/poppins/Poppins-Bold.ttf</file>
+        <file>fonts/poppins/Poppins-BoldItalic.ttf</file>
+        <file>fonts/poppins/Poppins-ExtraBold.ttf</file>
+        <file>fonts/poppins/Poppins-ExtraBoldItalic.ttf</file>
+        <file>fonts/poppins/Poppins-ExtraLight.ttf</file>
+        <file>fonts/poppins/Poppins-ExtraLightItalic.ttf</file>
+        <file>fonts/poppins/Poppins-Italic.ttf</file>
+        <file>fonts/poppins/Poppins-Light.ttf</file>
+        <file>fonts/poppins/Poppins-LightItalic.ttf</file>
+        <file>fonts/poppins/Poppins-Medium.ttf</file>
+        <file>fonts/poppins/Poppins-MediumItalic.ttf</file>
+        <file>fonts/poppins/Poppins-Regular.ttf</file>
+        <file>fonts/poppins/Poppins-SemiBold.ttf</file>
+        <file>fonts/poppins/Poppins-SemiBoldItalic.ttf</file>
+        <file>fonts/poppins/Poppins-Thin.ttf</file>
+        <file>fonts/poppins/Poppins-ThinItalic.ttf</file>
+        <file>images/button.png</file>
     </qresource>
 </RCC>
