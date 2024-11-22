@@ -25,9 +25,11 @@ private:
 
 private slots:
     void on_pushButton_joinGame_clicked();
+    void on_pushButton_goBack_clicked();
 
 signals:
     void goToLobbyView();
+    void goToHomeView();
     void windowPositionChanged(const QPoint& newPosition);
 };
 

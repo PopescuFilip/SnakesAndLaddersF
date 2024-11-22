@@ -48,3 +48,9 @@ void JoinGameView::on_pushButton_joinGame_clicked() {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 }
+
+void JoinGameView::on_pushButton_goBack_clicked() {
+    emit windowPositionChanged(this->pos());
+    emit goToHomeView();
+    this->hide();
+}

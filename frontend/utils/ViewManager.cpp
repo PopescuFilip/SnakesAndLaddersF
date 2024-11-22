@@ -26,6 +26,7 @@ void ViewManager::setupConnections() {
 
     //JoinGameView connections
     connect(m_joinGameView.get(), &JoinGameView::goToLobbyView, this, &ViewManager::showLobbyView);
+    connect(m_joinGameView.get(), &JoinGameView::goToHomeView, this, &ViewManager::showHomeView);
     connect(m_joinGameView.get(), &JoinGameView::windowPositionChanged, this, &ViewManager::onWindowHidden);
 }
 
