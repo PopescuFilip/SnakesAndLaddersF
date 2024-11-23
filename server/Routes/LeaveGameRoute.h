@@ -9,8 +9,8 @@
 #include "Infrastructure/Game/LeaveGame/LeaveGameContext.h"
 
 inline crow::json::wvalue LeaveGameRoute(const crow::json::rvalue& request) {
-    int gameId = request["gameId"].i();
-    std::string playerUsername = request["playerUsername"].s();
+    const int gameId = request["gameId"].i();
+    const std::string playerUsername = request["playerUsername"].s();
 
     LeaveGameContext context;
     LeaveGameRequest leaveGameRequest{gameId, playerUsername};

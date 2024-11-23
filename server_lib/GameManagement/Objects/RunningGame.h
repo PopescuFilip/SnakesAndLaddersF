@@ -3,7 +3,7 @@
 #include "BaseObject.h"
 #include "Lobby.h"
 
-#include "map"
+#include <unordered_map>
 
 constexpr int DICE_ROLL_TIME_SECONDS = 2;
 constexpr int MAX_SECONDS_PER_TURN = 30;
@@ -50,7 +50,7 @@ private:
     std::chrono::system_clock::time_point m_TurnStartTime;
 
     int m_iCurrentPlayerIndex;
-    std::map<int, int> m_TeleportPositions;
+    std::unordered_map<int, int> m_TeleportPositions;
     std::vector <Player> m_Players;
     bool m_bShouldFinishGame;
 

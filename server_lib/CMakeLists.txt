@@ -101,6 +101,12 @@ add_library(server_lib STATIC
         Infrastructure/Game/GameStatus/GameStatusResponse.h
         Infrastructure/Game/GameStatus/GameStatusContext.cpp
         Infrastructure/Game/GameStatus/GameStatusContext.h
+        Infrastructure/Game/LeaveGame/LeaveGameRequest.cpp
+        Infrastructure/Game/LeaveGame/LeaveGameRequest.h
+        Infrastructure/Game/LeaveGame/LeaveGameResponse.cpp
+        Infrastructure/Game/LeaveGame/LeaveGameResponse.h
+        Infrastructure/Game/LeaveGame/LeaveGameContext.cpp
+        Infrastructure/Game/LeaveGame/LeaveGameContext.h
         GameManagement/Objects/BaseObject.cpp
         GameManagement/Objects/BaseObject.h
 )
