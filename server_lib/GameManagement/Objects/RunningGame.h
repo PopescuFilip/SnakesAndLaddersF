@@ -40,6 +40,9 @@ public:
 
     bool removePlayer(const std::string& strUsername);
 
+    const std::vector<Player>& getPlayers() const;
+    int getTotalTime() const;
+
     crow::json::wvalue convertToJson() const override;
 
     bool isNull = false;
@@ -57,6 +60,7 @@ private:
     bool m_bShouldFinishGame;
 
     int m_iLatestDiceValue;
+    int m_iTotalGameTime;
 };
 
 

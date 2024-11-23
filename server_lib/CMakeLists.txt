@@ -109,6 +109,12 @@ add_library(server_lib STATIC
         Infrastructure/Game/LeaveGame/LeaveGameContext.h
         GameManagement/Objects/BaseObject.cpp
         GameManagement/Objects/BaseObject.h
+        Infrastructure/Game/GetEndStats/GameStatisticsRequest.cpp
+        Infrastructure/Game/GetEndStats/GameStatisticsRequest.h
+        Infrastructure/Game/GetEndStats/GameStatisticsResponse.cpp
+        Infrastructure/Game/GetEndStats/GameStatisticsResponse.h
+        Infrastructure/Game/GetEndStats/GameStatisticsContext.cpp
+        Infrastructure/Game/GetEndStats/GameStatisticsContext.h
 )
 
 target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

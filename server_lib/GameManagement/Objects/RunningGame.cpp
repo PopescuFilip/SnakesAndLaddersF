@@ -81,6 +81,7 @@ Player & RunningGame::getCurrentPlayer() {
 
 void RunningGame::setShouldFinishGame(bool bShouldFinishGame) {
     m_bShouldFinishGame = bShouldFinishGame;
+    m_iTotalGameTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - m_GameStartTime).count();
 }
 
 bool RunningGame::getShouldFinishGame() const {
@@ -149,6 +150,15 @@ bool RunningGame::removePlayer(const std::string &strUsername) {
 
     return true;
 }
+
+const std::vector<Player> & RunningGame::getPlayers() const {
+    return m_Players;
+}
+
+int RunningGame::getTotalTime() const {
+    return m_iTotalGameTime;
+}
+
 
 RunningGame::RunningGame() : isNull(true), m_GameId{-1} {
     // Null constructor. Used for error handling
