@@ -12,14 +12,16 @@ GameManager& GameManager::getInstance() {
 RunningGame GameManager::createGame(const Lobby &lobby) {
     RunningGame newGame{lobby};
     m_Games.push_back(newGame);
-    createGameThread(newGame);
+    createGameThread(newGame.getGameId());
     return newGame;
 }
 
-void GameManager::createGameThread(RunningGame &game) {
-    std::thread gameThread([&game] {
+void GameManager::createGameThread(int gameId) {
+    std::thread gameThread([gameId] {
+        RunningGame& game = GameManager::getInstance().getRunningGamePtr(gameId);
         while (!game.getShouldFinishGame()) {
             // check if dice rolled and player did not move yet
+
             if (!game.getDiceRolling() && game.getLatestDiceValue() != 0) {
                 game.getCurrentPlayer().setCurrentBoardPosition(game.getCurrentPlayer().getCurrentBoardPosition() + game.getLatestDiceValue());
                 game.startNewTurn();
@@ -97,6 +99,16 @@ int GameManager::generateRandomNumber(const int min, const int max) {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(min, max);
     return dis(gen);
+}
+
+RunningGame &GameManager::getRunningGamePtr(int gameId) const {
+    for (const RunningGame &game : m_Games) {
+        if (game.getGameId() == gameId) {
+            return const_cast<RunningGame &>(game);
+        }
+    }
+
+    throw std::runtime_error("Game not found. Game id = " + std::to_string(gameId) + ". Line 114 in GameManager.cpp");
 }
 
 

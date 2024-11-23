@@ -1,11 +1,17 @@
 #include "RunningGame.h"
 
+#include <fstream>
+
 #include "GameManagement/Lobby/LobbyManager.h"
 
-RunningGame::RunningGame(const Lobby &baseLobby) : m_Players{baseLobby.getPlayers()} {
-    m_GameId = baseLobby.getLobbyId();
-    m_MapType = baseLobby.getMapType();
+const std::string MAPS_FOLDER = "./maps/";
 
+RunningGame::RunningGame(const Lobby &baseLobby) :
+        m_Players{baseLobby.getPlayers()},
+        m_bShouldFinishGame{false}, m_iCurrentPlayerIndex{0},
+        m_iLatestDiceValue{0}, m_GameId{baseLobby.getLobbyId()} {
+
+    readTeleportPositions(baseLobby.getMapType());
     LobbyManager::getInstance().removeLobby(baseLobby.getLobbyId());
 }
 
@@ -29,8 +35,13 @@ int RunningGame::getCurrentTurnTime() const {
     return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - m_TurnStartTime).count();
 }
 
-MapType RunningGame::getMapType() const {
-    return m_MapType;
+int RunningGame::getNewTeleportPosition(int currentPlayerPosition) const {
+    const auto it = m_TeleportPositions.find(currentPlayerPosition);
+    if (it != m_TeleportPositions.end()) {
+        return it->second;
+    }
+
+    return currentPlayerPosition;
 }
 
 void RunningGame::triggerDiceRolling() {
@@ -84,7 +95,6 @@ crow::json::wvalue RunningGame::convertToJson() const {
     crow::json::wvalue json;
     json["gameId"] = m_GameId;
     json["playerTurnIndex"] = m_iCurrentPlayerIndex;
-    json["mapType"] = static_cast<int>(m_MapType);
 
     crow::json::wvalue::list playersJson;
     for (const Player& player : m_Players) {
@@ -99,6 +109,19 @@ crow::json::wvalue RunningGame::convertToJson() const {
     json["shouldFinishGame"] = m_bShouldFinishGame;
 
     return json;
+}
+
+void RunningGame::readTeleportPositions(const MapType &mapType) {
+    const std::string mapPath = MAPS_FOLDER + std::to_string(static_cast<int>(mapType)) + ".json";
+    std::ifstream mapFile(mapPath);
+    if (!mapFile.is_open()) {
+        m_TeleportPositions = {}; // Empty map
+    }
+
+    int startPosition, endPosition;
+    while (mapFile >> startPosition >> endPosition) {
+        m_TeleportPositions[startPosition] = endPosition;
+    }
 }
 
 RunningGame::RunningGame() : isNull(true), m_GameId{-1} {

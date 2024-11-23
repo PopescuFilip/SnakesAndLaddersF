@@ -19,7 +19,6 @@
 std::cout << "[GET] Register: " << path << "\n"
 
 #define POST_ROUTE(path, functionName) CROW_ROUTE(crowApplication, path).methods("POST"_method)([](const crow::request& req) { \
-    std::cout << "[POST] Register: " << path << " with function: " << functionName << "\n";  \
     crow::json::rvalue jsonRequest = crow::json::load(req.body); \
     crow::json::wvalue jsonResponse = functionName(jsonRequest); \
     return crow::response{jsonResponse}; \

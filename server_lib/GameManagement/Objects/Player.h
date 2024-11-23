@@ -27,7 +27,7 @@ private:
     std::string m_strUsername;
     PlayerColor m_PlayerColor;
     bool m_bIsLobbyAdmin;
-    int m_iCurrentBoardPosition = 0; // Default value is 0. Everyone starts at 0.
+    int m_iCurrentBoardPosition = 0;
 };
 
 

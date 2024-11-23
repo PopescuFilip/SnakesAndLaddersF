@@ -14,6 +14,7 @@ public:
     RunningGame createGame(const Lobby& lobby);
     RunningGame getRunningGame(int gameId) const;
 
+
     bool removeGame(int gameId);
     bool updateGame(int gameId, const RunningGame& newGameDetails);
 
@@ -21,9 +22,11 @@ public:
 private:
     std::vector<RunningGame> m_Games;
 
-    static void createGameThread(RunningGame& game);
+    static void createGameThread(int gameId);
 
     static int generateRandomNumber(int min, int max);
+
+    RunningGame &getRunningGamePtr(int gameId) const;
 };
 
 #endif //GAMEMANAGER_H

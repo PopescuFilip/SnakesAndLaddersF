@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(const std::string& strUsername, PlayerColor playerColor, bool isAdmin) :
-    m_strUsername{strUsername}, m_PlayerColor{playerColor}, m_bIsLobbyAdmin{isAdmin}, m_iCurrentBoardPosition{0}
+    m_strUsername{strUsername}, m_PlayerColor{playerColor}, m_bIsLobbyAdmin{isAdmin}
 {
     // Empty constructor
 }
