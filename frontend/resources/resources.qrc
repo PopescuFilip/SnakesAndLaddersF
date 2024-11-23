@@ -27,5 +27,10 @@
         <file>images/button.png</file>
         <file>images/go_back_button.png</file>
         <file>images/arrow_down.png</file>
+        <file>images/dialog_background.png</file>
+        <file>images/close_button.png</file>
+        <file>images/button_error.png</file>
+        <file>images/button_success.png</file>
+        <file>images/button_warning.png</file>
     </qresource>
 </RCC>
