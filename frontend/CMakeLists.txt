@@ -50,6 +50,8 @@ set(PROJECT_SOURCES
         observers/ViewObserver.cpp
         state/LobbyState.h
         state/LobbyState.cpp
+        utils/Logger.h
+        utils/Logger.cpp
 )
 
 include(FetchContent)

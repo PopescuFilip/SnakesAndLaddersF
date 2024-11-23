@@ -5,6 +5,7 @@
 #include "ui_joingameview.h"
 #include "../../state/UserState.h"
 #include "../../state/LobbyState.h"
+#include "../../utils/Logger.h"
 
 JoinGameView::JoinGameView(QWidget *parent)
     : QMainWindow(parent)
@@ -45,7 +46,7 @@ void JoinGameView::on_pushButton_joinGame_clicked() {
         emit goToLobbyView();
         this->hide();
     } catch (const std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        Logger::logError(e.what());
     }
 }
 
