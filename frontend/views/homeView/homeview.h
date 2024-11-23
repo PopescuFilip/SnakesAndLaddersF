@@ -19,6 +19,7 @@ public:
 private:
     Ui::HomeView *ui;
     void setCurrentUser();
+    void validateUsername(const std::string& username);
 
 private slots:
     void on_pushButton_createGame_clicked();
