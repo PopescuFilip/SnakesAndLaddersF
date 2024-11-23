@@ -8,6 +8,8 @@
 constexpr int DICE_ROLL_TIME_SECONDS = 2;
 constexpr int MAX_SECONDS_PER_TURN = 30;
 
+constexpr int MAX_BOARD_POSITION = 100;
+
 class RunningGame : public BaseObject {
 public:
     RunningGame();
