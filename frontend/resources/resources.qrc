@@ -32,5 +32,10 @@
         <file>images/button_error.png</file>
         <file>images/button_success.png</file>
         <file>images/button_warning.png</file>
+        <file>images/lobby_box_background.png</file>
+        <file>images/button_small.png</file>
+        <file>images/button_settings.png</file>
+        <file>images/leave_icon.png</file>
+        <file>images/left_icon.png</file>
     </qresource>
 </RCC>
