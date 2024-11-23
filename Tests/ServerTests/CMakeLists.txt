@@ -20,9 +20,9 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(ServerTests main.cpp)
 
-target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server)
+target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
-add_dependencies(ServerTests server)
+add_dependencies(ServerTests server_lib)
 
 target_link_libraries(ServerTests GTest::gmock GTest::gmock_main GTest::gtest GTest::gtest_main)
 

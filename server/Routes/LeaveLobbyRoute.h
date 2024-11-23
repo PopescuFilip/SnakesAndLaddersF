@@ -2,7 +2,7 @@
 #define LEAVELOBBYROUTE_H
 #include <crow/json.h>
 
-#include "../Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.h"
+#include "Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.h"
 
 inline crow::json::wvalue LeaveLobbyRoute(const crow::json::rvalue& request) {
 
