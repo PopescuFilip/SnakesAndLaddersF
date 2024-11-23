@@ -24,6 +24,8 @@ void GameManager::createGameThread(int gameId) {
 
             if (!game.getDiceRolling() && game.getLatestDiceValue() != 0) {
                 game.getCurrentPlayer().setCurrentBoardPosition(game.getCurrentPlayer().getCurrentBoardPosition() + game.getLatestDiceValue());
+                int newPosition = game.getNewTeleportPosition(game.getCurrentPlayer().getCurrentBoardPosition());
+                game.getCurrentPlayer().setCurrentBoardPosition(newPosition);
                 game.startNewTurn();
             }
 

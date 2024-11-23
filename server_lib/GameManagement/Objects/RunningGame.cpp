@@ -124,6 +124,32 @@ void RunningGame::readTeleportPositions(const MapType &mapType) {
     }
 }
 
+bool RunningGame::removePlayer(const std::string &strUsername) {
+    auto it = std::find_if(m_Players.begin(), m_Players.end(), [&strUsername](const Player& player) {
+        return player.getUsername() == strUsername;
+    });
+
+    if (it == m_Players.end()) {
+        return false;
+    }
+
+    if (m_Players.size() == 1) {
+        m_Players.clear();
+        return true;
+    }
+
+    for (auto& player : m_Players) {
+        if (player.getUsername() != strUsername) {
+            player.setIsLobbyAdmin(true);
+            break;
+        }
+    }
+
+    m_Players.erase(it);
+
+    return true;
+}
+
 RunningGame::RunningGame() : isNull(true), m_GameId{-1} {
     // Null constructor. Used for error handling
 }

@@ -36,6 +36,8 @@ public:
     int getGameId() const;
     void readTeleportPositions(const MapType& mapType);
 
+    bool removePlayer(const std::string& strUsername);
+
     crow::json::wvalue convertToJson() const override;
 
     bool isNull = false;
