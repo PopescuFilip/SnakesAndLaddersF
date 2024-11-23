@@ -14,7 +14,6 @@ public:
     RunningGame createGame(const Lobby& lobby);
     RunningGame getRunningGame(int gameId) const;
 
-
     bool removeGame(int gameId);
     bool updateGame(int gameId, const RunningGame& newGameDetails);
 

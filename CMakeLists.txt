@@ -4,5 +4,6 @@ project(SnakesAndLadders)
 add_subdirectory(server_lib)
 
 add_subdirectory(server)
+add_subdirectory(frontend)
 
 add_subdirectory(Tests/ServerTests)
