@@ -22,10 +22,12 @@ void ViewManager::setupConnections() {
 
     //CreateGameView connections
     connect(m_createGameView.get(), &CreateGameView::goToLobbyView, this, &ViewManager::showLobbyView);
+    connect(m_createGameView.get(), &CreateGameView::goToHomeView, this, &ViewManager::showHomeView);
     connect(m_createGameView.get(), &CreateGameView::windowPositionChanged, this, &ViewManager::onWindowHidden);
 
     //JoinGameView connections
     connect(m_joinGameView.get(), &JoinGameView::goToLobbyView, this, &ViewManager::showLobbyView);
+    connect(m_joinGameView.get(), &JoinGameView::goToHomeView, this, &ViewManager::showHomeView);
     connect(m_joinGameView.get(), &JoinGameView::windowPositionChanged, this, &ViewManager::onWindowHidden);
 }
 

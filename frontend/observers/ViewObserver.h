@@ -4,11 +4,12 @@
 
 #ifndef VIEWOBSERVER_H
 #define VIEWOBSERVER_H
-#include <QMessageBox>
 #include <QWidget>
 #include <string>
+#include "../widgets/InfoDialog/infodialog.h"
 
 #include "Observer.h"
+
 
 class ViewObserver : public Observer {
 public:

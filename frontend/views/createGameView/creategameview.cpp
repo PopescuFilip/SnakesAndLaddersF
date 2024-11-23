@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../../state/UserState.h"
 #include "../../state/LobbyState.h"
+#include "../../utils/Logger.h"
 
 CreateGameView::CreateGameView(QWidget *parent)
     : QMainWindow(parent)
@@ -40,6 +41,12 @@ void CreateGameView::on_pushButton_createGame_clicked() {
         emit goToLobbyView();
         this->hide();
     } catch (const std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        Logger::logError(e.what());
     }
+}
+
+void CreateGameView::on_pushButton_goBack_clicked() {
+    emit windowPositionChanged(this->pos());
+    emit goToHomeView();
+    this->hide();
 }

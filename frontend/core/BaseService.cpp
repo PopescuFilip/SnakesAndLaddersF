@@ -14,7 +14,6 @@ nlohmann::json BaseService::executeGet(const std::string& url, const nlohmann::j
 
     if (response.status_code != 200) {
         lastErrorMessage = "GET request failed with status code: " + std::to_string(response.status_code);
-        notifyFailure(lastErrorMessage);
         throw std::runtime_error(lastErrorMessage);
     }
 
@@ -22,7 +21,6 @@ nlohmann::json BaseService::executeGet(const std::string& url, const nlohmann::j
         return nlohmann::json::parse(response.text);
     } catch (const std::exception& e) {
         lastErrorMessage = "Failed to parse GET response: " + std::string(e.what());
-        notifyFailure(lastErrorMessage);
         throw;
     }
 }
@@ -36,7 +34,6 @@ nlohmann::json BaseService::executePost(const std::string& url, const nlohmann::
 
     if (response.status_code != 200) {
         lastErrorMessage = "POST request failed with status code: " + std::to_string(response.status_code);
-        notifyFailure(lastErrorMessage);
         throw std::runtime_error(lastErrorMessage);
     }
 
@@ -44,7 +41,6 @@ nlohmann::json BaseService::executePost(const std::string& url, const nlohmann::
         return nlohmann::json::parse(response.text);
     } catch (const std::exception& e) {
         lastErrorMessage = "Failed to parse POST response: " + std::string(e.what());
-        notifyFailure(lastErrorMessage);
         throw;
     }
 }
@@ -55,7 +51,6 @@ BaseResponse BaseService::parseBaseResponse(const nlohmann::json& responseJson) 
         baseResponse = responseJson.get<BaseResponse>();
     } else {
         lastErrorMessage = "Response does not contain expected BaseResponse fields.";
-        notifyFailure(lastErrorMessage);
         throw std::runtime_error(lastErrorMessage);
     }
     return baseResponse;
@@ -64,7 +59,6 @@ BaseResponse BaseService::parseBaseResponse(const nlohmann::json& responseJson) 
 void BaseService::ensureSuccess(const BaseResponse& response) {
     if (!response.isSuccess()) {
         lastErrorMessage = response.getMessage();
-        //notifyFailure(lastErrorMessage);
         throw std::runtime_error(lastErrorMessage);
     }
 }
