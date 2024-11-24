@@ -1,4 +1,7 @@
 #include "lobbyview.h"
+
+#include <iostream>
+
 #include "ui_lobbyview.h"
 #include <QListWidgetItem>
 #include "../../widgets/PlayerInfoWidget/playerinfowidget.h"
@@ -14,15 +17,35 @@ LobbyView::LobbyView(QWidget *parent)
     , ViewObserver(this)
     , ui(new Ui::LobbyView)
     , lobbyService(new LobbyService())
+    ,lobbyUpdater(new LobbyUpdater(this))
 {
     ui->setupUi(this);
     lobbyService->addObserver(this);
+
+    connect(lobbyUpdater, &LobbyUpdater::lobbyUpdated, this, &LobbyView::updateLobbyStatus);
+    connect(lobbyUpdater, &LobbyUpdater::errorOccurred, [](const QString& errorMessage) {
+        Logger::logError(errorMessage.toStdString());
+    });
 }
 
 LobbyView::~LobbyView()
 {
     delete ui;
     delete lobbyService;
+}
+
+void LobbyView::showEvent(QShowEvent* event) {
+    QMainWindow::showEvent(event);
+
+    int lobbyId = LobbyState::getInstance().getLobby().getLobbyId();
+    if (lobbyId > 0) {
+        lobbyUpdater->start(lobbyId);
+    }
+}
+
+void LobbyView::hideEvent(QHideEvent* event) {
+    QMainWindow::hideEvent(event);
+    lobbyUpdater->stop();
 }
 
 void LobbyView::addPlayerToListView(const Player &player) {
@@ -38,23 +61,29 @@ void LobbyView::setGameCode(int gameCode) {
 }
 
 void LobbyView::setStartButtonStatus(bool status) {
-    if(status) {
-        ui->pushButton_startGame->setEnabled(true);
-    }
-    else {
-        ui->pushButton_startGame->setEnabled(false);
-    }
+    ui->pushButton_startGame->setCursor(status ? QCursor(Qt::PointingHandCursor) : QCursor(Qt::ForbiddenCursor));
 }
 
 void LobbyView::setSettingsButtonStatus(bool status) {
-    if(status) {
-        ui->pushButton_displaySettings->setEnabled(true);
-    }
-    else {
-        ui->pushButton_displaySettings->setEnabled(false);
-    }
+    ui->pushButton_displaySettings->setCursor(status ? QCursor(Qt::PointingHandCursor) : QCursor(Qt::ForbiddenCursor));
 }
 
+bool LobbyView::checkIsAdmin() {
+    return LobbyState::getInstance().getLobby().getAdminUsername() == UserState::getInstance().getUsername();
+}
+
+void LobbyView::updateLobbyStatus(const Lobby& lobby) {
+    LobbyState::getInstance().setLobby(lobby);
+
+    setGameCode(lobby.getLobbyId());
+    setStartButtonStatus(checkIsAdmin());
+    setSettingsButtonStatus(checkIsAdmin());
+
+    ui->listWidget_players->clear();
+    for (const auto& player : lobby.getPlayers()) {
+        addPlayerToListView(player);
+    }
+}
 
 void LobbyView::on_pushButton_gameCode_clicked() {
     try {
@@ -69,6 +98,10 @@ void LobbyView::on_pushButton_gameCode_clicked() {
 }
 
 void LobbyView::on_pushButton_displaySettings_clicked() {
+    if(!checkIsAdmin()) {
+        InfoDialog infoDialog("Only admin can edit game settings.", DialogType::Information);
+        infoDialog.exec();
+    }
 }
 
 void LobbyView::on_pushButton_leaveLobby_clicked() {
@@ -88,4 +121,8 @@ void LobbyView::on_pushButton_leaveLobby_clicked() {
 }
 
 void LobbyView::on_pushButton_startGame_clicked() {
+    if(!checkIsAdmin()) {
+        InfoDialog infoDialog("Only admin can start the game.", DialogType::Information);
+        infoDialog.exec();
+    }
 }

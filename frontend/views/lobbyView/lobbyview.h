@@ -5,6 +5,7 @@
 #include "../../observers/ViewObserver.h"
 #include "../../services/LobbyService.h"
 #include "../../models/Player.h"
+#include "../../services/LobbyUpdater.h"
 
 namespace Ui {
 class LobbyView;
@@ -21,10 +22,18 @@ public:
 private:
     Ui::LobbyView *ui;
     LobbyService* lobbyService;
+    LobbyUpdater* lobbyUpdater;
+
     void addPlayerToListView(const Player& player);
     void setGameCode(int gameCode);
     void setStartButtonStatus(bool status);
     void setSettingsButtonStatus(bool status);
+    bool checkIsAdmin();
+    void updateLobbyStatus(const Lobby& lobby);
+
+protected:
+    void showEvent(QShowEvent* event) override;
+    void hideEvent(QHideEvent* event) override;
 
 private slots:
     void on_pushButton_gameCode_clicked();
