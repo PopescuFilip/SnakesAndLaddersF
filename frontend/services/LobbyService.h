@@ -24,6 +24,7 @@ public:
     Lobby joinLobby(int lobbyId, const std::string& username);
     void leaveLobby(int lobbyId, const std::string& username);
     void updateLobby(int lobbyId, const std::string& adminUsername, int mapType, int maxPlayers);
+    void startGame(int lobbyId, const std::string& username);
 };
 
 #endif //LOBBYSERVICE_H

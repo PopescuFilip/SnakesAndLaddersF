@@ -101,3 +101,21 @@ void LobbyService::updateLobby(int lobbyId, const std::string& adminUsername, in
         throw;
     }
 }
+
+void LobbyService::startGame(int lobbyId, const std::string &username) {
+    try {
+        nlohmann::json requestBody = {
+            {"lobbyId", lobbyId},
+            {"playerUsername", username}
+        };
+        nlohmann::json response = executePost(ApiEndpoints::START_GAME, requestBody);
+
+        BaseResponse baseResponse = parseBaseResponse(response);
+        ensureSuccess(baseResponse);
+
+    } catch (const std::exception& e) {
+        lastErrorMessage = std::string(e.what());
+        notifyFailure(lastErrorMessage);
+        throw;
+    }
+}
