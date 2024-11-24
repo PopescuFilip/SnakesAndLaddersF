@@ -7,22 +7,23 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
+#include "PlayerColor.h"
 
 class Player {
 private:
     std::string username;
-    int color;
+    PlayerColor color;
     bool isAdmin;
 
 public:
     Player();
-    Player(const std::string& username, int color, bool isAdmin);
+    Player(const std::string& username, PlayerColor color, bool isAdmin);
 
     std::string getUsername() const;
     void setUsername(const std::string& value);
 
-    int getColor() const;
-    void setColor(int value);
+    PlayerColor getColor() const;
+    void setColor(PlayerColor value);
 
     bool getIsAdmin() const;
     void setIsAdmin(bool value);

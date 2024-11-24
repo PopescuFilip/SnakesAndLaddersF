@@ -3,15 +3,15 @@
 //
 #include "Player.h"
 
-Player::Player() : username(""), color(0), isAdmin(false) {}
-Player::Player(const std::string& username, int color, bool isAdmin)
+Player::Player() : username(""), color(PlayerColor::NONE), isAdmin(false) {}
+Player::Player(const std::string& username, PlayerColor color, bool isAdmin)
     : username(username), color(color), isAdmin(isAdmin) {}
 
 std::string Player::getUsername() const { return username; }
 void Player::setUsername(const std::string& value) { username = value; }
 
-int Player::getColor() const { return color; }
-void Player::setColor(int value) { color = value; }
+PlayerColor Player::getColor() const { return color; }
+void Player::setColor(PlayerColor value) { color = value; }
 
 bool Player::getIsAdmin() const { return isAdmin; }
 void Player::setIsAdmin(bool value) { isAdmin = value; }
