@@ -2,7 +2,7 @@
 
 #include <thread>
 
-LobbyManager& LobbyManager::getInstance() {
+LobbyManager &LobbyManager::getInstance() {
     static LobbyManager instance;
     return instance;
 }
@@ -20,32 +20,25 @@ int LobbyManager::createLobby(const Lobby &lobby) {
 }
 
 void LobbyManager::removeLobby(int lobbyId) {
-    auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby& l) {
-        return l.getLobbyId() == lobbyId;
-    });
-
-    if(it != m_Lobbies.end()) {
-        waitSeconds(WAIT_TIME_BEFORE_DELETE_LOBBY_SECONDS);
-        m_Lobbies.erase(it);
-    }
+    startDeleteProcedure(lobbyId);
 }
 
 void LobbyManager::updateLobby(int lobbyId, const Lobby &newLobbyDetails) {
-    auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby& l) {
+    auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby &l) {
         return l.getLobbyId() == lobbyId;
     });
 
-    if(it != m_Lobbies.end()) {
+    if (it != m_Lobbies.end()) {
         *it = newLobbyDetails;
     }
 }
 
 Lobby LobbyManager::getLobby(int lobbyId) const {
-    auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby& l) {
+    auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby &l) {
         return l.getLobbyId() == lobbyId;
     });
 
-    if(it != m_Lobbies.end()) {
+    if (it != m_Lobbies.end()) {
         return *it;
     }
 
@@ -57,6 +50,17 @@ int LobbyManager::GenerateLobbyId() {
     return ++lobbyId;
 }
 
-void LobbyManager::waitSeconds(int seconds) {
-    std::this_thread::sleep_for(std::chrono::seconds(seconds));
+void LobbyManager::startDeleteProcedure(int lobbyId) {
+    std::thread deleteThread([this, lobbyId] {
+        auto it = std::find_if(m_Lobbies.begin(), m_Lobbies.end(), [&lobbyId](const Lobby &l) {
+            return l.getLobbyId() == lobbyId;
+        });
+
+        if (it != m_Lobbies.end()) {
+            std::this_thread::sleep_for(std::chrono::seconds(WAIT_TIME_BEFORE_DELETE_LOBBY_SECONDS));
+            m_Lobbies.erase(it);
+        }
+    });
+
+    deleteThread.detach();
 }

@@ -18,8 +18,7 @@ private:
     std::vector<Lobby> m_Lobbies;
 
     static int GenerateLobbyId();
-
-    static void waitSeconds(int seconds);
+    void startDeleteProcedure(int lobbyId);
 };
 
 
