@@ -17,7 +17,7 @@ LobbyView::LobbyView(QWidget *parent)
     , ViewObserver(this)
     , ui(new Ui::LobbyView)
     , lobbyService(new LobbyService())
-    ,lobbyUpdater(new LobbyUpdater(this))
+    , lobbyUpdater(new LobbyUpdater(this))
 {
     ui->setupUi(this);
     lobbyService->addObserver(this);
@@ -72,8 +72,18 @@ bool LobbyView::checkIsAdmin() {
     return LobbyState::getInstance().getLobby().getAdminUsername() == UserState::getInstance().getUsername();
 }
 
+void LobbyView::gameStarted() {
+    emit windowPositionChanged(this->pos());
+    emit goToGameView();
+    this->hide();
+}
+
 void LobbyView::updateLobbyStatus(const Lobby& lobby) {
     LobbyState::getInstance().setLobby(lobby);
+
+    if(lobby.getGameId() != -1) {
+        gameStarted();
+    }
 
     setGameCode(lobby.getLobbyId());
     setStartButtonStatus(checkIsAdmin());
@@ -124,5 +134,15 @@ void LobbyView::on_pushButton_startGame_clicked() {
     if(!checkIsAdmin()) {
         InfoDialog infoDialog("Only admin can start the game.", DialogType::Information);
         infoDialog.exec();
+    }
+    else {
+        try {
+            int lobbyId = LobbyState::getInstance().getLobby().getLobbyId();
+            std::string username = UserState::getInstance().getUsername();
+            lobbyService->startGame(lobbyId, username);
+            gameStarted();
+        } catch(const std::exception& e) {
+            Logger::logError(e.what());
+        }
     }
 }
