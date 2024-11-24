@@ -6,6 +6,8 @@
 constexpr int DICE_ROLL_MIN = 1;
 constexpr int DICE_ROLL_MAX = 6;
 
+constexpr int MAX_WAIT_UNTIL_GAME_FINISH_SECONDS = 5;
+
 
 class GameManager {
 public:
@@ -13,7 +15,6 @@ public:
 
     RunningGame createGame(const Lobby& lobby);
     RunningGame getRunningGame(int gameId) const;
-
 
     bool removeGame(int gameId);
     bool updateGame(int gameId, const RunningGame& newGameDetails);

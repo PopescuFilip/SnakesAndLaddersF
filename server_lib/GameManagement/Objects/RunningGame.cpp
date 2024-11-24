@@ -81,6 +81,7 @@ Player & RunningGame::getCurrentPlayer() {
 
 void RunningGame::setShouldFinishGame(bool bShouldFinishGame) {
     m_bShouldFinishGame = bShouldFinishGame;
+    m_iTotalGameTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - m_GameStartTime).count();
 }
 
 bool RunningGame::getShouldFinishGame() const {
@@ -123,6 +124,41 @@ void RunningGame::readTeleportPositions(const MapType &mapType) {
         m_TeleportPositions[startPosition] = endPosition;
     }
 }
+
+bool RunningGame::removePlayer(const std::string &strUsername) {
+    auto it = std::find_if(m_Players.begin(), m_Players.end(), [&strUsername](const Player& player) {
+        return player.getUsername() == strUsername;
+    });
+
+    if (it == m_Players.end()) {
+        return false;
+    }
+
+    if (m_Players.size() == 1) {
+        m_Players.clear();
+        return true;
+    }
+
+    for (auto& player : m_Players) {
+        if (player.getUsername() != strUsername) {
+            player.setIsLobbyAdmin(true);
+            break;
+        }
+    }
+
+    m_Players.erase(it);
+
+    return true;
+}
+
+const std::vector<Player> & RunningGame::getPlayers() const {
+    return m_Players;
+}
+
+int RunningGame::getTotalTime() const {
+    return m_iTotalGameTime;
+}
+
 
 RunningGame::RunningGame() : isNull(true), m_GameId{-1} {
     // Null constructor. Used for error handling

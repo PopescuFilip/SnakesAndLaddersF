@@ -24,6 +24,14 @@ void GameManager::createGameThread(int gameId) {
 
             if (!game.getDiceRolling() && game.getLatestDiceValue() != 0) {
                 game.getCurrentPlayer().setCurrentBoardPosition(game.getCurrentPlayer().getCurrentBoardPosition() + game.getLatestDiceValue());
+                int newPosition = game.getNewTeleportPosition(game.getCurrentPlayer().getCurrentBoardPosition());
+                game.getCurrentPlayer().setCurrentBoardPosition(newPosition);
+                if (game.getCurrentPlayer().getCurrentBoardPosition() >= MAX_BOARD_POSITION) {
+                    game.getCurrentPlayer().setCurrentBoardPosition(MAX_BOARD_POSITION);
+                    game.setShouldFinishGame(true);
+                    break;
+                }
+
                 game.startNewTurn();
             }
 
@@ -34,6 +42,7 @@ void GameManager::createGameThread(int gameId) {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
 
+        std::this_thread::sleep_for(std::chrono::seconds(MAX_WAIT_UNTIL_GAME_FINISH_SECONDS));
         GameManager::getInstance().removeGame(game.getGameId());
     });
 

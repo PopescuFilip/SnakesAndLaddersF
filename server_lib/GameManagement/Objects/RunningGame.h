@@ -3,10 +3,12 @@
 #include "BaseObject.h"
 #include "Lobby.h"
 
-#include "map"
+#include <unordered_map>
 
 constexpr int DICE_ROLL_TIME_SECONDS = 2;
 constexpr int MAX_SECONDS_PER_TURN = 30;
+
+constexpr int MAX_BOARD_POSITION = 100;
 
 class RunningGame : public BaseObject {
 public:
@@ -36,6 +38,11 @@ public:
     int getGameId() const;
     void readTeleportPositions(const MapType& mapType);
 
+    bool removePlayer(const std::string& strUsername);
+
+    const std::vector<Player>& getPlayers() const;
+    int getTotalTime() const;
+
     crow::json::wvalue convertToJson() const override;
 
     bool isNull = false;
@@ -48,11 +55,12 @@ private:
     std::chrono::system_clock::time_point m_TurnStartTime;
 
     int m_iCurrentPlayerIndex;
-    std::map<int, int> m_TeleportPositions;
+    std::unordered_map<int, int> m_TeleportPositions;
     std::vector <Player> m_Players;
     bool m_bShouldFinishGame;
 
     int m_iLatestDiceValue;
+    int m_iTotalGameTime;
 };
 
 
