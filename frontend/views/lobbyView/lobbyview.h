@@ -32,6 +32,10 @@ private:
     void gameStarted();
     void updateLobbyStatus(const Lobby& lobby);
 
+    int getMapType();
+    int getPlayerCount();
+    void setCurrentSettings(int mapType, int playerNumber);
+
 protected:
     void showEvent(QShowEvent* event) override;
     void hideEvent(QHideEvent* event) override;
@@ -41,6 +45,8 @@ private slots:
     void on_pushButton_displaySettings_clicked();
     void on_pushButton_leaveLobby_clicked();
     void on_pushButton_startGame_clicked();
+    void on_pushButton_goBack_clicked();
+    void on_pushButton_saveSettings_clicked();
 
 signals:
     void goToHomeView();

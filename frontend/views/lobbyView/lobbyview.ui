@@ -142,7 +142,7 @@ border-image: url(:/images/lobby_box_background.png);
           <widget class="QLabel" name="label_players">
            <property name="geometry">
             <rect>
-             <x>40</x>
+             <x>50</x>
              <y>100</y>
              <width>291</width>
              <height>31</height>
@@ -165,39 +165,13 @@ color: rgb(96, 56, 19);</string>
             <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
-          <widget class="QLabel" name="label_lobby">
-           <property name="geometry">
-            <rect>
-             <x>331</x>
-             <y>100</y>
-             <width>291</width>
-             <height>31</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>Halo Dek</family>
-             <pointsize>30</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-image: none;
-color: rgb(96, 56, 19);</string>
-           </property>
-           <property name="text">
-            <string>Lobby</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
-           </property>
-          </widget>
           <widget class="QGroupBox" name="groupBox_lobbyInfo">
            <property name="geometry">
             <rect>
-             <x>329</x>
-             <y>140</y>
+             <x>330</x>
+             <y>100</y>
              <width>290</width>
-             <height>181</height>
+             <height>221</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -212,7 +186,7 @@ border: none;</string>
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>10</y>
+              <y>50</y>
               <width>191</width>
               <height>51</height>
              </rect>
@@ -232,14 +206,14 @@ border: none;</string>
 color: rgb(96, 56, 19);</string>
             </property>
             <property name="text">
-             <string>1234</string>
+             <string/>
             </property>
            </widget>
            <widget class="QPushButton" name="pushButton_displaySettings">
             <property name="geometry">
              <rect>
               <x>220</x>
-              <y>10</y>
+              <y>50</y>
               <width>51</width>
               <height>51</height>
              </rect>
@@ -258,7 +232,7 @@ color: rgb(96, 56, 19);</string>
             <property name="geometry">
              <rect>
               <x>30</x>
-              <y>130</y>
+              <y>170</y>
               <width>231</width>
               <height>46</height>
              </rect>
@@ -291,7 +265,7 @@ color: rgb(96, 56, 19);
             <property name="geometry">
              <rect>
               <x>30</x>
-              <y>70</y>
+              <y>110</y>
               <width>231</width>
               <height>46</height>
              </rect>
@@ -319,6 +293,32 @@ color: rgb(194, 65, 0);
               <width>30</width>
               <height>30</height>
              </size>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_lobby">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>291</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Halo Dek</family>
+              <pointsize>30</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: none;
+color: rgb(96, 56, 19);</string>
+            </property>
+            <property name="text">
+             <string>Lobby</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </widget>
@@ -382,6 +382,284 @@ QListWidget::item:selected:active {
     background-color: transparent;
 }</string>
            </property>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_lobbySettings">
+           <property name="geometry">
+            <rect>
+             <x>330</x>
+             <y>100</y>
+             <width>290</width>
+             <height>221</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-image:none;
+background: transparent;
+border: none;</string>
+           </property>
+           <property name="title">
+            <string/>
+           </property>
+           <widget class="QComboBox" name="comboBox_players">
+            <property name="geometry">
+             <rect>
+              <x>36</x>
+              <y>116</y>
+              <width>205</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+border-image:none;
+background-color: transparent;
+color: rgb(96, 56, 19);
+border: none;
+}
+
+QComboBox::drop-down {
+    border: none;  
+    background-color: none;
+}
+
+QComboBox::down-arrow {
+    image: url(:/images/arrow_down.png); 
+    width: 15px;
+    height: 15px;
+	margin-left:-15px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: rgb(237, 181, 90);
+    color: rgb(96, 56, 19);  
+    selection-background-color: rgb(237, 181, 90);
+    selection-color: rgb(96, 56, 19);   
+    border: none;
+    margin: 0;        
+    outline: none;
+}</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>2 Players</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>3 Players</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>4 Players</string>
+             </property>
+            </item>
+           </widget>
+           <widget class="QLabel" name="label_lineEditBackground">
+            <property name="geometry">
+             <rect>
+              <x>27</x>
+              <y>31</y>
+              <width>221</width>
+              <height>40</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: url(:/images/line_edit.png);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_maxPlayers">
+            <property name="geometry">
+             <rect>
+              <x>-10</x>
+              <y>83</y>
+              <width>291</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Halo Dek</family>
+              <pointsize>26</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: none;
+               color: rgb(96, 56, 19);</string>
+            </property>
+            <property name="text">
+             <string>Max Players</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton_saveSettings">
+            <property name="geometry">
+             <rect>
+              <x>85</x>
+              <y>170</y>
+              <width>162</width>
+              <height>46</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Halo Dek</family>
+              <pointsize>22</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: url(:/images/button.png);
+               color: rgb(96, 56, 19);
+              </string>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_selectMap">
+            <property name="geometry">
+             <rect>
+              <x>-10</x>
+              <y>0</y>
+              <width>291</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Halo Dek</family>
+              <pointsize>26</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: none;
+               color: rgb(96, 56, 19);</string>
+            </property>
+            <property name="text">
+             <string>Select Map</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_lineEditBackground2">
+            <property name="geometry">
+             <rect>
+              <x>27</x>
+              <y>115</y>
+              <width>221</width>
+              <height>40</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: url(:/images/line_edit.png);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="comboBox_map">
+            <property name="geometry">
+             <rect>
+              <x>36</x>
+              <y>31</y>
+              <width>205</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+border-image:none;
+background-color: transparent;
+color: rgb(96, 56, 19);
+border: none;
+}
+
+QComboBox::drop-down {
+    border: none;  
+    background-color: none;
+}
+
+QComboBox::down-arrow {
+    image: url(:/images/arrow_down.png); 
+    width: 15px;
+    height: 15px;
+	margin-left:-15px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: rgb(237, 181, 90);
+    color: rgb(96, 56, 19);  
+    selection-background-color: rgb(237, 181, 90);
+    selection-color: rgb(96, 56, 19);   
+    border: none;
+    margin: 0;        
+    outline: none;
+}</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Map 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Map 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Map 3</string>
+             </property>
+            </item>
+           </widget>
+           <widget class="QPushButton" name="pushButton_goBack">
+            <property name="geometry">
+             <rect>
+              <x>27</x>
+              <y>170</y>
+              <width>46</width>
+              <height>46</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image: url(:/images/go_back_button.png);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <zorder>label_lineEditBackground</zorder>
+           <zorder>label_maxPlayers</zorder>
+           <zorder>pushButton_saveSettings</zorder>
+           <zorder>label_selectMap</zorder>
+           <zorder>label_lineEditBackground2</zorder>
+           <zorder>comboBox_map</zorder>
+           <zorder>pushButton_goBack</zorder>
+           <zorder>comboBox_players</zorder>
           </widget>
          </widget>
         </item>

@@ -26,6 +26,8 @@ LobbyView::LobbyView(QWidget *parent)
     connect(lobbyUpdater, &LobbyUpdater::errorOccurred, [](const QString& errorMessage) {
         Logger::logError(errorMessage.toStdString());
     });
+
+    ui->groupBox_lobbySettings->hide();
 }
 
 LobbyView::~LobbyView()
@@ -95,6 +97,19 @@ void LobbyView::updateLobbyStatus(const Lobby& lobby) {
     }
 }
 
+int LobbyView::getMapType() {
+    return ui->comboBox_map->currentIndex() + 1;
+}
+
+int LobbyView::getPlayerCount() {
+    return ui->comboBox_players->currentIndex() + 2;
+}
+
+void LobbyView::setCurrentSettings(int mapType, int playerNumber) {
+    ui->comboBox_map->setCurrentIndex(mapType - 1);
+    ui->comboBox_players->setCurrentIndex(playerNumber - 2);
+}
+
 void LobbyView::on_pushButton_gameCode_clicked() {
     try {
         QClipboard *clipboard = QApplication::clipboard();
@@ -111,6 +126,11 @@ void LobbyView::on_pushButton_displaySettings_clicked() {
     if(!checkIsAdmin()) {
         InfoDialog infoDialog("Only admin can edit game settings.", DialogType::Information);
         infoDialog.exec();
+    }
+    else {
+        setCurrentSettings(LobbyState::getInstance().getLobby().getMapType(), LobbyState::getInstance().getLobby().getMaxPlayers());
+        ui->groupBox_lobbyInfo->hide();
+        ui->groupBox_lobbySettings->show();
     }
 }
 
@@ -144,5 +164,26 @@ void LobbyView::on_pushButton_startGame_clicked() {
         } catch(const std::exception& e) {
             Logger::logError(e.what());
         }
+    }
+}
+
+void LobbyView::on_pushButton_goBack_clicked() {
+    ui->groupBox_lobbyInfo->show();
+    ui->groupBox_lobbySettings->hide();
+}
+
+void LobbyView::on_pushButton_saveSettings_clicked() {
+    try {
+        int lobbyId = LobbyState::getInstance().getLobby().getLobbyId();
+        std::string username = UserState::getInstance().getUsername();
+        int mapType = getMapType();
+        int playerCount = getPlayerCount();
+        lobbyService->updateLobby(lobbyId, username, mapType, playerCount);
+        ui->groupBox_lobbySettings->hide();
+        ui->groupBox_lobbyInfo->show();
+        InfoDialog infoDialog("Game settings updated successfully.", DialogType::Information);
+        infoDialog.exec();
+    } catch(const std::exception& e) {
+        Logger::logError(e.what());
     }
 }
