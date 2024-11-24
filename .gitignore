@@ -404,11 +404,14 @@ FodyWeavers.xsd
 /frontend/.idea
 /server/cmake-build-debug
 /frontend/cmake-build-debug
+/server_lib/cmake-build-debug
+/server_lib/.idea
 /Tests/ServerTests/cmake-build-debug
 /Tests/ServerTests/.idea
 /cmake-build-debug
 
 /server/.vs
+/server_lib/.vs
 /frontend/.vs
 /Tests/ServerTests/.vs
 eyes

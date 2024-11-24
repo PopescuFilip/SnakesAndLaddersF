@@ -3,7 +3,7 @@
 
 #include <crow.h>
 
-#include "../Infrastructure/Lobby/JoinLobby/JoinLobbyContext.h"
+#include "Infrastructure/Lobby/JoinLobby/JoinLobbyContext.h"
 
 inline crow::json::wvalue JoinLobbyRoute(const crow::json::rvalue& jsonRequest) {
     std::string strUsername = jsonRequest["username"].s();

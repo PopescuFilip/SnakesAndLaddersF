@@ -7,12 +7,13 @@
 #include <string>
 #include <crow/json.h>
 
+#include "BaseObject.h"
 #include "PlayerColor.h"
 
-class Player {
+class Player final : public BaseObject {
 public:
     Player(const std::string& strUsername, PlayerColor playerColor, bool isAdmin);
-    virtual ~Player() = default;
+
     const std::string& getUsername() const;
     PlayerColor getPlayerColor() const;
     bool isLobbyAdmin() const;
@@ -21,12 +22,12 @@ public:
 
     void setIsLobbyAdmin(bool bIsLobbyAdmin);
 
-    crow::json::wvalue getJsonValue() const;
+    crow::json::wvalue convertToJson() const override;
 private:
     std::string m_strUsername;
     PlayerColor m_PlayerColor;
     bool m_bIsLobbyAdmin;
-    int m_iCurrentBoardPosition = 0; // Default value is 0. Everyone starts at 0.
+    int m_iCurrentBoardPosition = 0;
 };
 
 
