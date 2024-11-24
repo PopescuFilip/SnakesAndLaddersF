@@ -29,6 +29,7 @@ private:
     void setStartButtonStatus(bool status);
     void setSettingsButtonStatus(bool status);
     bool checkIsAdmin();
+    void gameStarted();
     void updateLobbyStatus(const Lobby& lobby);
 
 protected:
