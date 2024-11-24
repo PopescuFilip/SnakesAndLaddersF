@@ -53,6 +53,8 @@ set(PROJECT_SOURCES
         utils/Logger.h
         utils/Logger.cpp
         models/PlayerColor.h
+        services/LobbyUpdater.h
+        services/LobbyUpdater.cpp
 )
 
 include(FetchContent)
