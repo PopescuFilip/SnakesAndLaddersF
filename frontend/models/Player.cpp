@@ -17,11 +17,11 @@ bool Player::getIsAdmin() const { return isAdmin; }
 void Player::setIsAdmin(bool value) { isAdmin = value; }
 
 void to_json(nlohmann::json& j, const Player& p) {
-    j = nlohmann::json{{"username", p.username}, {"color", p.color}, {"isAdmin", p.isAdmin}};
+    j = nlohmann::json{{"username", p.username}, {"playerColor", p.color}, {"isLobbyAdmin", p.isAdmin}};
 }
 
 void from_json(const nlohmann::json& j, Player& p) {
     j.at("username").get_to(p.username);
-    j.at("color").get_to(p.color);
-    j.at("isAdmin").get_to(p.isAdmin);
+    j.at("playerColor").get_to(p.color);
+    j.at("isLobbyAdmin").get_to(p.isAdmin);
 }

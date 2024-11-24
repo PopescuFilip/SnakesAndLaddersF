@@ -1,7 +1,6 @@
-//
-// Created by Alexandru Pestritu on 18.11.2024.
-//
 #include "BaseService.h"
+#include <stdexcept>
+#include <iostream>
 
 BaseService::BaseService() : lastErrorMessage("") {}
 BaseService::~BaseService() {}
@@ -18,7 +17,12 @@ nlohmann::json BaseService::executeGet(const std::string& url, const nlohmann::j
         throw std::runtime_error(lastErrorMessage);
     }
 
-    return nlohmann::json::parse(response.text);
+    try {
+        return nlohmann::json::parse(response.text);
+    } catch (const std::exception& e) {
+        lastErrorMessage = "Failed to parse GET response: " + std::string(e.what());
+        throw;
+    }
 }
 
 nlohmann::json BaseService::executePost(const std::string& url, const nlohmann::json& body) {
@@ -33,7 +37,12 @@ nlohmann::json BaseService::executePost(const std::string& url, const nlohmann::
         throw std::runtime_error(lastErrorMessage);
     }
 
-    return nlohmann::json::parse(response.text);
+    try {
+        return nlohmann::json::parse(response.text);
+    } catch (const std::exception& e) {
+        lastErrorMessage = "Failed to parse POST response: " + std::string(e.what());
+        throw;
+    }
 }
 
 BaseResponse BaseService::parseBaseResponse(const nlohmann::json& responseJson) {
@@ -56,4 +65,12 @@ void BaseService::ensureSuccess(const BaseResponse& response) {
 
 std::string BaseService::getLastErrorMessage() const {
     return lastErrorMessage;
+}
+
+void BaseService::notifySuccess(const std::string& message) {
+    notifyObservers("SUCCESS - " + message);
+}
+
+void BaseService::notifyFailure(const std::string& errorMessage) {
+    notifyObservers("ERROR - " + errorMessage);
 }

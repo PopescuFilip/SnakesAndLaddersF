@@ -35,9 +35,7 @@ FetchContent_Declare(
 message(STATUS "Downloading CrowCpp ...")
 FetchContent_MakeAvailable(CrowCpp)
 
-
-
-add_library(server_lib STATIC ../server/main.cpp
+add_library(server_lib STATIC
         Infrastructure/BaseResponse.cpp
         Infrastructure/BaseResponse.h
         Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.cpp
@@ -85,6 +83,26 @@ add_library(server_lib STATIC ../server/main.cpp
         Infrastructure/Lobby/LeaveLobby/LeaveLobbyResponse.h
         Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.cpp
         Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.h
+        Infrastructure/Lobby/StartGame/StartGameRequest.cpp
+        Infrastructure/Lobby/StartGame/StartGameRequest.h
+        Infrastructure/Lobby/StartGame/StartGameResponse.cpp
+        Infrastructure/Lobby/StartGame/StartGameResponse.h
+        Infrastructure/Lobby/StartGame/StartGameContext.cpp
+        Infrastructure/Lobby/StartGame/StartGameContext.h
+        Infrastructure/Game/RollDice/RollDiceRequest.cpp
+        Infrastructure/Game/RollDice/RollDiceRequest.h
+        Infrastructure/Game/RollDice/RollDiceResponse.cpp
+        Infrastructure/Game/RollDice/RollDiceResponse.h
+        Infrastructure/Game/RollDice/RollDiceContext.cpp
+        Infrastructure/Game/RollDice/RollDiceContext.h
+        Infrastructure/Game/GameStatus/GameStatusRequest.cpp
+        Infrastructure/Game/GameStatus/GameStatusRequest.h
+        Infrastructure/Game/GameStatus/GameStatusResponse.cpp
+        Infrastructure/Game/GameStatus/GameStatusResponse.h
+        Infrastructure/Game/GameStatus/GameStatusContext.cpp
+        Infrastructure/Game/GameStatus/GameStatusContext.h
+        GameManagement/Objects/BaseObject.cpp
+        GameManagement/Objects/BaseObject.h
 )
 
 target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

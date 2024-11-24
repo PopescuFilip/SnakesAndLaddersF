@@ -120,7 +120,7 @@ crow::json::wvalue Lobby::convertToJson() const {
 
     crow::json::wvalue::list playersJson;
     for (const Player& player : m_Players) {
-        playersJson.push_back(player.getJsonValue());
+        playersJson.push_back(player.convertToJson());
     }
 
     json["players"] = std::move(playersJson);
