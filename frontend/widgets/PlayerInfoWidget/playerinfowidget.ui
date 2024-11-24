@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>357</width>
+    <width>261</width>
     <height>60</height>
    </rect>
   </property>
@@ -22,12 +22,15 @@ border: none;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>357</width>
+     <width>261</width>
      <height>60</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">border-image:none;
+background: transparent;
+background-image:none;
+border:none;</string>
    </property>
    <property name="title">
     <string/>
@@ -35,11 +38,17 @@ border: none;</string>
    <widget class="QLabel" name="label_playerColor">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>5</y>
-      <width>341</width>
+      <width>261</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image:none;
+background: transparent;
+background-image:none;
+border:none;</string>
     </property>
     <property name="text">
      <string/>
@@ -54,9 +63,9 @@ border: none;</string>
    <widget class="QLabel" name="label_username">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>85</x>
       <y>5</y>
-      <width>171</width>
+      <width>121</width>
       <height>50</height>
      </rect>
     </property>
@@ -67,7 +76,11 @@ border: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(96, 56, 19);</string>
+     <string notr="true">color: rgb(96, 56, 19);
+border-image:none;
+background: transparent;
+background-image:none;
+border:none;</string>
     </property>
     <property name="text">
      <string>username</string>
@@ -79,11 +92,17 @@ border: none;</string>
    <widget class="QLabel" name="label_crown">
     <property name="geometry">
      <rect>
-      <x>295</x>
+      <x>210</x>
       <y>20</y>
       <width>40</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image:none;
+background: transparent;
+background-image:none;
+border:none;</string>
     </property>
     <property name="text">
      <string/>

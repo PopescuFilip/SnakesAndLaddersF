@@ -13,7 +13,7 @@ public:
     static LobbyState& getInstance();
 
     void setLobby(const Lobby& lobby);
-    Lobby getLobby() const;
+    Lobby& getLobby();
 
     LobbyState(const LobbyState&) = delete;
     LobbyState& operator=(const LobbyState&) = delete;

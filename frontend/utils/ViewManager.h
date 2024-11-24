@@ -13,6 +13,7 @@
 #include "../views/createGameView/creategameview.h"
 #include "../views/joinGameView/joingameview.h"
 #include "../views/lobbyView/lobbyview.h"
+#include "../views/gameView/gameview.h"
 
 class Lobby;
 
@@ -28,6 +29,7 @@ public:
     void showCreateGameView();
     void showJoinGameView();
     void showLobbyView();
+    void showGameView();
     void onWindowHidden(const QPoint& position);
 
 private:
@@ -35,6 +37,7 @@ private:
     std::unique_ptr<CreateGameView> m_createGameView;
     std::unique_ptr<JoinGameView> m_joinGameView;
     std::unique_ptr<LobbyView> m_lobbyView;
+    std::unique_ptr<GameView> m_gameView;
     void setupConnections();
 
     QPoint lastWindowPosition;

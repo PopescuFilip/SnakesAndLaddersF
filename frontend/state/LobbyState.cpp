@@ -15,7 +15,7 @@ void LobbyState::setLobby(const Lobby& lobby) {
     m_lobby = lobby;
 }
 
-Lobby LobbyState::getLobby() const {
+Lobby& LobbyState::getLobby() {
     std::lock_guard<std::mutex> lock(m_lobbyStateMutex);
     return m_lobby;
 }

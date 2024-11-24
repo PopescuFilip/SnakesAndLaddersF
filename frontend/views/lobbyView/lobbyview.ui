@@ -27,10 +27,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="styleSheet">
-    <string notr="true">QWidget {
-     background-image: url(:/Frontend/assets/images/background.png);
-     background-position: center;
-     }</string>
+    <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="1" column="0">
@@ -194,22 +191,6 @@ color: rgb(96, 56, 19);</string>
             <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
-          <widget class="QListView" name="listView_players">
-           <property name="geometry">
-            <rect>
-             <x>66</x>
-             <y>140</y>
-             <width>261</width>
-             <height>181</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-image:none;
-background: transparent;
-background-image:none;
-border:none;</string>
-           </property>
-          </widget>
           <widget class="QGroupBox" name="groupBox_lobbyInfo">
            <property name="geometry">
             <rect>
@@ -340,6 +321,67 @@ color: rgb(194, 65, 0);
              </size>
             </property>
            </widget>
+          </widget>
+          <widget class="QListWidget" name="listWidget_players">
+           <property name="geometry">
+            <rect>
+             <x>60</x>
+             <y>140</y>
+             <width>276</width>
+             <height>183</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QScrollBar:vertical {
+    border: none;
+    background: transparent;
+    width: 5px; 
+	border-image:none;
+}
+
+QScrollBar::handle:vertical {
+    background: rgb(96, 56, 19);
+    border-radius: 2px;
+    min-height: 20px;
+	border-image:none;
+	border: none;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+    height: 0px;
+	border-image:none;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+    border-image:none;
+	border: none;
+}
+
+QListWidget {
+     border-image:none;
+	background: transparent;
+	background-image:none;
+	border:none;
+}
+
+QListWidget::item:hover {
+    background-color: transparent;
+}
+
+QListWidget::item:selected {
+    background-color: transparent;
+}
+
+QListWidget::item:selected:!active {
+    background-color: transparent;
+}
+
+QListWidget::item:selected:active {
+    background-color: transparent;
+}</string>
+           </property>
           </widget>
          </widget>
         </item>

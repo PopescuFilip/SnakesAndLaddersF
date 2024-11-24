@@ -13,6 +13,6 @@ LeaveLobbyResponse::LeaveLobbyResponse(const bool result) : BaseResponse{result}
 crow::json::wvalue LeaveLobbyResponse::convertToJson() const {
     crow::json::wvalue json;
     json["message"] = getMessage();
-    json["result"] = getSuccess();
+    json["success"] = getSuccess();
     return json;
 }

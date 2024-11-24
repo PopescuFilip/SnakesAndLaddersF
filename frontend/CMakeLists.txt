@@ -74,6 +74,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             views/lobbyView/lobbyview.h views/lobbyView/lobbyview.cpp views/lobbyView/lobbyview.ui
             widgets/InfoDialog/infodialog.h widgets/InfoDialog/infodialog.cpp widgets/InfoDialog/infodialog.ui
             widgets/PlayerInfoWidget/playerinfowidget.h widgets/PlayerInfoWidget/playerinfowidget.cpp widgets/PlayerInfoWidget/playerinfowidget.ui
+            views/gameView/gameview.h views/gameView/gameview.cpp views/gameView/gameview.ui
 
     )
 else()
