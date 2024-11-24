@@ -2,6 +2,7 @@
 #define LOBBYMANAGER_H
 #include "../Objects/Lobby.h"
 
+constexpr int WAIT_TIME_BEFORE_DELETE_LOBBY_SECONDS = 3;
 
 class LobbyManager {
 public:
@@ -17,6 +18,8 @@ private:
     std::vector<Lobby> m_Lobbies;
 
     static int GenerateLobbyId();
+
+    static void waitSeconds(int seconds);
 };
 
 

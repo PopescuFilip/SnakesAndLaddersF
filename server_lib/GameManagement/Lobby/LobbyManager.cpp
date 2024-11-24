@@ -1,5 +1,7 @@
 #include "LobbyManager.h"
 
+#include <thread>
+
 LobbyManager& LobbyManager::getInstance() {
     static LobbyManager instance;
     return instance;
@@ -23,6 +25,7 @@ void LobbyManager::removeLobby(int lobbyId) {
     });
 
     if(it != m_Lobbies.end()) {
+        waitSeconds(WAIT_TIME_BEFORE_DELETE_LOBBY_SECONDS);
         m_Lobbies.erase(it);
     }
 }
@@ -52,4 +55,8 @@ Lobby LobbyManager::getLobby(int lobbyId) const {
 int LobbyManager::GenerateLobbyId() {
     static int lobbyId = 0;
     return ++lobbyId;
+}
+
+void LobbyManager::waitSeconds(int seconds) {
+    std::this_thread::sleep_for(std::chrono::seconds(seconds));
 }
