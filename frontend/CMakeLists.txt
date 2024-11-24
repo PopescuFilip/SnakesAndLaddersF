@@ -55,6 +55,7 @@ set(PROJECT_SOURCES
         models/PlayerColor.h
         services/LobbyUpdater.h
         services/LobbyUpdater.cpp
+        resources/FontManager.h
 )
 
 include(FetchContent)
