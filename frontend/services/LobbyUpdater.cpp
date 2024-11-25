@@ -1,13 +1,15 @@
-//
-// Created by Alexandru Pestritu on 24.11.2024.
-//
 #include "LobbyUpdater.h"
+
+const int TIMER_DELAY_SECONDS = 1;
 
 LobbyUpdater::LobbyUpdater(QObject* parent)
     : QObject(parent), timer(nullptr), lobbyId(-1), lobbyService(new LobbyService()) {}
 
 LobbyUpdater::~LobbyUpdater() {
-    delete timer;
+    if (timer) {
+        timer->stop();
+        delete timer;
+    }
     delete lobbyService;
 }
 
@@ -20,7 +22,7 @@ void LobbyUpdater::start(int lobbyId) {
     }
 
     if (!timer->isActive()) {
-        timer->start(1000);
+        timer->start(TIMER_DELAY_SECONDS * 1000);
     }
 }
 
@@ -31,10 +33,11 @@ void LobbyUpdater::stop() {
 }
 
 void LobbyUpdater::fetchLobbyStatus() {
-    try {
-        Lobby lobby = lobbyService->getLobbyStatus(lobbyId);
-        emit lobbyUpdated(lobby);
-    } catch (const std::exception& e) {
-        emit errorOccurred(QString::fromStdString(e.what()));
-    }
+    lobbyService->getLobbyStatusAsync(lobbyId, [this](bool success, const QString& errorMessage, const Lobby& lobby) {
+        if (success) {
+            emit lobbyUpdated(lobby);
+        } else {
+            emit errorOccurred(errorMessage);
+        }
+    });
 }

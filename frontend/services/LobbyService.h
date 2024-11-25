@@ -5,6 +5,7 @@
 #ifndef LOBBYSERVICE_H
 #define LOBBYSERVICE_H
 
+#include <qstring.h>
 #include <string>
 #include <vector>
 #include <nlohmann/json.hpp>
@@ -20,6 +21,7 @@ public:
     ~LobbyService();
 
     Lobby getLobbyStatus(int lobbyId);
+    void getLobbyStatusAsync(int lobbyId, std::function<void(bool, const QString&, const Lobby&)> callback);
     int createLobby(const std::string& adminUsername, int mapType, int maxPlayers);
     Lobby joinLobby(int lobbyId, const std::string& username);
     void leaveLobby(int lobbyId, const std::string& username);
