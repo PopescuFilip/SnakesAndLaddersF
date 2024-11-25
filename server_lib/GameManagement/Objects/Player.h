@@ -10,17 +10,18 @@
 #include "BaseObject.h"
 #include "PlayerColor.h"
 
-class Player final : public BaseObject {
+class Player  : public BaseObject {
 public:
     Player(const std::string& strUsername, PlayerColor playerColor, bool isAdmin);
+    Player();
 
-    const std::string& getUsername() const;
-    PlayerColor getPlayerColor() const;
-    bool isLobbyAdmin() const;
-    int getCurrentBoardPosition() const;
-    void setCurrentBoardPosition(int iPosition);
+    virtual const std::string& getUsername() const;
+    virtual PlayerColor getPlayerColor() const;
+    virtual bool isLobbyAdmin() const;
+    virtual int getCurrentBoardPosition() const;
+    virtual void setCurrentBoardPosition(int iPosition);
 
-    void setIsLobbyAdmin(bool bIsLobbyAdmin);
+    virtual void setIsLobbyAdmin(bool bIsLobbyAdmin);
 
     crow::json::wvalue convertToJson() const override;
 private:

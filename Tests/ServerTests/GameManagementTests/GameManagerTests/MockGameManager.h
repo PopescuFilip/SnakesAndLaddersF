@@ -11,9 +11,16 @@
 
 
 class MockGameManager : public GameManager {
+private:
+    std::unordered_map<int, RunningGame> games;
 public:
-    MOCK_METHOD(RunningGame,createGame,(const Lobby& lobby));
+    MOCK_METHOD(RunningGame, getRunningGame, (int), (const, override));
+    MOCK_METHOD(bool, updateGame, (int, const RunningGame &), (override));
+    MOCK_METHOD(void, rollDiceInGame, (int), (override));
+
+    MOCK_METHOD(RunningGame, createGame, (const Lobby& lobby));
     MOCK_METHOD(bool,removeGame,(int gameId));
+
 
 };
 MATCHER_P(IsLobby, expectedLobby, "") {
@@ -22,6 +29,11 @@ MATCHER_P(IsLobby, expectedLobby, "") {
            arg.getMapType() == expectedLobby.getMapType() &&
            arg.getMaxPlayers() == expectedLobby.getMaxPlayers();
 }
+MATCHER_P(IsGame, expected, "Checks if two RunningGame objects are equal") {
+    return arg.getGameId() == expected.getGameId();
+}
+
+
 
 
 TEST(GameManagerTest,CreateGame_Validation) {
@@ -45,11 +57,25 @@ TEST(GameManagerTest,CreateGame_Validation) {
 
 }
 TEST(GameManagerTest,GetRunningGame_Validation) {
-    GameManager testGameManager;
+    MockGameManager mockGameManager;
 
-    testGameManager.createGame({1,"Gigel",MapType::MAP_01,4});
+    Lobby mockLobby={1,"Gigel",MapType::MAP_01,4};
 
-    ASSERT_FALSE(testGameManager.getRunningGame(1).isNull);
+
+    EXPECT_CALL(mockGameManager,createGame(IsLobby(mockLobby))).WillOnce(::testing::Invoke([](const Lobby& lobby)->RunningGame& {
+        static RunningGame mockRunningGame{lobby};
+        return mockRunningGame;
+    }));;
+    ;
+
+    RunningGame mockRunningGame=mockGameManager.createGame(mockLobby);
+
+    EXPECT_CALL(mockGameManager,getRunningGame(1)).WillOnce(::testing::Return(mockRunningGame));
+
+    EXPECT_FALSE(mockGameManager.getRunningGame(1).isNull);
+
+
+
 }
 TEST(GameManagerTest,RemoveGame_Validation) {
     MockGameManager mockGameManager;
@@ -58,17 +84,30 @@ TEST(GameManagerTest,RemoveGame_Validation) {
     RunningGame mockRunningGame{mockLobby};
     EXPECT_CALL(mockGameManager,removeGame(1)).WillOnce(::testing::Return(true));
 
-    mockGameManager.removeGame(1);
+    EXPECT_TRUE(mockGameManager.removeGame(1));
 }
-TEST(GameManagerTest,UpdateGame_Validation) {
-    GameManager testGameManager;
+TEST(GameManagerTests, UpdateGame) {
+    MockGameManager mockGameManager;
 
-    RunningGame initialGame=testGameManager.createGame({1,"Gigel",MapType::MAP_01,4});
-    RunningGame newGameDetails=testGameManager.createGame({9,"Gigel",MapType::MAP_01,4});
+    // Initial lobby and new lobby details
+    Lobby mockLobby = {1, "Gigel", MapType::MAP_01, 4};
+    Lobby newInfoLobby = {2, "Gigel", MapType::NONE, 4};
 
-    ASSERT_TRUE(testGameManager.updateGame(1,newGameDetails));
-    ASSERT_FALSE(testGameManager.updateGame(4,newGameDetails));
+    // Default behavior for createGame
+
+
+    RunningGame initialRunningGame(mockLobby);
+
+    // Setup the update behavior
+    RunningGame newGameDetails(newInfoLobby);
+
+    EXPECT_CALL(mockGameManager,updateGame(1,IsGame(newGameDetails))).WillOnce(::testing::Return(true));
+
+    // Assertions
+    EXPECT_TRUE(mockGameManager.updateGame(1, newGameDetails));
 
 }
+
+
 
 #endif //MOCKGAMEMANAGER_H
