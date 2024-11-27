@@ -6,5 +6,5 @@ int main()
     crow::SimpleApp app;
     SetLobbyRoutes(app);
     SetGameRoutes(app);
-    app.port(18080).run();
+    app.port(18080).multithreaded().run();
 }
