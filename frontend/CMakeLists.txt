@@ -63,6 +63,8 @@ set(PROJECT_SOURCES
         services/GameService.h
         state/GameState.cpp
         state/GameState.h
+        services/GameUpdater.cpp
+        services/GameUpdater.h
 )
 
 include(FetchContent)
