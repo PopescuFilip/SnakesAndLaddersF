@@ -17,6 +17,10 @@ namespace ApiEndpoints {
     const std::string UPDATE_LOBBY = BASE_URL + "/lobby/update";
     const std::string LEAVE_LOBBY = BASE_URL + "/lobby/leave";
     const std::string START_GAME = BASE_URL + "/lobby/start-game";
+    const std::string GET_GAME_STATUS = BASE_URL + "/game/status";
+    const std::string LEAVE_GAME = BASE_URL + "/game/leave";
+    const std::string GET_GAME_STATS = BASE_URL + "/game/stats";
+    const std::string GAME_ROLL_DICE = BASE_URL + "/game/roll-dice";
 }
 
 #endif //APIENDPOINTS_H

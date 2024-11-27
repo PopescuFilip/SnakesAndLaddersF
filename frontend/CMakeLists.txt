@@ -56,6 +56,13 @@ set(PROJECT_SOURCES
         services/LobbyUpdater.h
         services/LobbyUpdater.cpp
         resources/FontManager.h
+        models/Game.cpp
+        models/Game.h
+        models/TurnTime.h
+        services/GameService.cpp
+        services/GameService.h
+        state/GameState.cpp
+        state/GameState.h
 )
 
 include(FetchContent)
