@@ -12,6 +12,7 @@
 #include "Routes/GameStatusRoute.h"
 #include "Routes/LeaveGameRoute.h"
 #include "Routes/GameStatisticsRoute.h"
+#include "Routes/RollDiceRoute.h"
 
 #define GET_ROUTE(path, functionName) CROW_ROUTE(crowApplication, path).methods("GET"_method)([](const crow::request& req) { \
     crow::json::rvalue jsonRequest = crow::json::load(req.body); \
@@ -42,6 +43,8 @@ inline void SetGameRoutes(crow::SimpleApp& crowApplication) {
     GET_ROUTE("/game/status", GameStatusRoute);
     GET_ROUTE("/game/stats", GameStatisticsRoute);
     POST_ROUTE("/game/leave", LeaveGameRoute);
+    POST_ROUTE("/game/roll-dice", RollDiceRoute);
+
 }
 
 #endif //API_H
