@@ -7,12 +7,12 @@
 
 class StartGameContext : public BaseContext<StartGameRequest, StartGameResponse> {
 public:
-    StartGameResponse HandleRequest(const StartGameRequest &request) override;
+    virtual StartGameResponse HandleRequest(const StartGameRequest &request) override;
 
 protected:
-    StartGameResponse ApplyChanges(const StartGameRequest &request) override;
+    virtual StartGameResponse ApplyChanges(const StartGameRequest &request) override;
 
-    ValidationResponse ValidateRequest(const StartGameRequest &request) override;
+    virtual ValidationResponse ValidateRequest(const StartGameRequest &request) override;
 };
 
 

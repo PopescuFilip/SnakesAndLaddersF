@@ -4,7 +4,6 @@
 #include <gmock/gmock.h>
 
 #include "GameManagementTests/LobbyManagerTests/MockLobbyManager.h"
-
 #include "GameManagementTests/GameManagerTests/MockGameManager.h"
 #include "GameManagementTests/ObjectTests/LobbyTests.h"
 #include "GameManagementTests/ObjectTests/PlayerTests.h"
@@ -21,6 +20,10 @@
 #include "InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusContextTest.h"
 #include "InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusRequestTest.h"
 #include "InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusResponseTest.h"
+#include "InfrastructureTests/LobbyTests/StartGameTests/StartGameContextTest.h"
+#include "InfrastructureTests/LobbyTests/StartGameTests/StartGameRequestTest.h"
+#include "InfrastructureTests/LobbyTests/StartGameTests/StartGameResponseTest.h"
+
     int main(int argc, char** argv)
     {
         ::testing::InitGoogleTest(&argc, argv);

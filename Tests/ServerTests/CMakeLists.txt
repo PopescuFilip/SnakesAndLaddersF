@@ -4,6 +4,7 @@ project(ServerTests)
 set(CMAKE_CXX_STANDARD 17)
 set(FETCHCONTENT_QUIET FALSE)
 set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -37,7 +38,10 @@ add_executable(ServerTests main.cpp
         InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyResponseTest.h
         InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusRequestTest.h
         InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusResponseTest.h
-        InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusContextTest.h)
+        InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusContextTest.h
+        InfrastructureTests/LobbyTests/StartGameTests/StartGameContextTest.h
+        InfrastructureTests/LobbyTests/StartGameTests/StartGameRequestTest.h
+        InfrastructureTests/LobbyTests/StartGameTests/StartGameResponseTest.h)
 
 target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
