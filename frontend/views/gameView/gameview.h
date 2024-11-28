@@ -6,6 +6,7 @@
 #include "../../services/GameService.h"
 #include "../../services/GameUpdater.h"
 #include "../../observers/ViewObserver.h"
+#include "../../widgets/Map/map.h"
 
 namespace Ui {
 class GameView;

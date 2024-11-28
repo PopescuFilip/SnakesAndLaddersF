@@ -47,5 +47,9 @@
         <file>images/map_player_green.png</file>
         <file>images/map_player_red.png</file>
         <file>images/map_player_yellow.png</file>
+        <file>images/game_box_background.png</file>
+        <file>images/dice-4.png</file>
+        <file>images/button_leave.png</file>
+        <file>images/time_icon.png</file>
     </qresource>
 </RCC>
