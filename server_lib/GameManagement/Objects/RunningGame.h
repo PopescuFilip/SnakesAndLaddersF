@@ -61,6 +61,8 @@ private:
 
     int m_iLatestDiceValue;
     int m_iTotalGameTime;
+
+    void initializePlayerPositions();
 };
 
 
