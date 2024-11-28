@@ -35,6 +35,12 @@ void ViewManager::setupConnections() {
     connect(m_lobbyView.get(), &LobbyView::goToHomeView, this, &ViewManager::showHomeView);
     connect(m_lobbyView.get(), &LobbyView::goToGameView, this, &ViewManager::showGameView);
     connect(m_lobbyView.get(), &LobbyView::windowPositionChanged, this, &ViewManager::onWindowHidden);
+
+    //GameView connections
+    connect(m_gameView.get(), &GameView::goToHomeView, this, &ViewManager::showHomeView);
+    connect(m_gameView.get(), &GameView::goToStatsView, this, &ViewManager::showStatsView);
+    connect(m_gameView.get(), &GameView::windowPositionChanged, this, &ViewManager::onWindowHidden);
+
 }
 
 void ViewManager::showHomeView() {
@@ -60,6 +66,11 @@ void ViewManager::showLobbyView() {
 void ViewManager::showGameView() {
     setWindowPosition(m_gameView.get());
     m_gameView->show();
+}
+
+void ViewManager::showStatsView() {
+    setWindowPosition(m_statsView.get());
+    m_statsView->show();
 }
 
 void ViewManager::onWindowHidden(const QPoint &position) {

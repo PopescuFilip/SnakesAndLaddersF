@@ -14,6 +14,7 @@
 #include "../views/joinGameView/joingameview.h"
 #include "../views/lobbyView/lobbyview.h"
 #include "../views/gameView/gameview.h"
+#include "../views/statsView/statsview.h"
 
 class Lobby;
 
@@ -30,6 +31,7 @@ public:
     void showJoinGameView();
     void showLobbyView();
     void showGameView();
+    void showStatsView();
     void onWindowHidden(const QPoint& position);
 
 private:
@@ -38,6 +40,7 @@ private:
     std::unique_ptr<JoinGameView> m_joinGameView;
     std::unique_ptr<LobbyView> m_lobbyView;
     std::unique_ptr<GameView> m_gameView;
+    std::unique_ptr<StatsView> m_statsView;
     void setupConnections();
 
     QPoint lastWindowPosition;

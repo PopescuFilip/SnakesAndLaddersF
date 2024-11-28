@@ -6,26 +6,352 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1025</width>
+    <height>650</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="minimumSize">
+   <size>
+    <width>550</width>
+    <height>550</height>
+   </size>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>24</height>
-    </rect>
-   </property>
+  <property name="windowTitle">
+   <string>Snakes &amp; Ladders - Game</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-image: url(:/images/background.jpg);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox_gameStats">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>-5</y>
+      <width>301</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/images/game_box_background.png);
+margin-bottom:30px;</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QListWidget" name="listWidget_players">
+     <property name="geometry">
+      <rect>
+       <x>24</x>
+       <y>145</y>
+       <width>255</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QScrollBar:vertical {
+    border: none;
+    background: transparent;
+    width: 5px; 
+	border-image:none;
+}
+
+QScrollBar::handle:vertical {
+    background: rgb(96, 56, 19);
+    border-radius: 2px;
+    min-height: 20px;
+	border-image:none;
+	border: none;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+    height: 0px;
+	border-image:none;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+    border-image:none;
+	border: none;
+}
+
+QListWidget {
+     border-image:none;
+	background: transparent;
+	background-image:none;
+	border:none;
+margin-bottom:0;
+}
+
+QListWidget::item:hover {
+    background-color: transparent;
+}
+
+QListWidget::item:selected {
+    background-color: transparent;
+}
+
+QListWidget::item:selected:!active {
+    background-color: transparent;
+}
+
+QListWidget::item:selected:active {
+    background-color: transparent;
+}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_players">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>291</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Halo Dek</family>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: none;
+color: rgb(96, 56, 19);
+margin-bottom:0;</string>
+     </property>
+     <property name="text">
+      <string>Players</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_game">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>350</y>
+       <width>291</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Halo Dek</family>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: none;
+color: rgb(96, 56, 19);
+margin-bottom:0;</string>
+     </property>
+     <property name="text">
+      <string>GAME</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_rollDice">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>520</y>
+       <width>161</width>
+       <height>56</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Halo Dek</family>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">margin-bottom:0;
+border-image: url(:/images/button.png);
+color: rgb(194, 65, 0);
+</string>
+     </property>
+     <property name="text">
+      <string>Roll Dice</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_leaveGame">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>520</y>
+       <width>56</width>
+       <height>56</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/images/button_leave.png);
+margin-bottom:0;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_dice">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>400</y>
+       <width>100</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image:none;
+margin-bottom:0;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources/Resources.qrc">:/images/dice-4.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_timeIcon">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>428</y>
+       <width>37</width>
+       <height>45</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">margin-bottom:0;
+border-image:none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources/Resources.qrc">:/images/time_icon.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_timerValue">
+     <property name="geometry">
+      <rect>
+       <x>104</x>
+       <y>425</y>
+       <width>71</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Halo Dek</family>
+       <pointsize>42</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: none;
+color: rgb(96, 56, 19);
+margin-bottom:0;</string>
+     </property>
+     <property name="text">
+      <string>10</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_timerBg">
+     <property name="geometry">
+      <rect>
+       <x>37</x>
+       <y>417</y>
+       <width>120</width>
+       <height>67</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">margin-bottom:0;
+border-image:none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources/Resources.qrc">:/images/button.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>label_timerBg</zorder>
+    <zorder>listWidget_players</zorder>
+    <zorder>label_players</zorder>
+    <zorder>label_game</zorder>
+    <zorder>pushButton_rollDice</zorder>
+    <zorder>pushButton_leaveGame</zorder>
+    <zorder>label_dice</zorder>
+    <zorder>label_timeIcon</zorder>
+    <zorder>label_timerValue</zorder>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_map">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>45</y>
+      <width>550</width>
+      <height>550</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>550</width>
+      <height>550</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image:none;
+background:transparent;
+margin:0;
+padding:0;</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+    </layout>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources/Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

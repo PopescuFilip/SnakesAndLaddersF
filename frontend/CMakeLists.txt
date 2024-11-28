@@ -68,6 +68,8 @@ set(PROJECT_SOURCES
         state/GameState.h
         services/GameUpdater.cpp
         services/GameUpdater.h
+        models/MapType.h
+        models/DiceValue.h
 )
 
 include(FetchContent)
@@ -90,6 +92,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             widgets/InfoDialog/infodialog.h widgets/InfoDialog/infodialog.cpp widgets/InfoDialog/infodialog.ui
             widgets/PlayerInfoWidget/playerinfowidget.h widgets/PlayerInfoWidget/playerinfowidget.cpp widgets/PlayerInfoWidget/playerinfowidget.ui
             views/gameView/gameview.h views/gameView/gameview.cpp views/gameView/gameview.ui
+            views/statsView/statsview.h views/statsView/statsview.cpp views/statsView/statsview.ui
+            widgets/Map/map.h widgets/Map/map.cpp widgets/Map/map.ui
+            widgets/GamePlayerInfoWidget/gameplayerinfowidget.h widgets/GamePlayerInfoWidget/gameplayerinfowidget.cpp widgets/GamePlayerInfoWidget/gameplayerinfowidget.ui
 
     )
 else()
