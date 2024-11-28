@@ -7,6 +7,7 @@
 #include "../../widgets/PlayerInfoWidget/playerinfowidget.h"
 #include <QClipboard>
 
+#include "../../state/GameState.h"
 #include "../../state/LobbyState.h"
 #include "../../state/UserState.h"
 #include "../../utils/Logger.h"
@@ -84,6 +85,7 @@ void LobbyView::updateLobbyStatus(const Lobby& lobby) {
     LobbyState::getInstance().setLobby(lobby);
 
     if(lobby.getGameId() != -1) {
+        GameState::getInstance().getGame().setGameId(lobby.getGameId());
         gameStarted();
     }
 
