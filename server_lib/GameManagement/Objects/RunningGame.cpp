@@ -9,10 +9,11 @@ const std::string MAPS_FOLDER = "./maps/";
 RunningGame::RunningGame(const Lobby &baseLobby) :
         m_Players{baseLobby.getPlayers()},
         m_bShouldFinishGame{false}, m_iCurrentPlayerIndex{0},
-        m_iLatestDiceValue{0}, m_GameId{baseLobby.getLobbyId()} {
+        m_iLatestDiceValue{0}, m_GameId{baseLobby.getLobbyId()}, m_GameStartTime{std::chrono::system_clock::now()}, m_TurnStartTime{std::chrono::system_clock::now()} {
 
     readTeleportPositions(baseLobby.getMapType());
     LobbyManager::getInstance().removeLobby(baseLobby.getLobbyId());
+    initializePlayerPositions();
 }
 
 void RunningGame::updatePlayerPosition(const std::string &strUsername, int iPosition) {
@@ -22,6 +23,12 @@ void RunningGame::updatePlayerPosition(const std::string &strUsername, int iPosi
 
     if(it != m_Players.end()) {
         it->setCurrentBoardPosition(iPosition);
+    }
+}
+
+void RunningGame::initializePlayerPositions() {
+    for (Player& player : m_Players) {
+        player.setCurrentBoardPosition(1);
     }
 }
 
