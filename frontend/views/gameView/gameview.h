@@ -3,11 +3,15 @@
 
 #include <QMainWindow>
 
+#include "../../services/GameService.h"
+#include "../../services/GameUpdater.h"
+#include "../../observers/ViewObserver.h"
+
 namespace Ui {
 class GameView;
 }
 
-class GameView : public QMainWindow
+class GameView : public QMainWindow, public ViewObserver
 {
     Q_OBJECT
 
@@ -17,6 +21,18 @@ public:
 
 private:
     Ui::GameView *ui;
+    GameService* gameService;
+    GameUpdater* gameUpdater;
+
+protected:
+    void showEvent(QShowEvent* event) override;
+    void hideEvent(QHideEvent* event) override;
+
+
+signals:
+    void goToHomeView();
+    void goToStatsView();
+    void windowPositionChanged(const QPoint& newPosition);
 };
 
 #endif // GAMEVIEW_H
