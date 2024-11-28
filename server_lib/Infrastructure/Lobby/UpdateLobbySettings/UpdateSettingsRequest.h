@@ -8,10 +8,10 @@
 class UpdateSettingsRequest {
 public:
     UpdateSettingsRequest(int lobbyId, const std::string& strPlayerUsername, MapType mapType, int maxPlayers);
-    int getLobbyId() const;
-    std::string getPlayerUsername() const;
-    MapType getMapType() const;
-    int getMaxPlayers() const;
+    virtual int getLobbyId() const;
+    virtual std::string getPlayerUsername() const;
+    virtual MapType getMapType() const;
+    virtual int getMaxPlayers() const;
 
 private:
     int m_iLobbyId;
