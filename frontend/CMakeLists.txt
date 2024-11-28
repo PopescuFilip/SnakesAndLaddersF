@@ -5,17 +5,20 @@ project(frontend VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 if(APPLE)
     set(CMAKE_PREFIX_PATH "~/Qt/6.8.0/macos/lib/cmake/Qt6")
 elseif(WIN32)
     if(CMAKE_SYSTEM_PROCESSOR MATCHES "ARM|aarch64")
         set(CMAKE_PREFIX_PATH "C:\\Qt\\6.8.0\\msvc2022_arm64\\lib\\cmake\\Qt6")
+        set(WIN_DEPLOY "C:\\Qt\\6.8.0\\msvc2022_arm4\\bin\\windeployqt.exe")
         message("Found arm-based CPU.")
     else()
-        set(CMAKE_PREFIX_PATH "C:\\Qt\\6.8.0\\msvc2022\\lib\\cmake\\Qt6")
+        set(CMAKE_PREFIX_PATH "C:\\Qt\\6.8.0\\msvc2022_64\\lib\\cmake\\Qt6")
+        set(WIN_DEPLOY "C:\\Qt\\6.8.0\\msvc2022_64\\bin\\windeployqt.exe")
         message("Found amd64-based CPU.")
     endif()
 else()
@@ -119,4 +122,13 @@ install(TARGETS frontend
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(frontend)
+endif()
+
+if(WIN32)
+    # Ensure we run windeployqt after building the executable
+    add_custom_command(
+        TARGET frontend POST_BUILD
+        COMMAND ${WIN_DEPLOY} $<TARGET_FILE:frontend>
+        COMMENT "Running windeployqt to deploy Qt dependencies"
+    )
 endif()
