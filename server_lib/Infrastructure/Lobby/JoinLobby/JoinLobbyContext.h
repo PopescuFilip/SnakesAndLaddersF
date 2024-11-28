@@ -5,12 +5,12 @@
 #include "../../BaseContext.h"
 
 
-class JoinLobbyContext final : public BaseContext<JoinLobbyRequest, JoinLobbyResponse> {
+class JoinLobbyContext : public BaseContext<JoinLobbyRequest, JoinLobbyResponse> {
 public:
-    JoinLobbyResponse HandleRequest(const JoinLobbyRequest& request) override;
+    virtual JoinLobbyResponse HandleRequest(const JoinLobbyRequest& request) override;
 protected:
-    ValidationResponse ValidateRequest(const JoinLobbyRequest& request) override;
-    JoinLobbyResponse ApplyChanges(const JoinLobbyRequest& request) override;
+    virtual ValidationResponse ValidateRequest(const JoinLobbyRequest& request) override;
+    virtual JoinLobbyResponse ApplyChanges(const JoinLobbyRequest& request) override;
 };
 
 

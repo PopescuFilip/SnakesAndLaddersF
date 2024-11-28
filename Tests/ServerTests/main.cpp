@@ -12,6 +12,9 @@
 #include "InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyRequestTest.h"
 #include "InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyResponseTests.h"
 #include "InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyContextTest.h"
+#include "InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyContextTest.h"
+#include "InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyRequestTest.h"
+#include "InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyResponseTest.h"
 
     int main(int argc, char** argv)
     {
