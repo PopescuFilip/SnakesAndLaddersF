@@ -15,12 +15,13 @@ enum class PlayerColor {
 };
 
 
-inline QString getPlayerImagePath(PlayerColor playerColor) {
+inline QString getPlayerImagePath(const PlayerColor& playerColor) {
     switch (playerColor) {
         case PlayerColor::RED:    return ":/images/map_player_red.png";
         case PlayerColor::BLUE:   return ":/images/map_player_blue.png";
         case PlayerColor::GREEN:  return ":/images/map_player_green.png";
         case PlayerColor::YELLOW: return ":/images/map_player_yellow.png";
+        case PlayerColor::NONE:   return "";
     }
     return {};
 }
