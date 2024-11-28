@@ -415,3 +415,4 @@ FodyWeavers.xsd
 /frontend/.vs
 /Tests/ServerTests/.vs
 eyes
+/out/build/x64-Debug
