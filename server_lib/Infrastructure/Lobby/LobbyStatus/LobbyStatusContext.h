@@ -7,11 +7,11 @@
 
 class LobbyStatusContext : BaseContext<LobbyStatusRequest, LobbyStatusResponse> {
 public:
-    LobbyStatusResponse HandleRequest(const LobbyStatusRequest &request) override;
+    virtual LobbyStatusResponse HandleRequest(const LobbyStatusRequest &request) override;
 
 protected:
-    LobbyStatusResponse ApplyChanges(const LobbyStatusRequest &request) override;
-    ValidationResponse ValidateRequest(const LobbyStatusRequest &request) override;
+    virtual LobbyStatusResponse ApplyChanges(const LobbyStatusRequest &request) override;
+    virtual ValidationResponse ValidateRequest(const LobbyStatusRequest &request) override;
 };
 
 

@@ -7,7 +7,7 @@ class LobbyStatusRequest {
 public:
     LobbyStatusRequest(int lobbyId);
 
-    int GetLobbyId() const;
+    virtual int GetLobbyId() const;
 private:
     int m_iLobbyId;
 };

@@ -18,6 +18,9 @@
 #include "InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyContextTest.h"
 #include "InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyRequestTest.h"
 #include "InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyResponseTest.h"
+#include "InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusContextTest.h"
+#include "InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusRequestTest.h"
+#include "InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusResponseTest.h"
     int main(int argc, char** argv)
     {
         ::testing::InitGoogleTest(&argc, argv);
