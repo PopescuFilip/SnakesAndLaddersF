@@ -7,8 +7,8 @@ class LeaveLobbyRequest {
 public:
     LeaveLobbyRequest(int lobbyId, const std::string &strPlayerUsername);
 
-    int getLobbyId() const;
-    std::string getPlayerUsername() const;
+    virtual int getLobbyId() const;
+    virtual std::string getPlayerUsername() const;
 private:
     int m_lobbyId;
     std::string m_strPlayerUsername;

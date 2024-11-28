@@ -6,6 +6,10 @@ Player::Player(const std::string& strUsername, PlayerColor playerColor, bool isA
     // Empty constructor
 }
 
+Player::Player() {
+
+}
+
 const std::string& Player::getUsername() const
 {
     return m_strUsername;

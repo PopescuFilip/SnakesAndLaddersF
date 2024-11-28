@@ -6,9 +6,9 @@
 class CreateLobbyRequest{
 public:
     CreateLobbyRequest(MapType mapType, int iMaxPlayers, const std::string& strAdminUsername);
-    MapType getMapType() const;
-    int getMaxPlayers() const;
-    const std::string& getAdminUsername() const;
+    virtual MapType getMapType() const;
+    virtual int getMaxPlayers() const;
+    virtual const std::string& getAdminUsername() const;
 private:
     MapType m_MapType;
     int m_iMaxPlayers;

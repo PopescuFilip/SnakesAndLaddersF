@@ -7,10 +7,10 @@
 
 class UpdateSettingsContext : public BaseContext<UpdateSettingsRequest, UpdateSettingsResponse> {
 public:
-    UpdateSettingsResponse HandleRequest(const UpdateSettingsRequest &request) override;
+    virtual UpdateSettingsResponse HandleRequest(const UpdateSettingsRequest &request) override;
 private:
-    ValidationResponse ValidateRequest(const UpdateSettingsRequest &request) override;
-    UpdateSettingsResponse ApplyChanges(const UpdateSettingsRequest &request) override;
+    virtual ValidationResponse ValidateRequest(const UpdateSettingsRequest &request) override;
+    virtual UpdateSettingsResponse ApplyChanges(const UpdateSettingsRequest &request) override;
 };
 
 

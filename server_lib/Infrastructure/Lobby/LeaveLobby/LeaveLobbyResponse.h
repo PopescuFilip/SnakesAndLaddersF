@@ -3,7 +3,7 @@
 #include "../../BaseResponse.h"
 
 
-class LeaveLobbyResponse final : public BaseResponse {
+class LeaveLobbyResponse  : public BaseResponse {
 public:
     explicit LeaveLobbyResponse(const std::string& message);
     explicit LeaveLobbyResponse(bool result);

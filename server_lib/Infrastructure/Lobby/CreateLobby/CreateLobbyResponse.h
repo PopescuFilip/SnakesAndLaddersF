@@ -7,7 +7,7 @@ class CreateLobbyResponse : public BaseResponse {
 public:
     CreateLobbyResponse(int iLobbyId);
     CreateLobbyResponse(const std::string& strContent);
-    int getLobbyId() const;
+    virtual int getLobbyId() const;
 
     crow::json::wvalue convertToJson() const override;
 private:

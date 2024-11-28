@@ -8,37 +8,37 @@
 
 constexpr int MAX_PLAYERS = 4;
 
-class Lobby final : public BaseObject{
+class Lobby : public BaseObject{
 public:
     Lobby();
 
     Lobby(int lobbyId, const std::string &strAdminPlayer, MapType mapType, int maxPlayers);
 
-    bool addPlayer(const Player &player);
+    virtual bool addPlayer(const Player &player);
 
-    bool addPlayer(const std::string &strUsername, PlayerColor playerColor);
+    virtual bool addPlayer(const std::string &strUsername, PlayerColor playerColor);
 
-    bool removePlayer(const std::string &strUsername);
+    virtual bool removePlayer(const std::string &strUsername);
 
-    PlayerColor getNextAvailableColor() const;
+    virtual PlayerColor getNextAvailableColor() const;
 
-    std::vector<Player> getPlayers() const;
+    virtual std::vector<Player> getPlayers() const;
 
-    std::string getAdminPlayer() const;
+    virtual std::string getAdminPlayer() const;
 
-    MapType getMapType() const;
+    virtual MapType getMapType() const;
 
-    int getMaxPlayers() const;
+    virtual int getMaxPlayers() const;
 
-    int getLobbyId() const;
+    virtual int getLobbyId() const;
 
-    void setMapType(MapType mapType);
+    virtual void setMapType(MapType mapType);
 
-    void setMaxPlayers(int maxPlayers);
+    virtual void setMaxPlayers(int maxPlayers);
 
-    void setGameId(int gameId);
+    virtual void setGameId(int gameId);
 
-    void setAdminPlayer(const std::string &strAdminPlayer);
+    virtual void setAdminPlayer(const std::string &strAdminPlayer);
 
     crow::json::wvalue convertToJson() const override;
 

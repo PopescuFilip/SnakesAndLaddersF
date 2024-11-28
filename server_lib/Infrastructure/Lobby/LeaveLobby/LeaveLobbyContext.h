@@ -5,13 +5,13 @@
 #include "../../BaseContext.h"
 
 
-class LeaveLobbyContext final : public BaseContext<LeaveLobbyRequest, LeaveLobbyResponse> {
+class LeaveLobbyContext : public BaseContext<LeaveLobbyRequest, LeaveLobbyResponse> {
 public:
-    LeaveLobbyResponse HandleRequest(const LeaveLobbyRequest &request) override;
+    virtual LeaveLobbyResponse HandleRequest(const LeaveLobbyRequest &request) override;
 
 protected:
-    LeaveLobbyResponse ApplyChanges(const LeaveLobbyRequest &request) override;
-    ValidationResponse ValidateRequest(const LeaveLobbyRequest &request) override;
+    virtual LeaveLobbyResponse ApplyChanges(const LeaveLobbyRequest &request) override;
+    virtual ValidationResponse ValidateRequest(const LeaveLobbyRequest &request) override;
 };
 
 

@@ -7,8 +7,8 @@ class StartGameRequest {
 public:
     StartGameRequest(int lobbyId, const std::string& playerUsername);
 
-    int GetLobbyId() const;
-    std::string GetPlayerUsername() const;
+    virtual int GetLobbyId() const;
+    virtual std::string GetPlayerUsername() const;
 private:
     int m_iLobbyId;
     std::string m_strPlayerUsername;

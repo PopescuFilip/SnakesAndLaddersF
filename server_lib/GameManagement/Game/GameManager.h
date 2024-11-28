@@ -13,13 +13,13 @@ class GameManager {
 public:
     static GameManager& getInstance();
 
-    RunningGame createGame(const Lobby& lobby);
-    RunningGame getRunningGame(int gameId) const;
+    virtual RunningGame createGame(const Lobby& lobby);
+    virtual RunningGame getRunningGame(int gameId) const;
 
-    bool removeGame(int gameId);
-    bool updateGame(int gameId, const RunningGame& newGameDetails);
+    virtual bool removeGame(int gameId);
+    virtual bool updateGame(int gameId, const RunningGame& newGameDetails);
 
-    void rollDiceInGame(int gameId);
+    virtual void rollDiceInGame(int gameId);
 private:
     std::vector<RunningGame> m_Games;
 

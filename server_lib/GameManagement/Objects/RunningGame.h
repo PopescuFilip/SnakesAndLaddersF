@@ -15,33 +15,33 @@ public:
     RunningGame();
     explicit RunningGame(const Lobby& baseLobby);
 
-    void updatePlayerPosition(const std::string& strUsername, int iPosition);
+    virtual void updatePlayerPosition(const std::string& strUsername, int iPosition);
 
-    void startNewTurn();
-    int getCurrentTurnTime() const;
+    virtual void startNewTurn();
+    virtual int getCurrentTurnTime() const;
 
-    int getNewTeleportPosition(int currentPlayerPosition) const;
+    virtual int getNewTeleportPosition(int currentPlayerPosition) const;
 
-    void triggerDiceRolling();
-    void resetTriggerDiceRolling();
-    bool getDiceRolling() const;
+    virtual void triggerDiceRolling();
+    virtual void resetTriggerDiceRolling();
+    virtual bool getDiceRolling() const;
 
-    void setLatestDiceValue(int iDiceValue);
-    int getLatestDiceValue() const;
+    virtual void setLatestDiceValue(int iDiceValue);
+    virtual int getLatestDiceValue() const;
 
-    void setPlayerTurn(const std::string& strPlayerName);
-    Player& getCurrentPlayer();
+    virtual void setPlayerTurn(const std::string& strPlayerName);
+    virtual Player& getCurrentPlayer();
 
-    void setShouldFinishGame(bool bShouldFinishGame);
-    bool getShouldFinishGame() const;
+    virtual void setShouldFinishGame(bool bShouldFinishGame);
+    virtual bool getShouldFinishGame() const;
 
-    int getGameId() const;
-    void readTeleportPositions(const MapType& mapType);
+    virtual int getGameId() const;
+    virtual void readTeleportPositions(const MapType& mapType);
 
-    bool removePlayer(const std::string& strUsername);
+    virtual bool removePlayer(const std::string& strUsername);
 
-    const std::vector<Player>& getPlayers() const;
-    int getTotalTime() const;
+    virtual const std::vector<Player>& getPlayers() const;
+    virtual int getTotalTime() const;
 
     crow::json::wvalue convertToJson() const override;
 

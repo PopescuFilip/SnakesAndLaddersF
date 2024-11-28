@@ -1,10 +1,19 @@
+
 #include <iostream>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
-}
+#include "GameManagementTests/GameManagementTests.h"
+
+#include "InfrastructureTests/InfrastructureTests.h"
+
+
+
+int main(int argc, char** argv)
+    {
+        ::testing::InitGoogleTest(&argc, argv);
+        return RUN_ALL_TESTS();
+    }
+

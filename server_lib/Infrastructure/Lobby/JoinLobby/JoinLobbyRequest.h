@@ -7,8 +7,8 @@ class JoinLobbyRequest {
 public:
     JoinLobbyRequest(int lobbyId, const std::string& strUsername);
 
-    int getLobbyId() const;
-    const std::string& getUsername() const;
+    virtual int getLobbyId() const;
+    virtual const std::string& getUsername() const;
 
 private:
     int m_iLobbyId;
