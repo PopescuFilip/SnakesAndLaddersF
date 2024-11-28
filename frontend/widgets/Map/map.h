@@ -20,8 +20,6 @@ public:
 
     void movePlayer(PlayerColor playerColor, int position);
     void setMap(MapType mapType);
-    void setPlayerImage(PlayerColor playerColor);
-    void setCorners(const QPoint& bottomLeft, const QPoint& topRight);
     void updatePlayers(const std::vector<Player>& players);
 
 protected:
@@ -33,7 +31,11 @@ private:
     QMap<int, QPoint> cellPositions;
     QMap<PlayerColor, QPoint> playerPositions;
     QMap<PlayerColor, QPixmap> playerImages;
+    QMap<int, int> cellPlayerCount;
+    void setPlayerImage(PlayerColor playerColor);
+    void setCorners(const QPoint& bottomLeft, const QPoint& topRight);
     void generateGrid(const QPoint& bottomLeft, const QPoint& topRight);
+    QPoint calculatePlayerOffset(int numPlayers, int playerIndex, int cellWidth, int cellHeight) const;
 };
 
 #endif // MAP_H

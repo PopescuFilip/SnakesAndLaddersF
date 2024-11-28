@@ -54,14 +54,24 @@ void Map::setCorners(const QPoint& bottomLeft, const QPoint& topRight) {
     generateGrid(bottomLeft, topRight);
 }
 
-void Map::updatePlayers(const std::vector<Player> &players) {
+void Map::updatePlayers(const std::vector<Player>& players) {
     playerPositions.clear();
+    cellPlayerCount.clear();
+
+    int cellWidth = width() / 10;
+    int cellHeight = height() / 10;
 
     for (const Player& player : players) {
         int position = player.getCurrentBoardPosition();
 
         if (cellPositions.contains(position)) {
-            playerPositions[player.getColor()] = cellPositions[position];
+            int count = cellPlayerCount.value(position, 0);
+            cellPlayerCount[position] = count + 1;
+
+            QPoint basePosition = cellPositions[position];
+            QPoint offset = calculatePlayerOffset(players.size(), count, cellWidth, cellHeight);
+
+            playerPositions[player.getColor()] = basePosition + offset;
         }
 
         setPlayerImage(player.getColor());
@@ -96,6 +106,29 @@ void Map::generateGrid(const QPoint& bottomLeft, const QPoint& topRight) {
     update();
 }
 
+QPoint Map::calculatePlayerOffset(int numPlayers, int playerIndex, int cellWidth, int cellHeight) const {
+    const int halfWidth = cellWidth / 2;
+    const int halfHeight = cellHeight / 2;
+    const int quarterWidth = cellWidth / 4;
+    const int quarterHeight = cellHeight / 4;
+
+    static const QMap<int, QVector<QPoint>> playerOffsets = {
+        {2, {QPoint(-quarterWidth, -quarterHeight), QPoint(quarterWidth, quarterHeight)}},
+        {3, {QPoint(-quarterWidth, -quarterHeight), QPoint(quarterWidth, -quarterHeight), QPoint(-quarterWidth, quarterHeight)}},
+        {4, {QPoint(-quarterWidth, -quarterHeight), QPoint(quarterWidth, -quarterHeight), QPoint(-quarterWidth, quarterHeight), QPoint(quarterWidth, quarterHeight)}}
+    };
+
+    if (playerOffsets.contains(numPlayers)) {
+        const QVector<QPoint>& offsets = playerOffsets[numPlayers];
+        if (playerIndex < offsets.size()) {
+            return offsets[playerIndex];
+        }
+    }
+
+    return QPoint(0, 0);
+}
+
+
 
 void Map::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
@@ -115,3 +148,4 @@ void Map::paintEvent(QPaintEvent* event) {
         }
     }
 }
+
