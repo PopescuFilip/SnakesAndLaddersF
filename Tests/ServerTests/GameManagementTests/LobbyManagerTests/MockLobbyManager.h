@@ -9,11 +9,44 @@
 
 #include "GameManagement/Lobby/LobbyManager.h"
 
+MATCHER_P(IsALobby, expectedLobby, "") {
+    return arg.getLobbyId() == expectedLobby.getLobbyId() &&
+           arg.getAdminPlayer() == expectedLobby.getAdminPlayer() &&
+           arg.getMapType() == expectedLobby.getMapType() &&
+           arg.getMaxPlayers() == expectedLobby.getMaxPlayers();
+}
+
+
 class MockLobbyManager : public LobbyManager {
+private:
+    std::pmr::unordered_map<int,Lobby> lobbies;
+    Lobby newLobbyDetails = {1,"Gigel",MapType::NONE,3};
 public:
-    MOCK_METHOD(int,createLobby,(const std::string& strAdminPlayer, MapType mapType, int maxPlayers));
-    MOCK_METHOD(Lobby, getLobby, (int lobbyId));
+    MOCK_METHOD(int, createLobby, (const std::string& strAdminPlayer, MapType mapType, int maxPlayers), (override));
+    MOCK_METHOD(void, removeLobby, (int), (override));
+    MOCK_METHOD(void, updateLobby, (int, const Lobby &), (override));
+    MOCK_METHOD(Lobby, getLobby, (int), (const, override));
+
+    MockLobbyManager() {
+        ON_CALL(*this,createLobby("Gigel", MapType::MAP_01, 4)).WillByDefault([this](const std::string & strAdminPlayer, MapType mapType, int maxPlayers) {
+            Lobby lobby = {1,"Gigel",mapType,maxPlayers};
+            lobbies[1]=lobby;
+            return 1;
+        });
+
+        ON_CALL(*this,updateLobby(1,IsALobby(newLobbyDetails))).WillByDefault([this](int, const Lobby &lobby) {
+
+            lobbies[1]=newLobbyDetails;
+        });
+        ON_CALL(*this,getLobby(1)).WillByDefault([this](int) {
+            return lobbies[1];
+        });
+
+    }
+
 };
+
+
 
 TEST(LobbyManagerTest,CreateLobby_Validation) {
     MockLobbyManager mockManager;
@@ -30,16 +63,17 @@ TEST(LobbyManagerTest,CreateLobby_Validation) {
 
 TEST(LobbyManagerTest,RemoveLobby_Validation) {
 
-    LobbyManager mockManager;
+    MockLobbyManager mockManager;
 
-    mockManager.createLobby("Gigel",MapType::MAP_01,4);
+    EXPECT_CALL(mockManager,createLobby("Gigel",MapType::MAP_01,4)).WillOnce(::testing::Return(1));
 
+    int response = mockManager.createLobby("Gigel",MapType::MAP_01,4);
+    EXPECT_EQ(response, 1);
 
-    ASSERT_TRUE(mockManager.getLobby(1).getAdminPlayer() == "Gigel");
+    EXPECT_CALL(mockManager,removeLobby(1)).Times(1);
 
     mockManager.removeLobby(1);
 
-    ASSERT_FALSE(mockManager.getLobby(1).getAdminPlayer() == "Gigel");
 
 }
 
@@ -67,18 +101,50 @@ TEST(LobbyManagerTest, GetLobby_Validation) {
 TEST(LobbyManagerTest, UpdateLobby_Validation) {
 
 
-    LobbyManager testManager;
+    MockLobbyManager mockManager;   //Initialize mockManager
 
-    testManager.createLobby("Gigel",MapType::MAP_01,4);
+    EXPECT_CALL(mockManager,createLobby("Gigel",MapType::MAP_01,4)).WillOnce(::testing::Invoke([&mockManager](const std::string & strAdminPlayer, MapType mapType, int maxPlayers ) {
+        return mockManager.LobbyManager::createLobby(strAdminPlayer,mapType,maxPlayers);
+    })); //Will use the ON_CALL method from the MockLobbyManager constructor
+
+    int result = mockManager.createLobby("Gigel",MapType::MAP_01,4);
 
 
-    ASSERT_TRUE(testManager.getLobby(2).getAdminPlayer() == "Gigel");
+    //Make sure lobby creation succeded
+    EXPECT_EQ(result,1);
 
-    testManager.updateLobby(2,{1,"Gicu",MapType::MAP_01,2});
+    EXPECT_CALL(mockManager,getLobby(1)).WillOnce(::testing::Invoke([&mockManager](int id ) {
+        return mockManager.LobbyManager::getLobby(id);
+    }));//Will use the ON_CALL method from the MockLobbyManager constructor
 
-    EXPECT_EQ(testManager.getLobby(1).getAdminPlayer(),"Gicu");
-    EXPECT_EQ(testManager.getLobby(1).getMapType(),MapType::MAP_01);
-    EXPECT_EQ(testManager.getLobby(1).getMaxPlayers(),2);
+    Lobby lobby = mockManager.getLobby(1);
+
+
+    //Make sure lobby details are correct
+    EXPECT_EQ(lobby.getLobbyId(),1);
+    EXPECT_EQ(lobby.getAdminPlayer(),"Gigel");
+    EXPECT_EQ(lobby.getMapType(),MapType::MAP_01);
+    EXPECT_EQ(lobby.getMaxPlayers(),4);
+
+    Lobby newLobbyDetails = {1,"Gigel",MapType::NONE,3};
+    EXPECT_CALL(mockManager,updateLobby(1,IsALobby(newLobbyDetails))).WillOnce(::testing::Invoke([&mockManager](int id, const Lobby &lobby) {
+        mockManager.LobbyManager::updateLobby(id,lobby);
+    }));//Will use the ON_CALL method from the MockLobbyManager constructor
+
+    mockManager.updateLobby(1,newLobbyDetails);
+
+    EXPECT_CALL(mockManager,getLobby(1)).WillOnce(::testing::Invoke([&mockManager](int id ) {
+       return mockManager.LobbyManager::getLobby(id);
+   }));//Will use the ON_CALL method from the MockLobbyManager constructor
+
+    Lobby updatedLobby = mockManager.getLobby(1);
+
+
+    //Make sure the new lobby details have been set
+    EXPECT_EQ(updatedLobby.getLobbyId(),1);
+    EXPECT_EQ(updatedLobby.getAdminPlayer(),"Gigel");
+    EXPECT_EQ(updatedLobby.getMapType(),MapType::NONE);
+    EXPECT_EQ(updatedLobby.getMaxPlayers(),3);
 
 
 }

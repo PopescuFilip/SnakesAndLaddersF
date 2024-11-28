@@ -3,6 +3,7 @@ project(ServerTests)
 
 set(CMAKE_CXX_STANDARD 17)
 set(FETCHCONTENT_QUIET FALSE)
+set(BUILD_SHARED_LIBS OFF)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -13,6 +14,7 @@ FetchContent_Declare(
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(googletest)
 
 
@@ -29,6 +31,6 @@ target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
 add_dependencies(ServerTests server_lib)
 
-target_link_libraries(ServerTests GTest::gmock GTest::gmock_main GTest::gtest GTest::gtest_main Crow::Crow server_lib)
+target_link_libraries(ServerTests GTest::gmock  GTest::gtest GTest::gmock_main GTest::gtest_main Crow::Crow server_lib)
 
 enable_testing()

@@ -7,11 +7,11 @@ class LobbyManager {
 public:
     static LobbyManager& getInstance();
 
-    int createLobby(const std::string& strAdminPlayer, MapType mapType, int maxPlayers);
-    int createLobby(const Lobby& lobby);
-    void removeLobby(int lobbyId);
-    void updateLobby(int lobbyId, const Lobby& newLobbyDetails);
-    Lobby getLobby(int lobbyId) const;
+    virtual int createLobby(const std::string& strAdminPlayer, MapType mapType, int maxPlayers);
+    virtual int createLobby(const Lobby& lobby);
+    virtual void removeLobby(int lobbyId);
+    virtual void updateLobby(int lobbyId, const Lobby& newLobbyDetails);
+    virtual Lobby getLobby(int lobbyId) const;
 
 private:
     std::vector<Lobby> m_Lobbies;
