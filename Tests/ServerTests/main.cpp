@@ -9,7 +9,9 @@
 #include "GameManagementTests/ObjectTests/LobbyTests.h"
 #include "GameManagementTests/ObjectTests/PlayerTests.h"
 #include "GameManagementTests/ObjectTests/RunningGameTests.h"
-
+#include "InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyRequestTest.h"
+#include "InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyResponseTests.h"
+#include "InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyContextTest.h"
 
     int main(int argc, char** argv)
     {

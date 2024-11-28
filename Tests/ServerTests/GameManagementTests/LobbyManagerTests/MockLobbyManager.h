@@ -101,26 +101,26 @@ TEST(LobbyManagerTest, GetLobby_Validation) {
 TEST(LobbyManagerTest, UpdateLobby_Validation) {
 
 
-    MockLobbyManager mockManager;   //Initialize mockManager
+    MockLobbyManager mockManager;
 
     EXPECT_CALL(mockManager,createLobby("Gigel",MapType::MAP_01,4)).WillOnce(::testing::Invoke([&mockManager](const std::string & strAdminPlayer, MapType mapType, int maxPlayers ) {
         return mockManager.LobbyManager::createLobby(strAdminPlayer,mapType,maxPlayers);
-    })); //Will use the ON_CALL method from the MockLobbyManager constructor
+    }));
 
     int result = mockManager.createLobby("Gigel",MapType::MAP_01,4);
 
 
-    //Make sure lobby creation succeded
+
     EXPECT_EQ(result,1);
 
     EXPECT_CALL(mockManager,getLobby(1)).WillOnce(::testing::Invoke([&mockManager](int id ) {
         return mockManager.LobbyManager::getLobby(id);
-    }));//Will use the ON_CALL method from the MockLobbyManager constructor
+    }));
 
     Lobby lobby = mockManager.getLobby(1);
 
 
-    //Make sure lobby details are correct
+
     EXPECT_EQ(lobby.getLobbyId(),1);
     EXPECT_EQ(lobby.getAdminPlayer(),"Gigel");
     EXPECT_EQ(lobby.getMapType(),MapType::MAP_01);
@@ -129,18 +129,18 @@ TEST(LobbyManagerTest, UpdateLobby_Validation) {
     Lobby newLobbyDetails = {1,"Gigel",MapType::NONE,3};
     EXPECT_CALL(mockManager,updateLobby(1,IsALobby(newLobbyDetails))).WillOnce(::testing::Invoke([&mockManager](int id, const Lobby &lobby) {
         mockManager.LobbyManager::updateLobby(id,lobby);
-    }));//Will use the ON_CALL method from the MockLobbyManager constructor
+    }));
 
     mockManager.updateLobby(1,newLobbyDetails);
 
     EXPECT_CALL(mockManager,getLobby(1)).WillOnce(::testing::Invoke([&mockManager](int id ) {
        return mockManager.LobbyManager::getLobby(id);
-   }));//Will use the ON_CALL method from the MockLobbyManager constructor
+   }));
 
     Lobby updatedLobby = mockManager.getLobby(1);
 
 
-    //Make sure the new lobby details have been set
+
     EXPECT_EQ(updatedLobby.getLobbyId(),1);
     EXPECT_EQ(updatedLobby.getAdminPlayer(),"Gigel");
     EXPECT_EQ(updatedLobby.getMapType(),MapType::NONE);

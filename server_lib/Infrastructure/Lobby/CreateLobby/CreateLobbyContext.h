@@ -5,14 +5,14 @@
 #include "../../BaseContext.h"
 
 
+
 class CreateLobbyContext : public BaseContext<CreateLobbyRequest, CreateLobbyResponse>{
 public:
-    CreateLobbyResponse HandleRequest(const CreateLobbyRequest& request) override;
+    virtual CreateLobbyResponse HandleRequest(const CreateLobbyRequest& request) override;
 protected:
-    CreateLobbyResponse ApplyChanges(const CreateLobbyRequest& request) override;
-    ValidationResponse ValidateRequest(const CreateLobbyRequest& request) override;
+    virtual CreateLobbyResponse ApplyChanges(const CreateLobbyRequest& request) override;
+    virtual ValidationResponse ValidateRequest(const CreateLobbyRequest& request) override;
 };
-
 
 
 #endif //CREATELOBBYCONTEXT_H
