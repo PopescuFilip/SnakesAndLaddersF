@@ -31,7 +31,10 @@ add_executable(ServerTests main.cpp
         InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyContextTest.h
         InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyRequestTest.h
         InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyResponseTest.h
-        InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyContextTest.h)
+        InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyContextTest.h
+        InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyContextTest.h
+        InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyRequestTest.h
+        InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyResponseTest.h)
 
 target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
