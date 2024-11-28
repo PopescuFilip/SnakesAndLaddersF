@@ -6,17 +6,19 @@
 #define DICEVALUE_H
 
 enum class DiceValue {
-    DICE_1,
-    DICE_2,
-    DICE_3,
-    DICE_4,
-    DICE_5,
-    DICE_6
+    DICE_0 = 0,
+    DICE_1 = 1,
+    DICE_2 = 2,
+    DICE_3 = 3,
+    DICE_4 = 4,
+    DICE_5 = 5,
+    DICE_6 = 6
 };
 
 
-inline QString getMapImagePath(const DiceValue& diceValue) {
+inline QString getDiceImagePath(const DiceValue& diceValue) {
     switch (diceValue) {
+        case DiceValue::DICE_0: return ":/images/dice-6.png";
         case DiceValue::DICE_1: return ":/images/dice-1.png";
         case DiceValue::DICE_2: return ":/images/dice-2.png";
         case DiceValue::DICE_3: return ":/images/dice-3.png";

@@ -162,7 +162,6 @@ void LobbyView::on_pushButton_startGame_clicked() {
             int lobbyId = LobbyState::getInstance().getLobby().getLobbyId();
             std::string username = UserState::getInstance().getUsername();
             lobbyService->startGame(lobbyId, username);
-            gameStarted();
         } catch(const std::exception& e) {
             Logger::logError(e.what());
         }

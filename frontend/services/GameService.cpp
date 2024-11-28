@@ -11,7 +11,7 @@ GameService::~GameService() {}
 Game GameService::getGameStatus(int gameId) {
     try {
         nlohmann::json requestBody = {{"gameId", gameId}};
-        nlohmann::json response = executePost(ApiEndpoints::GET_GAME_STATUS, requestBody);
+        nlohmann::json response = executeGet(ApiEndpoints::GET_GAME_STATUS, requestBody);
 
         BaseResponse baseResponse = parseBaseResponse(response);
         ensureSuccess(baseResponse);

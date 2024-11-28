@@ -10,6 +10,12 @@
     <height>650</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>550</width>
+    <height>550</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Snakes &amp; Ladders - Game</string>
   </property>
@@ -36,9 +42,9 @@ margin-bottom:30px;</string>
     <widget class="QListWidget" name="listWidget_players">
      <property name="geometry">
       <rect>
-       <x>27</x>
+       <x>24</x>
        <y>145</y>
-       <width>250</width>
+       <width>255</width>
        <height>192</height>
       </rect>
      </property>
@@ -177,7 +183,7 @@ color: rgb(194, 65, 0);
       <string>Roll Dice</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_leavGame">
+    <widget class="QPushButton" name="pushButton_leaveGame">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -298,7 +304,7 @@ border-image:none;</string>
     <zorder>label_players</zorder>
     <zorder>label_game</zorder>
     <zorder>pushButton_rollDice</zorder>
-    <zorder>pushButton_leavGame</zorder>
+    <zorder>pushButton_leaveGame</zorder>
     <zorder>label_dice</zorder>
     <zorder>label_timeIcon</zorder>
     <zorder>label_timerValue</zorder>
@@ -312,13 +318,35 @@ border-image:none;</string>
       <height>550</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>550</width>
+      <height>550</height>
+     </size>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-image:none;
-background:transparent;</string>
+background:transparent;
+margin:0;
+padding:0;</string>
     </property>
     <property name="title">
      <string/>
     </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+    </layout>
    </widget>
   </widget>
  </widget>
