@@ -3,11 +3,14 @@
 
 #include <QMainWindow>
 
+#include "../../services/GameService.h"
+#include "../../observers/ViewObserver.h"
+
 namespace Ui {
 class StatsView;
 }
 
-class StatsView : public QMainWindow
+class StatsView : public QMainWindow, public ViewObserver
 {
     Q_OBJECT
 
@@ -17,6 +20,21 @@ public:
 
 private:
     Ui::StatsView *ui;
+    GameService* gameService;
+
+    void addPlayerToListView(const Player& player);
+    void setGameDuration(std::string duration);
+    void updateGameStats(const GameStats& gameStats);
+
+protected:
+    void showEvent(QShowEvent* event) override;
+
+private slots:
+    void on_pushButton_goHome_clicked();
+
+signals:
+    void goToHomeView();
+    void windowPositionChanged(const QPoint& newPosition);
 };
 
 #endif // STATSVIEW_H

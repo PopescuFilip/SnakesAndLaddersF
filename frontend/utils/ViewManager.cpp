@@ -42,6 +42,9 @@ void ViewManager::setupConnections() {
     connect(m_gameView.get(), &GameView::goToStatsView, this, &ViewManager::showStatsView);
     connect(m_gameView.get(), &GameView::windowPositionChanged, this, &ViewManager::onWindowHidden);
 
+    //StatsView connections
+    connect(m_statsView.get(), &StatsView::goToHomeView, this, &ViewManager::showHomeView);
+    connect(m_statsView.get(), &StatsView::windowPositionChanged, this, &ViewManager::onWindowHidden);
 }
 
 void ViewManager::showHomeView() {
