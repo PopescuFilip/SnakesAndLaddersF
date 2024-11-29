@@ -9,7 +9,8 @@ ViewManager::ViewManager(QObject* parent) : QObject{ parent },
     m_createGameView{std::make_unique<CreateGameView>()},
     m_joinGameView{std::make_unique<JoinGameView>()},
     m_lobbyView(std::make_unique<LobbyView>()),
-    m_gameView(std::make_unique<GameView>())
+    m_gameView(std::make_unique<GameView>()),
+    m_statsView(std::make_unique<StatsView>())
 {
     setupConnections();
 }

@@ -94,10 +94,6 @@ void GameView::updateGameStatus(const Game &game) {
         GameState::getInstance().getGame().setLatestDiceValue(currentDiceValue);
     }
 
-    if(game.getShouldFinishGame()) {
-        gameEnded();
-    }
-
     setTimer(game.getTurnTime().max - game.getTurnTime().current);
     setDiceAnimationStatus(game.isDiceRolling());
     setRollDiceButtonStatus(checkIsCurrentTurn());
@@ -106,6 +102,10 @@ void GameView::updateGameStatus(const Game &game) {
     ui->listWidget_players->clear();
     for(int i=0; i<game.getPlayers().size(); i++) {
         addPlayerToListView(game.getPlayers()[i], i == game.getPlayerTurnIndex());
+    }
+
+    if(game.getShouldFinishGame()) {
+        gameEnded();
     }
 }
 

@@ -1,6 +1,11 @@
 #include "map.h"
+
+#include <iostream>
+
 #include "ui_map.h"
 #include <QPainter>
+
+#include "../../utils/Logger.h"
 
 Map::Map(MapType mapType, int width, int height, QWidget *parent)
     : QWidget(parent)

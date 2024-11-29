@@ -111,7 +111,7 @@ margin-bottom:0;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../resources/Resources.qrc">:/images/dice-4.png</pixmap>
+     <pixmap resource="../../resources/Resources.qrc">:/images/dice-6.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
