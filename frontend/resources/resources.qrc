@@ -56,5 +56,6 @@
         <file>images/dice-6.png</file>
         <file>images/button_leave.png</file>
         <file>images/time_icon.png</file>
+        <file>images/dice-animation.gif</file>
     </qresource>
 </RCC>

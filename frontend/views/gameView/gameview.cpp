@@ -8,6 +8,7 @@
 #include "../../widgets/GamePlayerInfoWidget/gameplayerinfowidget.h"
 #include "../../utils/Logger.h"
 #include "../../models/DiceValue.h"
+#include <QMovie>
 
 GameView::GameView(QWidget *parent)
     : QMainWindow(parent)
@@ -16,6 +17,7 @@ GameView::GameView(QWidget *parent)
     , gameService(new GameService())
     , gameUpdater(new GameUpdater(this))
     , gameMap(nullptr)
+    , diceAnimation(new QMovie(":/images/dice-animation.gif"))
 {
     ui->setupUi(this);
     gameService->addObserver(this);
@@ -32,6 +34,7 @@ GameView::~GameView()
     delete ui;
     delete gameService;
     delete gameMap;
+    delete diceAnimation;
 }
 
 void GameView::setupMap() {
@@ -60,6 +63,18 @@ void GameView::setDiceValue(int diceValue) {
     ui->label_dice->setPixmap(dicePixmap);
 }
 
+void GameView::setDiceAnimationStatus(bool status) {
+    if (status) {
+        ui->label_dice->clear();
+        ui->label_dice->setMovie(diceAnimation);
+        diceAnimation->start();
+    } else {
+        diceAnimation->stop();
+        ui->label_dice->clear();
+        setDiceValue(GameState::getInstance().getGame().getLatestDiceValue());
+    }
+}
+
 bool GameView::checkIsCurrentTurn() {
     int currentPlayerIndex = GameState::getInstance().getGame().getPlayerTurnIndex();
     return GameState::getInstance().getGame().getPlayers()[currentPlayerIndex].getUsername() == UserState::getInstance().getUsername();
@@ -84,7 +99,7 @@ void GameView::updateGameStatus(const Game &game) {
     }
 
     setTimer(game.getTurnTime().max - game.getTurnTime().current);
-    setDiceValue(GameState::getInstance().getGame().getLatestDiceValue());
+    setDiceAnimationStatus(game.isDiceRolling());
     setRollDiceButtonStatus(checkIsCurrentTurn());
     gameMap->updatePlayers(game.getPlayers());
 

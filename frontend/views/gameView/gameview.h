@@ -25,12 +25,14 @@ private:
     GameService* gameService;
     GameUpdater* gameUpdater;
     Map* gameMap;
+    QMovie* diceAnimation;
 
     void setupMap();
     void addPlayerToListView(const Player& player, bool isRollingDice);
     void setTimer(int seconds);
     void setRollDiceButtonStatus(bool status);
     void setDiceValue(int diceValue);
+    void setDiceAnimationStatus(bool status);
     bool checkIsCurrentTurn();
     void gameEnded();
     void updateGameStatus(const Game& game);
