@@ -60,16 +60,16 @@ void GameService::leaveGame(int gameId, const std::string& playerUsername) {
     }
 }
 
-Game GameService::getGameStats(int gameId) {
+GameStats GameService::getGameStats(int gameId) {
     try {
         nlohmann::json requestBody = {{"gameId", gameId}};
-        nlohmann::json response = executePost(ApiEndpoints::GET_GAME_STATS, requestBody);
+        nlohmann::json response = executeGet(ApiEndpoints::GET_GAME_STATS, requestBody);
 
         BaseResponse baseResponse = parseBaseResponse(response);
         ensureSuccess(baseResponse);
 
-        Game game = response["gameData"].get<Game>();
-        return game;
+        GameStats gameStats = response["gameData"].get<GameStats>();
+        return gameStats;
     } catch (const std::exception& e) {
         lastErrorMessage = std::string(e.what());
         notifyFailure(lastErrorMessage);

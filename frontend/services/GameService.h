@@ -12,6 +12,7 @@
 #include <qstring.h>
 #include <nlohmann/json.hpp>
 #include "../Models/Game.h"
+#include "../Models/GameStats.h"
 #include "../Core/BaseResponse.h"
 #include "../Core/BaseService.h"
 #include "../Core/ApiEndpoints.h"
@@ -24,7 +25,7 @@ public:
     Game getGameStatus(int gameId);
     void getGameStatusAsync(int gameId, std::function<void(bool, const QString&, const Game&)> callback);
     void leaveGame(int gameId, const std::string& playerUsername);
-    Game getGameStats(int gameId);
+    GameStats getGameStats(int gameId);
     void rollDice(int gameId, const std::string& playerUsername);
 };
 
