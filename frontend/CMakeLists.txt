@@ -97,6 +97,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             views/statsView/statsview.h views/statsView/statsview.cpp views/statsView/statsview.ui
             widgets/Map/map.h widgets/Map/map.cpp widgets/Map/map.ui
             widgets/GamePlayerInfoWidget/gameplayerinfowidget.h widgets/GamePlayerInfoWidget/gameplayerinfowidget.cpp widgets/GamePlayerInfoWidget/gameplayerinfowidget.ui
+            widgets/StatsPlayerInfoWidget/statsplayerinfowidget.h widgets/StatsPlayerInfoWidget/statsplayerinfowidget.cpp widgets/StatsPlayerInfoWidget/statsplayerinfowidget.ui
 
     )
 else()
