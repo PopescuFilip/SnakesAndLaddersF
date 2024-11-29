@@ -70,6 +70,8 @@ set(PROJECT_SOURCES
         services/GameUpdater.h
         models/MapType.h
         models/DiceValue.h
+        models/GameStats.cpp
+        models/GameStats.h
 )
 
 include(FetchContent)
