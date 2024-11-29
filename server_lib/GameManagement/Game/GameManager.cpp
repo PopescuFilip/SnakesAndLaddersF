@@ -98,6 +98,8 @@ void GameManager::rollDiceInGame(int gameId) {
         it->triggerDiceRolling();
         int random = generateRandomNumber(DICE_ROLL_MIN, DICE_ROLL_MAX);
         it->setLatestDiceValue(random);
+
+        return;
     }
 
     throw std::runtime_error("Game not found. Game id = " + std::to_string(gameId) + ". Line 90 in GameManager.cpp");
