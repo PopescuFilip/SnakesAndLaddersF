@@ -4,7 +4,12 @@ project(ServerTests)
 set(CMAKE_CXX_STANDARD 17)
 set(FETCHCONTENT_QUIET FALSE)
 set(BUILD_SHARED_LIBS OFF)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+
+# This option works only for Windows systems
+# This is not tested on Windows arm systems
+if(WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+endif(WIN32)
 
 include(FetchContent)
 FetchContent_Declare(
