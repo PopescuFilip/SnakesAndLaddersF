@@ -39,6 +39,10 @@ void GameManager::createGameThread(int gameId) {
                 game.startNewTurn();
             }
 
+            if (game.getPlayers().size() == 1) {
+                game.setShouldFinishGame(true);
+            }
+
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
 

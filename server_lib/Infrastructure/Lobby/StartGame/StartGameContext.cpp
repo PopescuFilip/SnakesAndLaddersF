@@ -49,5 +49,9 @@ ValidationResponse StartGameContext::ValidateRequest(const StartGameRequest &req
         return ValidationResponse{false, "Player is not the admin of the lobby"};
     }
 
+    if (lobby.getPlayers().size() == 1) {
+        return ValidationResponse{false, "Lobby has only one player"};
+    }
+
     return ValidationResponse{true};
 }
