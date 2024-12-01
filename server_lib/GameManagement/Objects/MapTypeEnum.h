@@ -8,6 +8,8 @@
 enum class MapType {
     NONE = 0,
     MAP_01 = 1,
+    MAP_02 = 2,
+    MAP_03 = 3
 };
 
 #endif //MAPTYPEENUM_H
