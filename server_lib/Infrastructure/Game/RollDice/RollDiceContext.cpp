@@ -26,5 +26,9 @@ ValidationResponse RollDiceContext::ValidateRequest(const RollDiceRequest &reque
     if (game.getCurrentPlayer().getUsername() != request.getPlayerName()) {
         return ValidationResponse(false, "It's not your turn");
     }
+
+    if (game.getDiceRolling()) {
+        return ValidationResponse(false, "Dice is already rolling");
+    }
     return ValidationResponse(true);
 }
