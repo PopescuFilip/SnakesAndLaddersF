@@ -153,7 +153,7 @@ if(WIN32)
     add_custom_command(
             TARGET frontend POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${CMAKE_BINARY_DIR}/_deps/curl-build/lib/libcurl-d.dll"
+            "${CURL_BINARY_DIR}/lib/libcurl-d.dll"
             "$<TARGET_FILE_DIR:frontend>"
     )
 
