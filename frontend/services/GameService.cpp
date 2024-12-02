@@ -4,6 +4,7 @@
 
 #include "GameService.h"
 #include <qcoreapplication.h>
+#include <QtConcurrent/QtConcurrent>
 
 GameService::GameService() {}
 GameService::~GameService() {}
@@ -26,21 +27,19 @@ Game GameService::getGameStatus(int gameId) {
 }
 
 void GameService::getGameStatusAsync(int gameId, std::function<void(bool, const QString&, const Game&)> callback) {
-    std::thread([this, gameId, callback]() {
-        try {
-            Game game = getGameStatus(gameId);
-
-            QMetaObject::invokeMethod(qApp, [callback, game]() {
-                callback(true, QString(), game);
-            });
-        } catch (const std::exception& e) {
-            QString errorMessage = QString::fromStdString(e.what());
-
-            QMetaObject::invokeMethod(qApp, [callback, errorMessage]() {
-                callback(false, errorMessage, Game());
-            });
-        }
-    }).detach();
+    QtConcurrent::run([this, gameId, callback]() {
+		try {
+			Game game = getGameStatus(gameId);
+			QMetaObject::invokeMethod(qApp, [callback, game]() {
+				callback(true, QString(), game);
+				});
+		}
+		catch (const std::exception& e) {
+			QMetaObject::invokeMethod(qApp, [callback, e]() {
+				callback(false, QString::fromStdString(e.what()), Game());
+				});
+		}
+		});
 }
 
 void GameService::leaveGame(int gameId, const std::string& playerUsername) {

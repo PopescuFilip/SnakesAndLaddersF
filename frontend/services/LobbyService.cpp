@@ -5,6 +5,7 @@
 
 #include <qcoreapplication.h>
 #include <qstring.h>
+#include <QtConcurrent/QtConcurrent>
 
 LobbyService::LobbyService() {}
 LobbyService::~LobbyService() {}
@@ -27,21 +28,19 @@ Lobby LobbyService::getLobbyStatus(int lobbyId) {
 }
 
 void LobbyService::getLobbyStatusAsync(int lobbyId, std::function<void(bool, const QString&, const Lobby&)> callback) {
-    std::thread([this, lobbyId, callback]() {
+    QtConcurrent::run([this, lobbyId, callback]() {
         try {
             Lobby lobby = getLobbyStatus(lobbyId);
-
             QMetaObject::invokeMethod(qApp, [callback, lobby]() {
                 callback(true, QString(), lobby);
-            });
-        } catch (const std::exception& e) {
-            QString errorMessage = QString::fromStdString(e.what());
-
-            QMetaObject::invokeMethod(qApp, [callback, errorMessage]() {
-                callback(false, errorMessage, Lobby());
-            });
+                });
         }
-    }).detach();
+        catch (const std::exception& e) {
+            QMetaObject::invokeMethod(qApp, [callback, e]() {
+                callback(false, QString::fromStdString(e.what()), Lobby());
+                });
+        }
+        });
 }
 
 int LobbyService::createLobby(const std::string& adminUsername, int mapType, int maxPlayers) {

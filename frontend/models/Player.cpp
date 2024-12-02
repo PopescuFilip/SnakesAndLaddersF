@@ -30,3 +30,14 @@ void from_json(const nlohmann::json& j, Player& p) {
     j.at("isLobbyAdmin").get_to(p.isAdmin);
     j.at("currentBoardPosition").get_to(p.currentBoardPosition);
 }
+
+bool Player::operator==(const Player& other) const {
+    return username == other.username &&
+        color == other.color &&
+        isAdmin == other.isAdmin &&
+        currentBoardPosition == other.currentBoardPosition;
+}
+
+bool Player::operator!=(const Player& other) const {
+    return !(*this == other);
+}

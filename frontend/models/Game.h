@@ -49,6 +49,9 @@ public:
 
     friend void to_json(nlohmann::json& j, const Game& g);
     friend void from_json(const nlohmann::json& j, Game& g);
+
+    bool operator==(const Game& other) const;
+    bool operator!=(const Game& other) const;
 };
 
 #endif //GAME_H

@@ -272,6 +272,7 @@ border: none;
 }
 
 QComboBox::drop-down {
+	border-image:none;
     border: none;  
     background-color: none;
 }
@@ -281,6 +282,7 @@ QComboBox::down-arrow {
     width: 15px;
     height: 15px;
 	margin-left:-15px;
+	border-image:none;
 }
 
 QComboBox QAbstractItemView {
@@ -291,6 +293,7 @@ QComboBox QAbstractItemView {
     border: none;
     margin: 0;        
     outline: none;
+	border-image:none;
 }</string>
              </property>
              <item>
@@ -335,6 +338,7 @@ border: none;
 QComboBox::drop-down {
     border: none;  
     background-color: none;
+	border-image:none;
 }
 
 QComboBox::down-arrow {
@@ -342,6 +346,7 @@ QComboBox::down-arrow {
     width: 15px;
     height: 15px;
 	margin-left:-15px;
+	border-image:none;
 }
 
 QComboBox QAbstractItemView {
@@ -352,6 +357,7 @@ QComboBox QAbstractItemView {
     border: none;
     margin: 0;        
     outline: none;
+	border-image:none;
 }</string>
              </property>
              <item>

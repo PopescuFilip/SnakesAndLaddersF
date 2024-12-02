@@ -26,6 +26,14 @@ public:
         j.at("current").get_to(t.current);
         j.at("max").get_to(t.maxTime);
     }
+
+	bool operator==(const TurnTime& other) const {
+		return current == other.current && maxTime == other.maxTime;
+	}
+
+	bool operator!=(const TurnTime& other) const {
+		return !(*this == other);
+	}
 };
 
 #endif //TURNTIME_H

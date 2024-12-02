@@ -53,3 +53,17 @@ void from_json(const nlohmann::json& j, Game& g) {
     j.at("latestDiceValue").get_to(g.latestDiceValue);
     j.at("shouldFinishGame").get_to(g.shouldFinishGame);
 }
+
+bool Game::operator==(const Game& other) const {
+	return gameId == other.gameId &&
+		playerTurnIndex == other.playerTurnIndex &&
+		players == other.players &&
+		turnTime == other.turnTime &&
+		diceRolling == other.diceRolling &&
+		latestDiceValue == other.latestDiceValue &&
+		shouldFinishGame == other.shouldFinishGame;
+}
+
+bool Game::operator!=(const Game& other) const {
+	return !(*this == other);
+}

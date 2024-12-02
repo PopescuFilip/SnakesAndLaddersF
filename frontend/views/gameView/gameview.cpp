@@ -35,6 +35,7 @@ GameView::~GameView()
 {
     delete ui;
     delete gameService;
+    delete gameUpdater;
     delete gameMap;
     delete diceAnimation;
 }

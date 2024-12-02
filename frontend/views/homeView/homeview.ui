@@ -137,7 +137,8 @@ background-color:none;</string>
              <property name="styleSheet">
               <string notr="true">border-image:none;
 background-color: transparent;
-color: rgb(96, 56, 19);</string>
+color: rgb(96, 56, 19);
+border:none;</string>
              </property>
              <property name="text">
               <string/>

@@ -50,7 +50,7 @@ void JoinGameView::on_pushButton_joinGame_clicked() {
     validateGameCode(gameCode);
     std::string username = UserState::getInstance().getUsername();
         Lobby lobby = lobbyService->joinLobby(gameCode, username);
-        LobbyState::getInstance().setLobby(lobby);
+        LobbyState::getInstance().getLobby().setLobbyId(lobby.getLobbyId());
         emit windowPositionChanged(this->pos());
         emit goToLobbyView();
         this->hide();

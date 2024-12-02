@@ -44,6 +44,9 @@ public:
 
     friend void to_json(nlohmann::json& j, const Lobby& l);
     friend void from_json(const nlohmann::json& j, Lobby& l);
+
+    bool operator==(const Lobby& other) const;
+    bool operator!=(const Lobby& other) const;
 };
 
 #endif //LOBBY_H

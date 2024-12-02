@@ -3,6 +3,7 @@
 //
 
 #include "GameUpdater.h"
+#include "../state/GameState.h"
 
 const int TIMER_DELAY_SECONDS = 1;
 
@@ -37,9 +38,13 @@ void GameUpdater::stop() {
 }
 
 void GameUpdater::fetchGameStatus() {
-    gameService->getGameStatusAsync(gameId, [this](bool success, const QString& errorMessage, const Game& game) {
+    gameService->getGameStatusAsync(gameId, [this](bool success, const QString& errorMessage, const Game& newGame) {
         if (success) {
-            emit gameUpdated(game);
+			const auto& game = GameState::getInstance().getGame();
+            if (game != newGame) {
+                GameState::getInstance().setGame(newGame);
+                emit gameUpdated(game);
+            }
         } else {
             emit errorOccurred(errorMessage);
         }

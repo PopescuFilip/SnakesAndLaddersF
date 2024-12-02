@@ -35,6 +35,7 @@ LobbyView::~LobbyView()
 {
     delete ui;
     delete lobbyService;
+	delete lobbyUpdater;
 }
 
 void LobbyView::showEvent(QShowEvent* event) {

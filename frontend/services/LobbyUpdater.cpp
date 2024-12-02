@@ -1,4 +1,5 @@
 #include "LobbyUpdater.h"
+#include "../state/LobbyState.h"
 
 const int TIMER_DELAY_SECONDS = 1;
 
@@ -33,9 +34,13 @@ void LobbyUpdater::stop() {
 }
 
 void LobbyUpdater::fetchLobbyStatus() {
-    lobbyService->getLobbyStatusAsync(lobbyId, [this](bool success, const QString& errorMessage, const Lobby& lobby) {
+    lobbyService->getLobbyStatusAsync(lobbyId, [this](bool success, const QString& errorMessage, const Lobby& newLobby) {
         if (success) {
-            emit lobbyUpdated(lobby);
+            const auto& currentLobby = LobbyState::getInstance().getLobby();
+            if (currentLobby != newLobby) {
+                LobbyState::getInstance().setLobby(newLobby);
+                emit lobbyUpdated(newLobby);
+            }
         } else {
             emit errorOccurred(errorMessage);
         }

@@ -44,3 +44,16 @@ void from_json(const nlohmann::json& j, Lobby& l) {
     j.at("gameId").get_to(l.gameId);
     j.at("players").get_to(l.players);
 }
+
+bool Lobby::operator==(const Lobby& other) const {
+    return lobbyId == other.lobbyId &&
+        adminUsername == other.adminUsername &&
+        mapType == other.mapType &&
+        maxPlayers == other.maxPlayers &&
+        gameId == other.gameId &&
+        players == other.players;
+}
+
+bool Lobby::operator!=(const Lobby& other) const {
+    return !(*this == other);
+}
