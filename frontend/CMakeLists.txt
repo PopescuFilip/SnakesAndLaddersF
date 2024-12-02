@@ -133,10 +133,25 @@ if(QT_VERSION_MAJOR EQUAL 6)
 endif()
 
 if(WIN32)
-    # Ensure we run windeployqt after building the executable
     add_custom_command(
         TARGET frontend POST_BUILD
         COMMAND ${WIN_DEPLOY} $<TARGET_FILE:frontend>
         COMMENT "Running windeployqt to deploy Qt dependencies"
     )
+
+    get_target_property(CPR_BINARY_DIR cpr::cpr BINARY_DIR)
+    get_target_property(LIBCURL_LIBRARIES_DIR cpr::cpr INTERFACE_LINK_LIBRARIES)
+
+    # Assume the primary DLLs for CPR and libcurl are in their binary directories
+    add_custom_command(
+            TARGET frontend POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CPR_BINARY_DIR}/cpr.dll"
+            "$<TARGET_FILE_DIR:frontend>"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${LIBCURL_LIBRARIES_DIR}/libcurl.dll"
+            "$<TARGET_FILE_DIR:frontend>"
+            COMMENT "Copying CPR and libcurl DLLs to output directory"
+    )
+
 endif()
