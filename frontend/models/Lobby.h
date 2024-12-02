@@ -9,19 +9,20 @@
 #include <vector>
 #include "Player.h"
 #include <nlohmann/json.hpp>
+#include "MapType.h"
 
 class Lobby {
 private:
     int lobbyId;
     std::string adminUsername;
-    int mapType;
+    MapType mapType;
     int maxPlayers;
     int gameId;
     std::vector<Player> players;
 
 public:
     Lobby();
-    Lobby(int lobbyId, const std::string& adminUsername, int mapType, int maxPlayers, int gameId, const std::vector<Player>& players);
+    Lobby(int lobbyId, const std::string& adminUsername, MapType mapType, int maxPlayers, int gameId, const std::vector<Player>& players);
 
     int getLobbyId() const;
     void setLobbyId(int value);
@@ -29,8 +30,8 @@ public:
     std::string getAdminUsername() const;
     void setAdminUsername(const std::string& value);
 
-    int getMapType() const;
-    void setMapType(int value);
+    MapType getMapType() const;
+    void setMapType(MapType value);
 
     int getMaxPlayers() const;
     void setMaxPlayers(int value);

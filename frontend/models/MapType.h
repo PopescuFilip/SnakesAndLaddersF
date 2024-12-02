@@ -7,17 +7,19 @@
 #include <qstring.h>
 
 enum class MapType {
-    MAP_01,
-    MAP_02,
-    MAP_03
+    NONE = 0,
+    MAP_01 = 1,
+    MAP_02 = 2,
+    MAP_03 = 3
 };
 
 
 inline QString getMapImagePath(const MapType& mapType) {
     switch (mapType) {
+        case MapType::NONE: return {};
         case MapType::MAP_01: return ":/images/map_01.png";
-        case MapType::MAP_02:  return ":/images/map_01.png";
-        case MapType::MAP_03:  return ":/images/map_01.png";
+        case MapType::MAP_02: return {};
+        case MapType::MAP_03: return {};
     }
     return {};
 }

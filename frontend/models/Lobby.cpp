@@ -3,8 +3,8 @@
 //
 #include "Lobby.h"
 
-Lobby::Lobby() : lobbyId(0), adminUsername(""), mapType(0), maxPlayers(0), gameId(-1) {}
-Lobby::Lobby(int lobbyId, const std::string& adminUsername, int mapType, int maxPlayers, int gameId, const std::vector<Player>& players)
+Lobby::Lobby() : lobbyId(0), adminUsername(""), mapType(MapType::NONE), maxPlayers(0), gameId(-1) {}
+Lobby::Lobby(int lobbyId, const std::string& adminUsername, MapType mapType, int maxPlayers, int gameId, const std::vector<Player>& players)
     : lobbyId(lobbyId), adminUsername(adminUsername), mapType(mapType), maxPlayers(maxPlayers), gameId(gameId), players(players) {}
 
 int Lobby::getLobbyId() const { return lobbyId; }
@@ -13,8 +13,8 @@ void Lobby::setLobbyId(int value) { lobbyId = value; }
 std::string Lobby::getAdminUsername() const { return adminUsername; }
 void Lobby::setAdminUsername(const std::string& value) { adminUsername = value; }
 
-int Lobby::getMapType() const { return mapType; }
-void Lobby::setMapType(int value) { mapType = value; }
+MapType Lobby::getMapType() const { return mapType; }
+void Lobby::setMapType(MapType value) { mapType = value; }
 
 int Lobby::getMaxPlayers() const { return maxPlayers; }
 void Lobby::setMaxPlayers(int value) { maxPlayers = value; }

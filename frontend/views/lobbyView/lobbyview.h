@@ -34,7 +34,7 @@ private:
 
     int getMapType();
     int getPlayerCount();
-    void setCurrentSettings(int mapType, int playerNumber);
+    void setCurrentSettings(MapType mapType, int playerNumber);
 
 protected:
     void showEvent(QShowEvent* event) override;

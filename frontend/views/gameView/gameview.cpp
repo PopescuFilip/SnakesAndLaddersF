@@ -1,5 +1,6 @@
 #include "gameview.h"
 
+#include <iostream>
 #include <qlayout.h>
 
 #include "ui_gameview.h"
@@ -9,6 +10,8 @@
 #include "../../utils/Logger.h"
 #include "../../models/DiceValue.h"
 #include <QMovie>
+
+#include "../../state/LobbyState.h"
 
 GameView::GameView(QWidget *parent)
     : QMainWindow(parent)
@@ -21,7 +24,6 @@ GameView::GameView(QWidget *parent)
 {
     ui->setupUi(this);
     gameService->addObserver(this);
-    setupMap();
 
     connect(gameUpdater, &GameUpdater::gameUpdated, this, &GameView::updateGameStatus);
     connect(gameUpdater, &GameUpdater::errorOccurred, [](const QString& errorMessage) {
@@ -38,7 +40,7 @@ GameView::~GameView()
 }
 
 void GameView::setupMap() {
-    gameMap = new Map(MapType::MAP_01, 550, 550, this);
+    gameMap = new Map(LobbyState::getInstance().getLobby().getMapType(), 550, 550, this);
     ui->groupBox_map->layout()->addWidget(gameMap);
 }
 
@@ -111,7 +113,7 @@ void GameView::updateGameStatus(const Game &game) {
 
 void GameView::showEvent(QShowEvent *event) {
     QMainWindow::showEvent(event);
-
+    setupMap();
     int gameId = GameState::getInstance().getGame().getGameId();
     if(gameId>0) {
         gameUpdater->start(gameId);

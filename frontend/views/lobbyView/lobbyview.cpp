@@ -107,8 +107,9 @@ int LobbyView::getPlayerCount() {
     return ui->comboBox_players->currentIndex() + 2;
 }
 
-void LobbyView::setCurrentSettings(int mapType, int playerNumber) {
-    ui->comboBox_map->setCurrentIndex(mapType - 1);
+void LobbyView::setCurrentSettings(MapType mapType, int playerNumber) {
+    int mapIndex = static_cast<int>(mapType) - 1;
+    ui->comboBox_map->setCurrentIndex(mapIndex);
     ui->comboBox_players->setCurrentIndex(playerNumber - 2);
 }
 
