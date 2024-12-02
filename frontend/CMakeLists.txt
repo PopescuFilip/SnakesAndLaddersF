@@ -148,10 +148,13 @@ if(WIN32)
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${CPR_BINARY_DIR}/cpr.dll"
             "$<TARGET_FILE_DIR:frontend>"
+    )
+
+    add_custom_command(
+            TARGET frontend POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${LIBCURL_LIBRARIES_DIR}/libcurl-d.dll"
+            "${CMAKE_SOURCE_DIR}/curl-build/lib/libcurl-d.dll"
             "$<TARGET_FILE_DIR:frontend>"
-            COMMENT "Copying CPR and libcurl DLLs to output directory"
     )
 
 endif()
