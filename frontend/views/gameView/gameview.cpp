@@ -94,7 +94,7 @@ void GameView::updateGameStatus(const Game &game) {
         GameState::getInstance().getGame().setLatestDiceValue(currentDiceValue);
     }
 
-    setTimer(game.getTurnTime().max - game.getTurnTime().current);
+    setTimer(game.getTurnTime().maxTime - game.getTurnTime().current);
     setDiceAnimationStatus(game.isDiceRolling());
     setRollDiceButtonStatus(checkIsCurrentTurn());
     gameMap->updatePlayers(game.getPlayers());

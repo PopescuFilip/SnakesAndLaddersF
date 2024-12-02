@@ -10,21 +10,21 @@
 class TurnTime {
 public:
     int current;
-    int max;
+    int maxTime;
 
-    TurnTime() : current(0), max(0) {}
-    TurnTime(int current, int max) : current(current), max(max) {}
+    TurnTime() : current(0), maxTime(0) {}
+    TurnTime(int current, int maxTime) : current(current), maxTime(maxTime) {}
 
     friend void to_json(nlohmann::json& j, const TurnTime& t) {
         j = nlohmann::json{
                     {"current", t.current},
-                    {"max", t.max}
+                    {"max", t.maxTime}
         };
     }
 
     friend void from_json(const nlohmann::json& j, TurnTime& t) {
         j.at("current").get_to(t.current);
-        j.at("max").get_to(t.max);
+        j.at("max").get_to(t.maxTime);
     }
 };
 
