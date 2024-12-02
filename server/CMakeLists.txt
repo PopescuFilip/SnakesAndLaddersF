@@ -19,6 +19,12 @@ add_executable(server main.cpp
         Routes/RollDiceRoute.h
 )
 
+add_custom_command(TARGET server POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/server/maps
+        ${CMAKE_CURRENT_BINARY_DIR}/maps
+)
+
 target_include_directories(server PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
 
 add_dependencies(server server_lib)
