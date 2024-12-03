@@ -42,8 +42,7 @@ void GameUpdater::fetchGameStatus() {
         if (success) {
 			const auto& game = GameState::getInstance().getGame();
             if (game != newGame) {
-                GameState::getInstance().setGame(newGame);
-                emit gameUpdated(game);
+                emit gameUpdated(newGame);
             }
         } else {
             emit errorOccurred(errorMessage);

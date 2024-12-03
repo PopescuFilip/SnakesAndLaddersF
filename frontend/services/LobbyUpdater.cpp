@@ -38,7 +38,6 @@ void LobbyUpdater::fetchLobbyStatus() {
         if (success) {
             const auto& currentLobby = LobbyState::getInstance().getLobby();
             if (currentLobby != newLobby) {
-                LobbyState::getInstance().setLobby(newLobby);
                 emit lobbyUpdated(newLobby);
             }
         } else {
