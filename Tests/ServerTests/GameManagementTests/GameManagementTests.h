@@ -7,6 +7,6 @@
 #include "ObjectTests/LobbyTests.h"
 #include "ObjectTests/PlayerTests.h"
 #include "ObjectTests/RunningGameTests.h"
-#include "LobbyManagerTests/MockLobbyManager.h"
+#include "LobbyManagerTests/LobbyManagerTests.h"
 #include "GameManagerTests/MockGameManager.h"
 #endif //OBJECTTESTS_H

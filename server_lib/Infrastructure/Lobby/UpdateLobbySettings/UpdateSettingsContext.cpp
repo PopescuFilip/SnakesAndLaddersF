@@ -14,18 +14,20 @@ ValidationResponse UpdateSettingsContext::ValidateRequest(const UpdateSettingsRe
         return ValidationResponse{false, "Username cannot be empty"};
     }
 
-    Lobby lobby = LobbyManager::getInstance().getLobby(request.getLobbyId());
+    try
+    {
+        Lobby lobby = LobbyManager::getInstance().getLobby(request.getLobbyId());
+        if (lobby.getAdminPlayer() != request.getPlayerUsername()) {
+            return ValidationResponse{ false, "Player is not the admin" };
+        }
 
-    if(lobby.isNull) {
-        return ValidationResponse{false, "Lobby does not exist"};
+        if (lobby.getPlayers().size() > request.getMaxPlayers()) {
+            return ValidationResponse{ false, "Max players cannot be less than current players" };
+        }
     }
-
-    if(lobby.getAdminPlayer() != request.getPlayerUsername()) {
-        return ValidationResponse{false, "Player is not the admin"};
-    }
-
-    if(lobby.getPlayers().size() > request.getMaxPlayers()) {
-        return ValidationResponse{false, "Max players cannot be less than current players"};
+    catch (const std::runtime_error&)
+    {
+        return ValidationResponse{ false, "Lobby does not exist" };
     }
 
     return ValidationResponse{true};

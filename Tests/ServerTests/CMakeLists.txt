@@ -27,7 +27,7 @@ FetchContent_MakeAvailable(googletest)
 
 
 add_executable(ServerTests main.cpp
-        GameManagementTests/LobbyManagerTests/MockLobbyManager.h
+        GameManagementTests/LobbyManagerTests/LobbyManagerTests.h
         GameManagementTests/GameManagerTests/MockGameManager.h
         GameManagementTests/ObjectTests/LobbyTests.h
         GameManagementTests/ObjectTests/PlayerTests.h

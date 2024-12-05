@@ -76,7 +76,7 @@ RunningGame GameManager::getRunningGame(int gameId) const {
         return *it;
     }
 
-    return RunningGame();
+    throw std::runtime_error("Game not found. Game id = " + std::to_string(gameId) + ". Line 90 in GameManager.cpp");
 }
 
 

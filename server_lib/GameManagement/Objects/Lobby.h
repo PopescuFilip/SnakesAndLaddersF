@@ -8,10 +8,8 @@
 
 constexpr int MAX_PLAYERS = 4;
 
-class Lobby : public BaseObject{
+class Lobby : public BaseObject {
 public:
-    Lobby();
-
     Lobby(int lobbyId, const std::string &strAdminPlayer, MapType mapType, int maxPlayers);
 
     virtual bool addPlayer(const Player &player);
@@ -41,8 +39,6 @@ public:
     virtual void setAdminPlayer(const std::string &strAdminPlayer);
 
     crow::json::wvalue convertToJson() const override;
-
-    bool isNull = false;
 
 private:
     int m_iLobbyId;

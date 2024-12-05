@@ -9,14 +9,9 @@ LobbyManager &LobbyManager::getInstance() {
 
 int LobbyManager::createLobby(const std::string &strAdminPlayer, MapType mapType, int maxPlayers) {
     int lobbyId = GenerateLobbyId();
-    Lobby newLobby = Lobby{lobbyId, strAdminPlayer, mapType, maxPlayers};
-    m_Lobbies.push_back(newLobby);
+    Lobby newLobby{ lobbyId, strAdminPlayer, mapType, maxPlayers };
+    m_Lobbies.emplace_back(newLobby);
     return lobbyId;
-}
-
-int LobbyManager::createLobby(const Lobby &lobby) {
-    m_Lobbies.push_back(lobby);
-    return lobby.getLobbyId();
 }
 
 void LobbyManager::removeLobby(int lobbyId) {
@@ -42,7 +37,7 @@ Lobby LobbyManager::getLobby(int lobbyId) const {
         return *it;
     }
 
-    return Lobby();
+    throw std::runtime_error("Lobby not found. Lobby id = " + std::to_string(lobbyId) + ". Line 45 in LobbyManager.cpp");
 }
 
 int LobbyManager::GenerateLobbyId() {

@@ -16,20 +16,24 @@ ValidationResponse JoinLobbyContext::ValidateRequest(const JoinLobbyRequest &req
     }
 
     const LobbyManager lobbyManager = LobbyManager::getInstance();
-    const Lobby lobby = lobbyManager.getLobby(request.getLobbyId());
+    
+    try
+    {
+        const Lobby lobby = lobbyManager.getLobby(request.getLobbyId());
 
-    if(lobby.isNull) {
-        return ValidationResponse{false, "Lobby does not exist"};
-    }
-
-    if(lobby.getPlayers().size() == lobby.getMaxPlayers()) {
-        return ValidationResponse{false, "Lobby is full"};
-    }
-
-    for(const Player &player : lobby.getPlayers()) {
-        if(player.getUsername() == request.getUsername()) {
-            return ValidationResponse{false, "Player already exists in lobby"};
+        if (lobby.getPlayers().size() == lobby.getMaxPlayers()) {
+            return ValidationResponse{ false, "Lobby is full" };
         }
+
+        for (const Player& player : lobby.getPlayers()) {
+            if (player.getUsername() == request.getUsername()) {
+                return ValidationResponse{ false, "Player already exists in lobby" };
+            }
+        }
+    }
+    catch (const std::exception&)
+    {
+        return ValidationResponse{ false, "Lobby does not exist" };
     }
 
     return ValidationResponse{true};

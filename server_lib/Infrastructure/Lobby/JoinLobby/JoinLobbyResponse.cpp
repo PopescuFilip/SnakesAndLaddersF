@@ -11,6 +11,6 @@ crow::json::wvalue JoinLobbyResponse::convertToJson() const {
     crow::json::wvalue jsonResponse;
     jsonResponse["success"] = getSuccess();
     jsonResponse["message"] = getMessage();
-    jsonResponse["lobby"] = m_lobby.convertToJson();
+    jsonResponse["lobby"] = m_lobby->convertToJson();
     return jsonResponse;
 }

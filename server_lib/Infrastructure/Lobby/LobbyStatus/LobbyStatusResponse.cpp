@@ -10,7 +10,7 @@ crow::json::wvalue LobbyStatusResponse::convertToJson() const {
     crow::json::wvalue json;
     json["success"] = getSuccess();
     json["message"] = getMessage();
-    json["lobby"] = m_lobby.convertToJson();
+    json["lobby"] = m_lobby->convertToJson();
 
     return json;
 }

@@ -30,8 +30,12 @@ LeaveLobbyResponse LeaveLobbyContext::ApplyChanges(const LeaveLobbyRequest &requ
 }
 
 ValidationResponse LeaveLobbyContext::ValidateRequest(const LeaveLobbyRequest &request) {
-    const auto& lobby = LobbyManager::getInstance().getLobby(request.getLobbyId());
-    if(lobby.isNull) {
+    try
+    {
+        const auto& lobby = LobbyManager::getInstance().getLobby(request.getLobbyId());
+    }
+    catch (const std::runtime_error&)
+    {
         return ValidationResponse(false, "Lobby does not exist");
     }
 

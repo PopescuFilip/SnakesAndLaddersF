@@ -1,11 +1,10 @@
 #include "Lobby.h"
 
-Lobby::Lobby() : isNull(true), m_MapType{MapType::NONE}, m_iMaxPlayers{0} {
-    // Null constructor. Used for error handling
-}
-
-Lobby::Lobby(int lobbyId, const std::string& strAdminPlayer, MapType mapType, int maxPlayers) : m_iLobbyId{lobbyId},
-    m_strAdminPlayer{strAdminPlayer}, m_MapType{mapType}, m_iMaxPlayers{maxPlayers} {
+Lobby::Lobby(int lobbyId, const std::string& strAdminPlayer, MapType mapType, int maxPlayers) :
+    m_iLobbyId{ lobbyId },
+    m_strAdminPlayer{ strAdminPlayer },
+    m_MapType{ mapType },
+    m_iMaxPlayers{ maxPlayers } {
     m_Players.push_back(Player{strAdminPlayer, PlayerColor::RED, true});
 }
 

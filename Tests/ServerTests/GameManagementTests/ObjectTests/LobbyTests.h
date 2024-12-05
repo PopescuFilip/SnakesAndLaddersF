@@ -4,173 +4,89 @@
 
 #ifndef LOBBYTESTS_H
 #define LOBBYTESTS_H
-#include <gmock/gmock.h>
+
 #include <gtest/gtest.h>
 #include "GameManagement/Objects/Lobby.h"
 
-class LobbyForMock : public Lobby {
-public:
-    MOCK_METHOD(bool, addPlayer, (const Player &), (override));
-    MOCK_METHOD(bool, addPlayer, (const std::string &, PlayerColor), (override));
-    MOCK_METHOD(bool, removePlayer, (const std::string &), (override));
-    MOCK_METHOD(PlayerColor, getNextAvailableColor, (), (const, override));
-    MOCK_METHOD(std::vector<Player>, getPlayers, (), (const, override));
-    MOCK_METHOD(std::string, getAdminPlayer, (), (const, override));
-    MOCK_METHOD(MapType, getMapType, (), (const, override));
-    MOCK_METHOD(int, getMaxPlayers, (), (const, override));
-    MOCK_METHOD(int, getLobbyId, (), (const, override));
-    MOCK_METHOD(void, setMapType, (MapType), (override));
-    MOCK_METHOD(void, setMaxPlayers, (int), (override));
-    MOCK_METHOD(void, setGameId, (int), (override));
-    MOCK_METHOD(void, setAdminPlayer, (const std::string &), (override));
-    MOCK_METHOD(crow::json::wvalue, convertToJson, (), (const, override));
-};
-
 TEST(LobbyTests, AddPlayerValidation) {
-    LobbyForMock lobbyForMock;
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    EXPECT_CALL(lobbyForMock,addPlayer("Gigel",PlayerColor::RED)).WillOnce(testing::Return(true));
-
-    bool result = lobbyForMock.addPlayer("Gigel",PlayerColor::RED);
+    bool result = lobby.addPlayer("Gigel",PlayerColor::RED);
 
     ASSERT_TRUE(result);
 }
+
 TEST(LobbyTests, RemovePlayerValidation) {
-    LobbyForMock lobbyForMock;
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    EXPECT_CALL(lobbyForMock,addPlayer("Gigel",PlayerColor::RED)).WillOnce(testing::Return(true));
+    bool addResult = lobby.addPlayer("Gigel", PlayerColor::RED);
+    bool removeResult = lobby.removePlayer("Gigel");
 
-    ASSERT_TRUE(lobbyForMock.addPlayer("Gigel",PlayerColor::RED));
-
-    EXPECT_CALL(lobbyForMock,removePlayer("Gigel")).WillOnce(testing::Return(true));
-
-    bool result = lobbyForMock.removePlayer("Gigel");
-
-    ASSERT_TRUE(result);
+    ASSERT_TRUE(addResult);
+    ASSERT_TRUE(removeResult);
 }
 
 TEST(LobbyTests, GetNextColorValidation) {
-    LobbyForMock lobbyForMock;
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    EXPECT_CALL(lobbyForMock,getNextAvailableColor()).WillOnce(::testing::Return(PlayerColor::RED));
-
-    EXPECT_EQ(PlayerColor::RED, lobbyForMock.getNextAvailableColor());
+    EXPECT_EQ(PlayerColor::BLUE, lobby.getNextAvailableColor());
 }
+
 TEST(LobbyTests, GetAllPlayers) {
-    LobbyForMock lobbyForMock;
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
+    lobby.addPlayer("Gigel",PlayerColor::BLUE);
 
-    EXPECT_CALL(lobbyForMock,addPlayer("Gigel",PlayerColor::RED)).WillOnce(testing::Return(true));
+    auto players = lobby.getPlayers();
 
-    ASSERT_TRUE(lobbyForMock.addPlayer("Gigel",PlayerColor::RED));
-
-
-
-    EXPECT_CALL(lobbyForMock,getPlayers()).WillOnce(::testing::Invoke([]() {
-        std::vector<Player> players;
-        players.emplace_back("Gigel",PlayerColor::RED,true);
-        return players;
-    }));
-
-    ASSERT_TRUE(lobbyForMock.getPlayers().size());
+    EXPECT_EQ(players.size(), 2);
+    EXPECT_EQ(players[0].getPlayerColor(), PlayerColor::RED);
+    EXPECT_EQ(players[0].getUsername(), "Flavius");
+    EXPECT_EQ(players[1].getPlayerColor(), PlayerColor::BLUE);
+    EXPECT_EQ(players[1].getUsername(), "Gigel");
 }
-TEST(LobbyTests, GetAdminPlayer) {
-    LobbyForMock lobbyForMock;
 
-    EXPECT_CALL(lobbyForMock,addPlayer("Gigel",PlayerColor::RED)).WillOnce(testing::Return(true));
+TEST(LobbyTests, CheckConstructor) {
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    ASSERT_TRUE(lobbyForMock.addPlayer("Gigel",PlayerColor::RED));
-
-    EXPECT_CALL(lobbyForMock,getAdminPlayer()).WillOnce(testing::Return("Gigel"));
-
-    EXPECT_EQ("Gigel",lobbyForMock.getAdminPlayer());
-
+    EXPECT_EQ("Flavius", lobby.getAdminPlayer());
+    EXPECT_EQ(MapType::MAP_01, lobby.getMapType());
+    EXPECT_EQ(2, lobby.getMaxPlayers());
+    EXPECT_EQ(1, lobby.getLobbyId());
 }
-TEST(LobbyTests,GetMapType) {
-    LobbyForMock lobbyForMock;
 
-    EXPECT_CALL(lobbyForMock,getMapType()).WillOnce(::testing::Return(MapType::MAP_01));
-    EXPECT_EQ(MapType::MAP_01,lobbyForMock.getMapType());
-}
-TEST(LobbyTests,GetMaxPlayers) {
-    LobbyForMock lobbyForMock;
-
-    EXPECT_CALL(lobbyForMock,getMaxPlayers()).WillOnce(testing::Return(4));
-    EXPECT_EQ(4, lobbyForMock.getMaxPlayers());
-}
-TEST(LobbyTests,GetLobbyId) {
-    LobbyForMock lobbyForMock;
-
-    EXPECT_CALL(lobbyForMock,getLobbyId()).WillOnce(testing::Return(1));
-    EXPECT_EQ(1, lobbyForMock.getLobbyId());
-}
 TEST(LobbyTests,SetMapType) {
-    LobbyForMock lobbyForMock;
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    ON_CALL(lobbyForMock,setMapType(MapType::NONE)).WillByDefault([&lobbyForMock](MapType) {
-        return lobbyForMock.Lobby::setMapType(MapType::NONE);
-    });
+    lobby.setMapType(MapType::NONE);
 
-    EXPECT_CALL(lobbyForMock,setMapType(MapType::NONE)).Times(1);
-
-    lobbyForMock.setMapType(MapType::NONE);
-
-    ON_CALL(lobbyForMock,getMapType()).WillByDefault([&lobbyForMock]() {
-        return lobbyForMock.Lobby::getMapType();
-    });
-
-    EXPECT_EQ(MapType::NONE, lobbyForMock.getMapType());
+    EXPECT_EQ(MapType::NONE, lobby.getMapType());
 
 }
+
 TEST(LobbyTests,SetAdminPlayer) {
-    LobbyForMock lobbyForMock;
-    Lobby* lobby = &lobbyForMock;
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    EXPECT_CALL(lobbyForMock,addPlayer("Gigel",PlayerColor::RED)).WillOnce(testing::Return(true));
 
-    lobby->addPlayer("Gigel",PlayerColor::RED);
+    lobby.addPlayer("Gigel",PlayerColor::BLUE);
+    lobby.setAdminPlayer("Gigel");
 
-    EXPECT_CALL(lobbyForMock,setAdminPlayer("Gigel")).Times(1);
-
-    lobby->setAdminPlayer("Gigel");
-    EXPECT_CALL(lobbyForMock, getAdminPlayer()).WillOnce(testing::Return("Gigel"));
-    EXPECT_EQ("Gigel",lobby->getAdminPlayer());
+    EXPECT_EQ("Gigel",lobby.getAdminPlayer());
 }
 
 TEST(LobbyTests,SetMaxPlayers) {
+    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
 
-    LobbyForMock lobbyForMock;
+    lobby.setMaxPlayers(4);
 
-    ON_CALL(lobbyForMock,setMaxPlayers(4)).WillByDefault([&lobbyForMock](int) {
-      return lobbyForMock.Lobby::setMaxPlayers(4);
-  });
-
-    EXPECT_CALL(lobbyForMock,setMaxPlayers(4)).Times(1);
-
-    lobbyForMock.setMaxPlayers(4);
-
-    EXPECT_CALL(lobbyForMock,getMaxPlayers()).WillOnce(::testing::Return(4));
-
-    EXPECT_EQ(4, lobbyForMock.getMaxPlayers());
-}
-
-TEST(LobbyTests,SetGameId) {
-    LobbyForMock lobbyForMock;
-
-    EXPECT_CALL(lobbyForMock,setGameId(1)).Times(1);
-
-    lobbyForMock.setGameId(1);
+    EXPECT_EQ(4, lobby.getMaxPlayers());
 }
 
 TEST(LobbyTests,ConvertToJson) {
-    LobbyForMock lobbyForMock;
-    EXPECT_CALL(lobbyForMock,convertToJson()).Times(1);
+    Lobby lobby(2, "Flavius", MapType::MAP_01, 2);
 
-    crow::json::wvalue result=lobbyForMock.convertToJson();
+    crow::json::wvalue result=lobby.convertToJson();
 
     EXPECT_FALSE(result.dump().empty());
-
 }
-
-
 
 #endif //LOBBYTESTS_H

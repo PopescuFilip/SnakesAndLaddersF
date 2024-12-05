@@ -40,18 +40,22 @@ ValidationResponse StartGameContext::ValidateRequest(const StartGameRequest &req
         return ValidationResponse{false, "Lobby id is invalid"};
     }
 
-    const Lobby& lobby = LobbyManager::getInstance().getLobby(lobbyId);
-    if(lobby.isNull) {
-        return ValidationResponse{false, "Lobby does not exist"};
-    }
+    try
+    {
+        const Lobby& lobby = LobbyManager::getInstance().getLobby(lobbyId);
+        if (lobby.getAdminPlayer() != playerUsername) {
+            return ValidationResponse{ false, "Player is not the admin of the lobby" };
+        }
 
-    if(lobby.getAdminPlayer() != playerUsername) {
-        return ValidationResponse{false, "Player is not the admin of the lobby"};
-    }
+        if (lobby.getPlayers().size() == 1) {
+            return ValidationResponse{ false, "Lobby has only one player" };
+        }
+        return ValidationResponse{ true };
 
-    if (lobby.getPlayers().size() == 1) {
-        return ValidationResponse{false, "Lobby has only one player"};
     }
+    catch (const std::runtime_error&)
+    {
+        return ValidationResponse{ false, "Lobby does not exist" };
 
-    return ValidationResponse{true};
+    }
 }

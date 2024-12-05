@@ -1,6 +1,8 @@
 #ifndef JOINLOBBYRESPONSE_H
 #define JOINLOBBYRESPONSE_H
+
 #include <list>
+#include <optional>
 
 #include "../../BaseResponse.h"
 #include "../../../GameManagement/Objects/Lobby.h"
@@ -15,7 +17,7 @@ public:
     crow::json::wvalue convertToJson() const override;
 
 private:
-    Lobby m_lobby;
+    std::optional<Lobby> m_lobby;
 };
 
 
