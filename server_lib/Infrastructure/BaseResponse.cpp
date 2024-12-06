@@ -1,4 +1,5 @@
 #include "BaseResponse.h"
+#include "JsonSerializer.h"
 
 BaseResponse::BaseResponse(const bool bSuccess) : m_bSuccess{ bSuccess }
 {}
@@ -23,11 +24,16 @@ const std::string& BaseResponse::getMessage() const
     return m_strMessage;
 }
 
+crow::json::wvalue BaseResponse::convertToJson() const
+{
+    return getBasicJson();
+}
+
 crow::json::wvalue BaseResponse::getBasicJson() const
 {
-    crow::json::wvalue jsonResponse;
-    jsonResponse["success"] = getSuccess();
-    jsonResponse["message"] = getMessage();
+    crow::json::wvalue json;
+    JsonSerializer::serializeSuccess(json, m_bSuccess);
+    JsonSerializer::serializeMessage(json, m_strMessage);
 
-    return jsonResponse;
+    return json;
 }

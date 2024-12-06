@@ -14,8 +14,9 @@ public:
 
     bool getSuccess() const;
     const std::string& getMessage() const;
-
     crow::json::wvalue getBasicJson() const;
+
+    virtual crow::json::wvalue convertToJson() const override;
 
     virtual ~BaseResponse() = default;
 private:

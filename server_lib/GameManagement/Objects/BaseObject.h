@@ -1,5 +1,6 @@
 #ifndef BASEOBJECT_H
 #define BASEOBJECT_H
+
 #include <crow/json.h>
 
 class BaseObject {
