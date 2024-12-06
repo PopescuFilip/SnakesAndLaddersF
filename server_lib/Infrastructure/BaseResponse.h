@@ -2,19 +2,22 @@
 #define BASERESPONSE_H
 
 #include <string>
-#include <crow/json.h>
+#include "../GameManagement/Objects/BaseObject.h"
 
-class BaseResponse {
+class BaseResponse : public BaseObject
+{
 public:
-    virtual ~BaseResponse() = default;
+    explicit BaseResponse(const std::string& strContent);
+    explicit BaseResponse(bool bSuccess);
+    
     explicit operator bool() const;
-    virtual crow::json::wvalue convertToJson() const = 0;
 
     bool getSuccess() const;
     const std::string& getMessage() const;
 
-    explicit BaseResponse(const std::string& strContent);
-    explicit BaseResponse(bool bSuccess);
+    crow::json::wvalue getBasicJson() const;
+
+    virtual ~BaseResponse() = default;
 private:
     std::string m_strMessage;
     bool m_bSuccess;
