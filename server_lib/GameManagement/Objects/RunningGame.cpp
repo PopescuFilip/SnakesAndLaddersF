@@ -6,11 +6,15 @@
 
 const std::string MAPS_FOLDER = "./maps/";
 
-RunningGame::RunningGame(const Lobby &baseLobby) :
-        m_Players{baseLobby.getPlayers()},
-        m_bShouldFinishGame{false}, m_iCurrentPlayerIndex{0},
-        m_iLatestDiceValue{0}, m_GameId{baseLobby.getLobbyId()}, m_GameStartTime{std::chrono::system_clock::now()}, m_TurnStartTime{std::chrono::system_clock::now()} {
-
+RunningGame::RunningGame(const Lobby& baseLobby) :
+    m_Players{ baseLobby.getPlayers() },
+    m_bShouldFinishGame{ false },
+    m_iCurrentPlayerIndex{ 0 },
+    m_iLatestDiceValue{ 0 },
+    m_GameId{ baseLobby.getLobbyId() },
+    m_GameStartTime{ std::chrono::system_clock::now() },
+    m_TurnStartTime{ std::chrono::system_clock::now() }
+{
     readTeleportPositions(baseLobby.getMapType());
     LobbyManager::getInstance().removeLobby(baseLobby.getLobbyId());
     initializePlayerPositions();
@@ -82,7 +86,7 @@ void RunningGame::setPlayerTurn(const std::string &strPlayerName) {
     }
 }
 
-Player & RunningGame::getCurrentPlayer() {
+Player& RunningGame::getCurrentPlayer() {
     return m_Players[m_iCurrentPlayerIndex];
 }
 
@@ -164,9 +168,4 @@ const std::vector<Player> & RunningGame::getPlayers() const {
 
 int RunningGame::getTotalTime() const {
     return m_iTotalGameTime;
-}
-
-
-RunningGame::RunningGame() : isNull(true), m_GameId{-1} {
-    // Null constructor. Used for error handling
 }

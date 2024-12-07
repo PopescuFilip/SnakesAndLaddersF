@@ -12,7 +12,6 @@ constexpr int MAX_BOARD_POSITION = 100;
 
 class RunningGame : public BaseObject {
 public:
-    RunningGame();
     explicit RunningGame(const Lobby& baseLobby);
 
     virtual void updatePlayerPosition(const std::string& strUsername, int iPosition);

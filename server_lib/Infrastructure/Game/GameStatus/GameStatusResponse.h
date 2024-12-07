@@ -1,5 +1,7 @@
 #ifndef GAMESTATUSRESPONSE_H
 #define GAMESTATUSRESPONSE_H
+
+#include <optional>
 #include "GameManagement/Objects/RunningGame.h"
 #include "Infrastructure/BaseResponse.h"
 
@@ -13,7 +15,7 @@ public:
 
     crow::json::wvalue convertToJson() const override;
 private:
-    RunningGame m_Game;
+    std::optional<RunningGame> m_Game;
 };
 
 
