@@ -14,7 +14,7 @@ public:
 
 	virtual ~HttpCommand() = default;
 protected:
-	virtual BaseResponse checkCanExecute() const = 0;
+	virtual BaseResponse checkCanExecute() const { return BaseResponse(true); };
 	virtual BaseResponse execute() = 0;
 
 protected:
