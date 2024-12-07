@@ -55,6 +55,12 @@ int RunningGame::getNewTeleportPosition(int currentPlayerPosition) const {
     return currentPlayerPosition;
 }
 
+void RunningGame::rollDice() {
+    triggerDiceRolling();
+    int random = generateRandomNumber(DICE_ROLL_MIN, DICE_ROLL_MAX);
+    setLatestDiceValue(random);
+}
+
 void RunningGame::triggerDiceRolling() {
     m_DiceRollStartTime = std::chrono::system_clock::now();
 }
@@ -168,4 +174,11 @@ const std::vector<Player> & RunningGame::getPlayers() const {
 
 int RunningGame::getTotalTime() const {
     return m_iTotalGameTime;
+}
+
+int RunningGame::generateRandomNumber(const int min, const int max) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(min, max);
+    return dis(gen);
 }

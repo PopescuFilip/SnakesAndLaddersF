@@ -26,22 +26,15 @@ TEST(RunningGameTests, StartNewTurn) {
     EXPECT_EQ(game.getLatestDiceValue(), 0);
 }
 
-TEST(RunningGameTests,TriggerDiceRolling) {
+TEST(RunningGameTests,RollDice) {
     Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
     RunningGame game(lobby);
 
-    game.triggerDiceRolling();
+    game.rollDice();
+    int diceValue = game.getLatestDiceValue();
 
     ASSERT_TRUE(game.getDiceRolling());
-}
-
-TEST(RunningGameTests,SetDiceValue) {
-    Lobby lobby(1, "Flavius", MapType::MAP_01, 2);
-    RunningGame game(lobby);
-
-    game.setLatestDiceValue(6);
-
-    EXPECT_EQ(game.getLatestDiceValue(), 6);
+    ASSERT_TRUE(diceValue <= DICE_ROLL_MAX && diceValue >= DICE_ROLL_MIN);
 }
 
 TEST(RunningGameTests, SetPlayerTurn) {

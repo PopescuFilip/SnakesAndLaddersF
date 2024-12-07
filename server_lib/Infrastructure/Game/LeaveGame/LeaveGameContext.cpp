@@ -30,10 +30,14 @@ LeaveGameResponse LeaveGameContext::ApplyChanges(const LeaveGameRequest &request
 }
 
 ValidationResponse LeaveGameContext::ValidateRequest(const LeaveGameRequest &request) {
-    RunningGame runningGame = GameManager::getInstance().getRunningGame(request.getGameId());
 
-    if (runningGame.isNull) {
-        return ValidationResponse{false, "Game does not exist"};
+    try
+    {
+        RunningGame game = GameManager::getInstance().getRunningGame(request.getGameId());
+    }
+    catch (const std::runtime_error&)
+    {
+        return ValidationResponse{ false, "Game does not exist" };
     }
 
     return ValidationResponse{true};

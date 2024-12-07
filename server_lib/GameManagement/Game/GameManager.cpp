@@ -10,7 +10,7 @@ GameManager& GameManager::getInstance() {
 }
 
 RunningGame GameManager::createGame(const Lobby &lobby) {
-    RunningGame newGame{lobby};
+    RunningGame newGame{ lobby };
     m_Games.push_back(newGame);
     createGameThread(newGame.getGameId());
     return newGame;
@@ -99,21 +99,11 @@ void GameManager::rollDiceInGame(int gameId) {
     });
 
     if(it != m_Games.end()) {
-        it->triggerDiceRolling();
-        int random = generateRandomNumber(DICE_ROLL_MIN, DICE_ROLL_MAX);
-        it->setLatestDiceValue(random);
-
+        it->rollDice();
         return;
     }
 
     throw std::runtime_error("Game not found. Game id = " + std::to_string(gameId) + ". Line 90 in GameManager.cpp");
-}
-
-int GameManager::generateRandomNumber(const int min, const int max) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(min, max);
-    return dis(gen);
 }
 
 RunningGame &GameManager::getRunningGamePtr(int gameId) const {

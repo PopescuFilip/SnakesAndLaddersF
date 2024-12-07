@@ -52,7 +52,6 @@ TEST(GameManagerTest,CreateGame_Validation) {
 
     RunningGame mockRunningGame=mockGameManager.createGame(mockLobby);
 
-    ASSERT_FALSE(mockRunningGame.isNull);
     EXPECT_EQ(mockRunningGame.getGameId(),1);
 
 }
@@ -71,11 +70,7 @@ TEST(GameManagerTest,GetRunningGame_Validation) {
     RunningGame mockRunningGame=mockGameManager.createGame(mockLobby);
 
     EXPECT_CALL(mockGameManager,getRunningGame(1)).WillOnce(::testing::Return(mockRunningGame));
-
-    EXPECT_FALSE(mockGameManager.getRunningGame(1).isNull);
-
-
-
+    ASSERT_NO_THROW(mockGameManager.getRunningGame(1));
 }
 TEST(GameManagerTest,RemoveGame_Validation) {
     MockGameManager mockGameManager;

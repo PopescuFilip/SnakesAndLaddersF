@@ -6,6 +6,9 @@
 #include <unordered_map>
 
 constexpr int DICE_ROLL_TIME_SECONDS = 2;
+constexpr int DICE_ROLL_MIN = 1;
+constexpr int DICE_ROLL_MAX = 6;
+
 constexpr int MAX_SECONDS_PER_TURN = 30;
 
 constexpr int MAX_BOARD_POSITION = 100;
@@ -21,11 +24,8 @@ public:
 
     virtual int getNewTeleportPosition(int currentPlayerPosition) const;
 
-    virtual void triggerDiceRolling();
-    virtual void resetTriggerDiceRolling();
+    virtual void rollDice();
     virtual bool getDiceRolling() const;
-
-    virtual void setLatestDiceValue(int iDiceValue);
     virtual int getLatestDiceValue() const;
 
     virtual void setPlayerTurn(const std::string& strPlayerName);
@@ -44,7 +44,11 @@ public:
 
     crow::json::wvalue convertToJson() const override;
 
-    bool isNull = false;
+private:
+    static int generateRandomNumber(int min, int max);
+    virtual void triggerDiceRolling();
+    virtual void resetTriggerDiceRolling();
+    virtual void setLatestDiceValue(int iDiceValue);
 
 private:
     int m_GameId;

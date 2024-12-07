@@ -17,14 +17,18 @@ GameStatusResponse GameStatusContext::HandleRequest(const GameStatusRequest &req
 
 GameStatusResponse GameStatusContext::ApplyChanges(const GameStatusRequest &request) {
     RunningGame game = GameManager::getInstance().getRunningGame(request.getGameId());
-    return GameStatusResponse{game};
+    return GameStatusResponse{ game };
 }
 
 ValidationResponse GameStatusContext::ValidateRequest(const GameStatusRequest &request) {
-    RunningGame game = GameManager::getInstance().getRunningGame(request.getGameId());
 
-    if (game.isNull) {
-        return ValidationResponse{false, "Game not found"};
+    try
+    {
+        RunningGame game = GameManager::getInstance().getRunningGame(request.getGameId());
+    }
+    catch (const std::runtime_error&)
+    {
+        return ValidationResponse{ false, "Game not found" };
     }
 
     return ValidationResponse{true};

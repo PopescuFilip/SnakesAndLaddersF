@@ -23,13 +23,18 @@ GameStatisticsResponse GameStatisticsContext::ApplyChanges(const GameStatisticsR
 }
 
 ValidationResponse GameStatisticsContext::ValidateRequest(const GameStatisticsRequest &request) {
-    RunningGame runningGame = GameManager::getInstance().getRunningGame(request.getGameId());
-    if (runningGame.isNull) {
-        return ValidationResponse{false, "Game does not exist"};
-    }
 
-    if (!runningGame.getShouldFinishGame()) {
-        return ValidationResponse{false, "Game is not finished"};
+    try
+    {
+        RunningGame runningGame = GameManager::getInstance().getRunningGame(request.getGameId());
+
+        if (!runningGame.getShouldFinishGame()) {
+            return ValidationResponse{ false, "Game is not finished" };
+        }
+    }
+    catch (const std::runtime_error&)
+    {
+        return ValidationResponse{ false, "Game does not exist" };
     }
 
     return ValidationResponse{true};

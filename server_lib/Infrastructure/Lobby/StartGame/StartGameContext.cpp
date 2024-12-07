@@ -17,11 +17,6 @@ StartGameResponse StartGameContext::ApplyChanges(const StartGameRequest &request
     Lobby lobby = LobbyManager::getInstance().getLobby(request.GetLobbyId());
     RunningGame runningGame = GameManager::getInstance().createGame(lobby);
 
-    if(runningGame.isNull) {
-        const std::string messageResponse = "Failed to start game";
-        return StartGameResponse{messageResponse};
-    }
-
     lobby.setGameId(runningGame.getGameId());
     LobbyManager::getInstance().updateLobby(lobby.getLobbyId(), lobby);
 
