@@ -114,13 +114,13 @@ add_library(server_lib STATIC
         Infrastructure/Game/GameStatistics/GameStatisticsResponse.cpp
         Infrastructure/Game/GameStatistics/GameStatisticsResponse.h
         Infrastructure/Game/GameStatistics/GameStatisticsContext.cpp
-        Infrastructure/Game/GameStatistics/GameStatisticsContext.h        
-        Infrastructure/HttpCommand.h 
-        Infrastructure/HttpCommand.cpp 
-        Infrastructure/RequestWrapper.h 
-        Infrastructure/RequestWrapper.cpp 
+        Infrastructure/Game/GameStatistics/GameStatisticsContext.h
+        Infrastructure/Commands/HttpCommand.h
+        Infrastructure/Commands/HttpCommand.cpp
+        Infrastructure/RequestWrapper.h
+        Infrastructure/RequestWrapper.cpp
         Infrastructure/JsonSerializer.h
-)
+ "Infrastructure/Commands/CreateLobbyCommand.h" "Infrastructure/Commands/CreateLobbyCommand.cpp"  "Infrastructure/UniversalResponse.h" "Infrastructure/UniversalResponse.cpp")
 
 target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

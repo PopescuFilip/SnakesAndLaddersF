@@ -2,14 +2,14 @@
 #define BASERESPONSE_H
 
 #include <string>
-#include "../GameManagement/Objects/BaseObject.h"
+#include "GameManagement/Objects/BaseObject.h"
 
 class BaseResponse : public BaseObject
 {
 public:
     explicit BaseResponse(const std::string& strContent);
     explicit BaseResponse(bool bSuccess);
-    
+
     explicit operator bool() const;
 
     bool getSuccess() const;

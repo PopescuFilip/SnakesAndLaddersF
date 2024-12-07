@@ -8,6 +8,7 @@ class JsonSerializer
 public:
 	inline static void serializeSuccess(crow::json::wvalue& json, bool succes) { json["succes"] = succes; }
 	inline static void serializeMessage(crow::json::wvalue& json, const std::string& message) { json["succes"] = message; }
+	inline static void serializeLobbyId(crow::json::wvalue& json, int lobbyId) { json["lobbyId"] = lobbyId; }
 };
 
 #endif // JSONSERIALIZER_H

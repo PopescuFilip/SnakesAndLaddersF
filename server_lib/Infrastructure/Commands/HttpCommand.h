@@ -2,16 +2,21 @@
 #define HTTPCOMMAND_H
 
 #include <crow/json.h>
-#include "RequestWrapper.h"
-#include "BaseResponse.h"
+#include "Infrastructure/RequestWrapper.h"
+#include "Infrastructure/BaseResponse.h"
 
 class HttpCommand
 {
 public:
 	HttpCommand(const crow::json::rvalue& request);
-	virtual BaseResponse execute() = 0;
-	
+
+	virtual BaseResponse executeWithCheck();
+
 	virtual ~HttpCommand() = default;
+protected:
+	virtual BaseResponse checkCanExecute() const = 0;
+	virtual BaseResponse execute() = 0;
+
 protected:
 	RequestWrapper m_request;
 };
