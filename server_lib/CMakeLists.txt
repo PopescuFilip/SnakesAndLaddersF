@@ -120,7 +120,12 @@ add_library(server_lib STATIC
         Infrastructure/RequestWrapper.h
         Infrastructure/RequestWrapper.cpp
         Infrastructure/JsonSerializer.h
- "Infrastructure/Commands/CreateLobbyCommand.h" "Infrastructure/Commands/CreateLobbyCommand.cpp"  "Infrastructure/UniversalResponse.h" "Infrastructure/UniversalResponse.cpp")
+        Infrastructure/JsonSerializer.cpp
+        Infrastructure/Commands/CreateLobbyCommand.h
+        Infrastructure/Commands/CreateLobbyCommand.cpp
+        Infrastructure/UniversalResponse.h
+        Infrastructure/UniversalResponse.cpp
+)
 
 target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
