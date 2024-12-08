@@ -4,10 +4,10 @@
 #include <crow.h>
 #include "GameManagement/Objects/MapTypeEnum.h"
 
-class RequestWrapper
+class Request
 {
 public:
-	RequestWrapper(const crow::json::rvalue& request);
+	Request(const crow::json::rvalue& request);
 
 	inline std::string getUsername() const { return m_request["playerUsername"].s(); }
 	inline int getLobbyId() const { return m_request["lobbyId"].i(); }

@@ -2,7 +2,7 @@
 #define HTTPCOMMAND_H
 
 #include <crow/json.h>
-#include "Infrastructure/RequestWrapper.h"
+#include "Infrastructure/Request.h"
 #include "Infrastructure/BaseResponse.h"
 
 class HttpCommand
@@ -18,7 +18,7 @@ protected:
 	virtual BaseResponse execute() = 0;
 
 protected:
-	RequestWrapper m_request;
+	Request m_request;
 };
 
 #endif // HTTPCOMMAND_H

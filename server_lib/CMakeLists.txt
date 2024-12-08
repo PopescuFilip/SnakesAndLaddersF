@@ -117,8 +117,8 @@ add_library(server_lib STATIC
         Infrastructure/Game/GameStatistics/GameStatisticsContext.h
         Infrastructure/Commands/HttpCommand.h
         Infrastructure/Commands/HttpCommand.cpp
-        Infrastructure/RequestWrapper.h
-        Infrastructure/RequestWrapper.cpp
+        Infrastructure/Request.h
+        Infrastructure/Request.cpp
         Infrastructure/JsonSerializer.h
         Infrastructure/JsonSerializer.cpp
         Infrastructure/Commands/CreateLobbyCommand.h
