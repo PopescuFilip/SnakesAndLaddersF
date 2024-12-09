@@ -20,18 +20,6 @@ crow::json::wvalue ExecuteCommand(const crow::json::rvalue& request) {
     return command.executeWithCheck()->convertToJson();
 }
 
-//template crow::json::wvalue ExecuteCommand<CreateLobbyCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<JoinLobbyCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<ChangeLobbySettingsCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<LeaveLobbyCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<StartGameCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<StatusLobbyCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<GameStatusCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<GameStatisticsCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<LeaveGameCommand>(const crow::json::rvalue&);
-//template crow::json::wvalue ExecuteCommand<RollDiceCommand>(const crow::json::rvalue&);
-
-
 #define GET_ROUTE(path, CommandType) CROW_ROUTE(crowApplication, path).methods("GET"_method)([](const crow::request& req) { \
     crow::json::rvalue jsonRequest = crow::json::load(req.body); \
     crow::json::wvalue jsonResponse = ExecuteCommand<CommandType>(jsonRequest); \
