@@ -10,15 +10,20 @@ public:
     explicit BaseResponse(const std::string& strContent);
     explicit BaseResponse(bool bSuccess);
 
+    inline static BaseResponse Succes() { return BaseResponse(true); }
+    inline static BaseResponse Failure(const std::string& strContent) { return BaseResponse(strContent); }
+
     explicit operator bool() const;
 
     bool getSuccess() const;
     const std::string& getMessage() const;
-    crow::json::wvalue getBasicJson() const;
 
     virtual crow::json::wvalue convertToJson() const override;
 
     virtual ~BaseResponse() = default;
+protected:
+    crow::json::wvalue getBasicJson() const;
+
 private:
     std::string m_strMessage;
     bool m_bSuccess;

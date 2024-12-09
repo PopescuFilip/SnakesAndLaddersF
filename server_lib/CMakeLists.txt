@@ -125,7 +125,7 @@ add_library(server_lib STATIC
         Infrastructure/Commands/CreateLobbyCommand.cpp
         Infrastructure/UniversalResponse.h
         Infrastructure/UniversalResponse.cpp
-)
+ "Infrastructure/Commands/ChangeLobbySettingsCommand.h" "Infrastructure/Commands/ChangeLobbySettingsCommand.cpp" "Infrastructure/Commands/GameStatisticsCommand.h" "Infrastructure/Commands/GameStatisticsCommand.cpp" "Infrastructure/Commands/GameStatusCommand.h" "Infrastructure/Commands/GameStatusCommand.cpp" "Infrastructure/Commands/JoinLobbyCommand.h" "Infrastructure/Commands/JoinLobbyCommand.cpp" "Infrastructure/Commands/LeaveGameCommand.h" "Infrastructure/Commands/LeaveGameCommand.cpp" "Infrastructure/Commands/RollDiceCommand.h" "Infrastructure/Commands/RollDiceCommand.cpp" "Infrastructure/Commands/StartGameCommand.h" "Infrastructure/Commands/StartGameCommand.cpp" "Infrastructure/Commands/StatusLobbyCommand.h" "Infrastructure/Commands/StatusLobbyCommand.cpp" "Infrastructure/Commands/LeaveLobbyCommand.h" "Infrastructure/Commands/LeaveLobbyCommand.cpp")
 
 target_include_directories(server_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

@@ -1,21 +1,22 @@
-#ifndef CREATELOBBYCOMMAND_H
-#define CREATELOBBYCOMMAND_H
+#ifndef CHANGELOBBYSETTINGSCOMMAND_H
+#define CHANGELOBBYSETTINGSCOMMAND_H
 
 #include "HttpCommand.h"
 #include "GameManagement/Objects/MapTypeEnum.h"
 
-class CreateLobbyCommand : public HttpCommand
+class ChangeLobbySettingsCommand : public HttpCommand
 {
 public:
-	CreateLobbyCommand(const crow::json::rvalue& request);
+	ChangeLobbySettingsCommand(const crow::json::rvalue& request);
 
 protected:
 	virtual BaseResponsePtr execute() override;
 	virtual BaseResponse checkCanExecute() const override;
 
 private:
-	std::string m_strAdminUsername;
-	int m_iMaxPlayers;
+	int m_lobbyId;
+	int m_maxPlayers;
+	std::string m_playerUsername;
 	MapType m_mapType;
 };
 

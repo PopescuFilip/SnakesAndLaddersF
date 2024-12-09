@@ -3,10 +3,10 @@
 HttpCommand::HttpCommand(const crow::json::rvalue& request) : m_request{ request }
 {}
 
-BaseResponse HttpCommand::executeWithCheck()
+BaseResponsePtr HttpCommand::executeWithCheck()
 {
     if (BaseResponse response(checkCanExecute()); !response)
-        return response;
+        return std::make_unique<BaseResponse>(response);
 
     return execute();
 }

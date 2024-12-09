@@ -32,8 +32,9 @@ crow::json::wvalue BaseResponse::convertToJson() const
 crow::json::wvalue BaseResponse::getBasicJson() const
 {
     crow::json::wvalue json;
-    JsonSerializer::serializeSuccess(json, m_bSuccess);
-    JsonSerializer::serializeMessage(json, m_strMessage);
+    json["success"] = getSuccess();
+    json["message"] = getMessage();
 
     return json;
+
 }

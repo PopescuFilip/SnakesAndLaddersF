@@ -16,7 +16,7 @@ ValidationResponse JoinLobbyContext::ValidateRequest(const JoinLobbyRequest &req
     }
 
     const LobbyManager lobbyManager = LobbyManager::getInstance();
-    
+
     try
     {
         const Lobby lobby = lobbyManager.getLobby(request.getLobbyId());

@@ -19,7 +19,7 @@ ValidationResponse LobbyStatusContext::ValidateRequest(const LobbyStatusRequest 
 }
 
 LobbyStatusResponse LobbyStatusContext::ApplyChanges(const LobbyStatusRequest &request) {
-    
+
     try
     {
         Lobby lobby = LobbyManager::getInstance().getLobby(request.GetLobbyId());
@@ -28,6 +28,6 @@ LobbyStatusResponse LobbyStatusContext::ApplyChanges(const LobbyStatusRequest &r
     catch (const std::runtime_error&)
     {
         return LobbyStatusResponse{ "Lobby does not exist" };
-    } 
+    }
 }
 

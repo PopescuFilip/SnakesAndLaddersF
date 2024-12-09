@@ -9,10 +9,10 @@ CreateLobbyCommand::CreateLobbyCommand(const crow::json::rvalue& request) :
     m_mapType{ m_request.getMapType() }
 {}
 
-BaseResponse CreateLobbyCommand::execute()
+BaseResponsePtr CreateLobbyCommand::execute()
 {
     int id = LobbyManager::getInstance().createLobby(m_strAdminUsername, m_mapType, m_iMaxPlayers);
-    return UniversalResponse{ id };
+    return std::make_unique<UniversalResponse>(id);
 }
 
 BaseResponse CreateLobbyCommand::checkCanExecute() const

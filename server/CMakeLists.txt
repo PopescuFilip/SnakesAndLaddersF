@@ -17,7 +17,7 @@ add_executable(server main.cpp
         Routes/LeaveGameRoute.h
         Routes/GameStatisticsRoute.h
         Routes/RollDiceRoute.h
-)
+  )
 
 add_custom_command(TARGET server POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
