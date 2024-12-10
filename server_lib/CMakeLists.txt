@@ -38,17 +38,11 @@ FetchContent_MakeAvailable(CrowCpp)
 add_library(server_lib STATIC
         Infrastructure/BaseResponse.cpp
         Infrastructure/BaseResponse.h
-        Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.cpp
-        Infrastructure/Lobby/CreateLobby/CreateLobbyRequest.h
         GameManagement/Objects/MapTypeEnum.h
         GameManagement/Objects/Player.cpp
         GameManagement/Objects/Player.h
         GameManagement/Objects/PlayerColor.h
-        Infrastructure/Lobby/CreateLobby/CreateLobbyResponse.cpp
-        Infrastructure/Lobby/CreateLobby/CreateLobbyResponse.h
         Infrastructure/BaseContext.h
-        Infrastructure/Lobby/CreateLobby/CreateLobbyContext.cpp
-        Infrastructure/Lobby/CreateLobby/CreateLobbyContext.h
         GameManagement/Game/GameManager.cpp
         GameManagement/Game/GameManager.h
         GameManagement/Objects/Lobby.cpp
@@ -57,64 +51,10 @@ add_library(server_lib STATIC
         GameManagement/Objects/RunningGame.h
         GameManagement/Lobby/LobbyManager.cpp
         GameManagement/Lobby/LobbyManager.h
-        Infrastructure/Lobby/JoinLobby/JoinLobbyRequest.cpp
-        Infrastructure/Lobby/JoinLobby/JoinLobbyRequest.h
-        Infrastructure/Lobby/JoinLobby/JoinLobbyResponse.cpp
-        Infrastructure/Lobby/JoinLobby/JoinLobbyResponse.h
-        Infrastructure/Lobby/JoinLobby/JoinLobbyContext.cpp
-        Infrastructure/Lobby/JoinLobby/JoinLobbyContext.h
         Infrastructure/ValidationResponse.cpp
         Infrastructure/ValidationResponse.h
-        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsRequest.cpp
-        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsRequest.h
-        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsResponse.cpp
-        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsResponse.h
-        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.cpp
-        Infrastructure/Lobby/UpdateLobbySettings/UpdateSettingsContext.h
-        Infrastructure/Lobby/LobbyStatus/LobbyStatusRequest.cpp
-        Infrastructure/Lobby/LobbyStatus/LobbyStatusRequest.h
-        Infrastructure/Lobby/LobbyStatus/LobbyStatusResponse.cpp
-        Infrastructure/Lobby/LobbyStatus/LobbyStatusResponse.h
-        Infrastructure/Lobby/LobbyStatus/LobbyStatusContext.cpp
-        Infrastructure/Lobby/LobbyStatus/LobbyStatusContext.h
-        Infrastructure/Lobby/LeaveLobby/LeaveLobbyRequest.cpp
-        Infrastructure/Lobby/LeaveLobby/LeaveLobbyRequest.h
-        Infrastructure/Lobby/LeaveLobby/LeaveLobbyResponse.cpp
-        Infrastructure/Lobby/LeaveLobby/LeaveLobbyResponse.h
-        Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.cpp
-        Infrastructure/Lobby/LeaveLobby/LeaveLobbyContext.h
-        Infrastructure/Lobby/StartGame/StartGameRequest.cpp
-        Infrastructure/Lobby/StartGame/StartGameRequest.h
-        Infrastructure/Lobby/StartGame/StartGameResponse.cpp
-        Infrastructure/Lobby/StartGame/StartGameResponse.h
-        Infrastructure/Lobby/StartGame/StartGameContext.cpp
-        Infrastructure/Lobby/StartGame/StartGameContext.h
-        Infrastructure/Game/RollDice/RollDiceRequest.cpp
-        Infrastructure/Game/RollDice/RollDiceRequest.h
-        Infrastructure/Game/RollDice/RollDiceResponse.cpp
-        Infrastructure/Game/RollDice/RollDiceResponse.h
-        Infrastructure/Game/RollDice/RollDiceContext.cpp
-        Infrastructure/Game/RollDice/RollDiceContext.h
-        Infrastructure/Game/GameStatus/GameStatusRequest.cpp
-        Infrastructure/Game/GameStatus/GameStatusRequest.h
-        Infrastructure/Game/GameStatus/GameStatusResponse.cpp
-        Infrastructure/Game/GameStatus/GameStatusResponse.h
-        Infrastructure/Game/GameStatus/GameStatusContext.cpp
-        Infrastructure/Game/GameStatus/GameStatusContext.h
-        Infrastructure/Game/LeaveGame/LeaveGameRequest.cpp
-        Infrastructure/Game/LeaveGame/LeaveGameRequest.h
-        Infrastructure/Game/LeaveGame/LeaveGameResponse.cpp
-        Infrastructure/Game/LeaveGame/LeaveGameResponse.h
-        Infrastructure/Game/LeaveGame/LeaveGameContext.cpp
-        Infrastructure/Game/LeaveGame/LeaveGameContext.h
         GameManagement/Objects/BaseObject.cpp
         GameManagement/Objects/BaseObject.h
-        Infrastructure/Game/GameStatistics/GameStatisticsRequest.cpp
-        Infrastructure/Game/GameStatistics/GameStatisticsRequest.h
-        Infrastructure/Game/GameStatistics/GameStatisticsResponse.cpp
-        Infrastructure/Game/GameStatistics/GameStatisticsResponse.h
-        Infrastructure/Game/GameStatistics/GameStatisticsContext.cpp
-        Infrastructure/Game/GameStatistics/GameStatisticsContext.h
         Infrastructure/Commands/HttpCommand.h
         Infrastructure/Commands/HttpCommand.cpp
         Infrastructure/Request.h

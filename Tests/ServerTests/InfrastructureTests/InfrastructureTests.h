@@ -4,6 +4,4 @@
 
 #ifndef INFRASTRUCTURETESTS_H
 #define INFRASTRUCTURETESTS_H
-#include "LobbyTests/LobbyRoutesTests.h"
-#include "GameTests/GameRoutesTests.h"
 #endif //INFRASTRUCTURETESTS_H

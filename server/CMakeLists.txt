@@ -7,16 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(server main.cpp
         API.h
-        Routes/JoinLobbyRoute.h
-        Routes/LeaveLobbyRoute.h
-        Routes/ChangeLobbySettingsRoute.h
-        Routes/CreateLobbyRoute.h
-        Routes/StatusLobbyRoute.h
-        Routes/StartGameRoute.h
-        Routes/GameStatusRoute.h
-        Routes/LeaveGameRoute.h
-        Routes/GameStatisticsRoute.h
-        Routes/RollDiceRoute.h
   )
 
 add_custom_command(TARGET server POST_BUILD

@@ -32,27 +32,7 @@ add_executable(ServerTests main.cpp
         GameManagementTests/ObjectTests/LobbyTests.h
         GameManagementTests/ObjectTests/PlayerTests.h
         GameManagementTests/ObjectTests/RunningGameTests.h
-        InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyRequestTest.h
-        InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyResponseTests.h
-        InfrastructureTests/LobbyTests/CreatLobbyTests/CreateLobbyContextTest.h
-        InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyRequestTest.h
-        InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyResponseTest.h
-        InfrastructureTests/LobbyTests/JoinLobbyTests/JoinLobbyContextTest.h
-        InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyContextTest.h
-        InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyRequestTest.h
-        InfrastructureTests/LobbyTests/LeaveLobbyTests/LeaveLobbyResponseTest.h
-        InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusRequestTest.h
-        InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusResponseTest.h
-        InfrastructureTests/LobbyTests/LobbyStatusTests/LobbyStatusContextTest.h
-        InfrastructureTests/LobbyTests/StartGameTests/StartGameContextTest.h
-        InfrastructureTests/LobbyTests/StartGameTests/StartGameRequestTest.h
-        InfrastructureTests/LobbyTests/StartGameTests/StartGameResponseTest.h
-        InfrastructureTests/LobbyTests/UpdateLobbySettingsTests/UpdateLobbySettingsContextTests.h
-        InfrastructureTests/LobbyTests/UpdateLobbySettingsTests/UpdateLobbySettingsRequestTests.h
-        InfrastructureTests/LobbyTests/UpdateLobbySettingsTests/UpdateLobbySettingsResponseTests.h
-        InfrastructureTests/LobbyTests/LobbyRoutesTests.h
         GameManagementTests/GameManagementTests.h
-        InfrastructureTests/GameTests/GameRoutesTests.h
         InfrastructureTests/InfrastructureTests.h)
 
 target_include_directories(ServerTests PRIVATE ${CMAKE_SOURCE_DIR}/server_lib)
