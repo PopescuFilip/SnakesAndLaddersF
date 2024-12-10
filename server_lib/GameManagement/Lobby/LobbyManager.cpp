@@ -10,7 +10,7 @@ LobbyManager &LobbyManager::getInstance() {
 int LobbyManager::createLobby(const std::string &strAdminPlayer, MapType mapType, int maxPlayers) {
     int lobbyId = GenerateLobbyId();
     Lobby newLobby{ lobbyId, strAdminPlayer, mapType, maxPlayers };
-    m_Lobbies.emplace_back(newLobby);
+    m_Lobbies.push_back(newLobby);
     return lobbyId;
 }
 
