@@ -4,7 +4,7 @@
 LeaveGameCommand::LeaveGameCommand(const crow::json::rvalue& request) :
 	HttpCommand{ request },
 	m_gameId{ m_request.getGameId() },
-	m_username{ m_request.getUsername() }
+	m_username{ m_request.getPlayerUsername() }
 {}
 
 BaseResponsePtr LeaveGameCommand::execute()

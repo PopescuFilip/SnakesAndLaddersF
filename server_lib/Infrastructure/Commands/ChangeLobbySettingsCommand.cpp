@@ -6,7 +6,7 @@ ChangeLobbySettingsCommand::ChangeLobbySettingsCommand(const crow::json::rvalue&
 	HttpCommand{ request },
     m_lobbyId{ m_request.getLobbyId() },
 	m_maxPlayers{ m_request.getMaxPlayers() },
-	m_playerUsername{ m_request.getUsername() },
+	m_playerUsername{ m_request.getPlayerUsername() },
 	m_mapType{ m_request.getMapType() }
 {}
 

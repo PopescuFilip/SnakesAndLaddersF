@@ -5,7 +5,7 @@
 StartGameCommand::StartGameCommand(const crow::json::rvalue& request) :
     HttpCommand{ request },
     m_lobbyId{ m_request.getLobbyId() },
-    m_username{ m_request.getUsername() }
+    m_username{ m_request.getPlayerUsername() }
 {}
 
 BaseResponsePtr StartGameCommand::execute()

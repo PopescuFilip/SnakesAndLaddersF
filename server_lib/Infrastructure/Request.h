@@ -9,7 +9,8 @@ class Request
 public:
 	Request(const crow::json::rvalue& request);
 
-	inline std::string getUsername() const { return m_request["playerUsername"].s(); }
+	inline std::string getPlayerUsername() const { return m_request["playerUsername"].s(); }
+	inline std::string getUsername() const { return m_request["username"].s(); }
 	inline int getLobbyId() const { return m_request["lobbyId"].i(); }
 	inline int getGameId() const { return  m_request["gameId"].i(); }
 	inline int getMaxPlayers() const { return m_request["maxPlayers"].i(); }
