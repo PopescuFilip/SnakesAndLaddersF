@@ -4,4 +4,7 @@
 
 #ifndef INFRASTRUCTURETESTS_H
 #define INFRASTRUCTURETESTS_H
+
+#include "CommandTests/CommandTests.h"
+
 #endif //INFRASTRUCTURETESTS_H
