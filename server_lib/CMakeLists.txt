@@ -42,7 +42,7 @@ add_library(server_lib STATIC
         GameManagement/Objects/Player.cpp
         GameManagement/Objects/Player.h
         GameManagement/Objects/PlayerColor.h
-        Infrastructure/BaseContext.h
+        
         GameManagement/Game/GameManager.cpp
         GameManagement/Game/GameManager.h
         GameManagement/Objects/Lobby.cpp
@@ -51,8 +51,8 @@ add_library(server_lib STATIC
         GameManagement/Objects/RunningGame.h
         GameManagement/Lobby/LobbyManager.cpp
         GameManagement/Lobby/LobbyManager.h
-        Infrastructure/ValidationResponse.cpp
-        Infrastructure/ValidationResponse.h
+        
+        
         GameManagement/Objects/BaseObject.cpp
         GameManagement/Objects/BaseObject.h
         Infrastructure/Commands/HttpCommand.h
