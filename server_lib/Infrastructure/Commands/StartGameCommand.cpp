@@ -22,24 +22,24 @@ BaseResponsePtr StartGameCommand::execute()
 BaseResponse StartGameCommand::checkCanExecute() const
 {
     if (m_username.empty())
-        return BaseResponse("Player username is empty");
+        return BaseResponse("Player username is empty", false);
 
     if (m_lobbyId < 0)
-        return BaseResponse("Lobby id is invalid");
+        return BaseResponse("Lobby id is invalid", false);
 
     try
     {
         const Lobby& lobby = LobbyManager::getInstance().getLobby(m_lobbyId);
 
         if (lobby.getAdminPlayer() != m_username)
-            return BaseResponse("Player is not the admin of the lobby");
+            return BaseResponse("Player is not the admin of the lobby", false);
 
         if (lobby.getPlayers().size() == 1)
-            return BaseResponse("Lobby has only one player");
+            return BaseResponse("Lobby has only one player", false);
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Lobby does not exist");
+        return BaseResponse("Lobby does not exist", false);
     }
 
     return BaseResponse(true);

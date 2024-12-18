@@ -17,6 +17,17 @@
 
 #include "GameManagement/Lobby/LobbyManager.h"
 
+void joinLobby(int lobbyId)
+{
+	crow::json::wvalue myJson;
+	myJson["lobbyId"] = lobbyId;
+	myJson["username"] = "Flavius";
+	crow::json::rvalue request = crow::json::load(myJson.dump());
+	JoinLobbyCommand command{ request };
+
+	BaseResponsePtr response = command.executeWithCheck();
+}
+
 int createLobby()
 {
 	std::string admin("Gigel");
@@ -104,6 +115,7 @@ TEST(CommandTest, LeaveLobbyCommandTest)
 TEST(CommandTest, StartGameCommandTest)
 {
 	int id = createLobby();
+	joinLobby(id);
 	crow::json::wvalue myJson;
 	myJson["lobbyId"] = id;
 	myJson["playerUsername"] = "Gigel";

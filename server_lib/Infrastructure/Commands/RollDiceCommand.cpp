@@ -17,13 +17,13 @@ BaseResponse RollDiceCommand::checkCanExecute() const
 {
     RunningGame game = GameManager::getInstance().getRunningGame(m_gameId);
     if (game.getGameId() == 0)
-        return BaseResponse("Game not found");
+        return BaseResponse("Game not found", false);
 
     if (game.getCurrentPlayer().getUsername() != m_username)
-        return BaseResponse("It's not your turn");
+        return BaseResponse("It's not your turn", false);
 
     if (game.getDiceRolling())
-        return BaseResponse("Dice is already rolling");
+        return BaseResponse("Dice is already rolling", false);
 
     return BaseResponse(true);
 }

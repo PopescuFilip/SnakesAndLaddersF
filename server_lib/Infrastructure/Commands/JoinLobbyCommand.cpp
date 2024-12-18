@@ -14,7 +14,7 @@ BaseResponsePtr JoinLobbyCommand::execute()
     const PlayerColor color = lobby.getNextAvailableColor();
     bool playerAdded = lobby.addPlayer(m_username, color);
     if (!playerAdded)
-        return std::make_unique<BaseResponse>("Lobby is full");
+        return std::make_unique<BaseResponse>("Lobby is full", false);
 
     LobbyManager::getInstance().updateLobby(m_lobbyId, lobby);
 
@@ -24,7 +24,7 @@ BaseResponsePtr JoinLobbyCommand::execute()
 BaseResponse JoinLobbyCommand::checkCanExecute() const
 {
     if (m_username.empty())
-        return BaseResponse("Username cannot be empty");
+        return BaseResponse("Username cannot be empty", false);
 
     const LobbyManager& lobbyManager = LobbyManager::getInstance();
 
@@ -33,17 +33,17 @@ BaseResponse JoinLobbyCommand::checkCanExecute() const
         const Lobby lobby = lobbyManager.getLobby(m_lobbyId);
 
         if (lobby.getPlayers().size() == lobby.getMaxPlayers())
-            return BaseResponse("Lobby is full");
+            return BaseResponse("Lobby is full", false);
 
         for (const Player& player : lobby.getPlayers())
         {
             if (player.getUsername() == m_username)
-                return BaseResponse("Player already exists in lobby");
+                return BaseResponse("Player already exists in lobby", false);
         }
     }
     catch (const std::exception&)
     {
-        return BaseResponse("Lobby does not exist");
+        return BaseResponse("Lobby does not exist", false);
     }
 
     return BaseResponse(true);

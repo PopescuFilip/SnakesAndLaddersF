@@ -21,7 +21,7 @@ BaseResponse StatusLobbyCommand::checkCanExecute() const
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Lobby does not exist");
+        return BaseResponse("Lobby does not exist", false);
     }
 
     return BaseResponse(true);

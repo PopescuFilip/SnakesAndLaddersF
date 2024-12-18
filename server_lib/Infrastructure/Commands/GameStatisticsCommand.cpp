@@ -21,12 +21,12 @@ BaseResponse GameStatisticsCommand::checkCanExecute() const
         RunningGame runningGame = GameManager::getInstance().getRunningGame(m_gameId);
 
         if (!runningGame.getShouldFinishGame()) {
-            return BaseResponse("Game is not finished");
+            return BaseResponse("Game is not finished", false);
         }
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Game does not exist");
+        return BaseResponse("Game does not exist", false);
     }
 
     return BaseResponse(true);

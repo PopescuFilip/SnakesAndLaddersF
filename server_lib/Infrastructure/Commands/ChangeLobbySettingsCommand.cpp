@@ -23,20 +23,20 @@ BaseResponsePtr ChangeLobbySettingsCommand::execute()
 BaseResponse ChangeLobbySettingsCommand::checkCanExecute() const
 {
     if (m_playerUsername.empty())
-        return BaseResponse("Username cannot be empty");
+        return BaseResponse("Username cannot be empty", false);
 
     try
     {
         Lobby lobby = LobbyManager::getInstance().getLobby(m_lobbyId);
         if (lobby.getAdminPlayer() != m_playerUsername)
-            return BaseResponse("Player is not the admin");
+            return BaseResponse("Player is not the admin", false);
 
         if (lobby.getPlayers().size() > m_maxPlayers)
-            return BaseResponse("Max players cannot be less than current players");
+            return BaseResponse("Max players cannot be less than current players", false);
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Lobby does not exist");
+        return BaseResponse("Lobby does not exist", false);
     }
 
     return BaseResponse(true);

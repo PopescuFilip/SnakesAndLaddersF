@@ -19,7 +19,7 @@ BaseResponse CreateLobbyCommand::checkCanExecute() const
 {
     if (m_iMaxPlayers < 2 || m_iMaxPlayers > 4)
     {
-        return BaseResponse("Max players must be between 2 and 4");
+        return BaseResponse("Max players must be between 2 and 4", false);
     }
 
     return BaseResponse(true);

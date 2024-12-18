@@ -21,7 +21,7 @@ BaseResponse GameStatusCommand::checkCanExecute() const
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Game not found");
+        return BaseResponse("Game not found", false);
     }
 
     return BaseResponse(true);

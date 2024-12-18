@@ -4,9 +4,9 @@
 BaseResponse::BaseResponse(const bool bSuccess) : m_bSuccess{ bSuccess }
 {}
 
-BaseResponse::BaseResponse(const std::string& strContent) :
+BaseResponse::BaseResponse(const std::string& strContent, const bool bSucces) :
     m_strMessage{ strContent },
-    m_bSuccess{ false }
+    m_bSuccess{ bSucces }
 {}
 
 BaseResponse::operator bool() const

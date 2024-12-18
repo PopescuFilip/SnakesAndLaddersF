@@ -14,7 +14,7 @@ BaseResponsePtr LeaveLobbyCommand::execute()
     const bool result = lobby.removePlayer(m_username);
 
     if (!result)
-        return std::make_unique<BaseResponse>("Player not found in lobby");
+        return std::make_unique<BaseResponse>("Player not found in lobby", false);
 
     if (lobby.getPlayers().empty())
     {
@@ -34,7 +34,7 @@ BaseResponse LeaveLobbyCommand::checkCanExecute() const
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Lobby does not exist");
+        return BaseResponse("Lobby does not exist", false);
     }
 
     return BaseResponse(true);

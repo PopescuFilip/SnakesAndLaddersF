@@ -13,7 +13,7 @@ BaseResponsePtr LeaveGameCommand::execute()
     bool result = runningGame.removePlayer(m_username);
 
     if (!result)
-        return std::make_unique<BaseResponse>("Failed to leave game");
+        return std::make_unique<BaseResponse>("Failed to leave game", false);
 
     GameManager::getInstance().updateGame(m_gameId, runningGame);
 
@@ -28,7 +28,7 @@ BaseResponse LeaveGameCommand::checkCanExecute() const
     }
     catch (const std::runtime_error&)
     {
-        return BaseResponse("Game does not exist");
+        return BaseResponse("Game does not exist", false);
     }
 
     return BaseResponse(true);

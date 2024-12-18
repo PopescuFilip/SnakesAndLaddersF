@@ -7,11 +7,11 @@
 class BaseResponse : public BaseObject
 {
 public:
-    explicit BaseResponse(const std::string& strContent);
+    explicit BaseResponse(const std::string& strContent, bool bSucces);
     explicit BaseResponse(bool bSuccess);
 
     inline static BaseResponse Succes() { return BaseResponse(true); }
-    inline static BaseResponse Failure(const std::string& strContent) { return BaseResponse(strContent); }
+    inline static BaseResponse Failure(const std::string& strContent) { return BaseResponse(strContent, false); }
 
     explicit operator bool() const;
 
